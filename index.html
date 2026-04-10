@@ -18,6 +18,20 @@
     <script src="https://unpkg.com/lucide@latest"></script>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
 
+    <link rel="icon" type="image/png" href="full-logo.png" sizes="32x32">
+
+    <link rel="icon" type="image/png" href="full-logo.png" sizes="192x192">
+
+    <link rel="apple-touch-icon" href="full-logo.png">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "url": "https://fortytwocapital.in",
+      "logo": "https://fortytwocapital.in/full-logo.png"
+    }
+    </script>
     <script>
         tailwind.config = {
             theme: {
@@ -475,7 +489,9 @@
                 <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
                     <div className="text-center md:text-left">
                         <div className="flex items-center justify-center md:justify-start gap-2 mb-4">
-                            <div className="w-6 h-6 bg-primary rounded flex items-center justify-center text-slate-900 text-[10px] font-bold">42</div>
+                            <div className="w-6 h-6 bg-primary rounded flex items-center justify-center text-slate-900">
+                                <Icon name="activity" className="w-4 h-4" />
+                            </div>
                             <span className="font-bold tracking-tight">Forty Two <span className="text-primary italic">Capital</span></span>
                         </div>
                         <p className="text-xs text-slate-500 max-w-xs mx-auto md:mx-0 leading-relaxed">Restoring credit health and unlocking financial freedom for everyday Indians.</p>

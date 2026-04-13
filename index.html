@@ -118,6 +118,7 @@
                     <Testimonials />
                     <FAQ />
                     <ContactForm />
+                    <FeedbackForm />
                     <Footer />
                 </div>
             );
@@ -376,7 +377,7 @@
                 <section id="packages" className="py-24 px-6 bg-slate-50/50">
                     <div className="max-w-7xl mx-auto">
                         <div className="text-center mb-16">
-                            <h2 className="text-3xl md:text-4xl font-bold mb-4">Select Your Recovery Plan</h2>
+                            <h2 className="text-3xl md:text-4xl font-bold mb-4">SELECT YOUR RECOVERY PLAN</h2>
                             <p className="text-slate-500">Structured plans tailored to the complexity of your credit profile.</p>
                         </div>
 
@@ -615,7 +616,7 @@
                                             <input name="phone" required type="tel" pattern="[6-9][0-9]{9}" className="w-full bg-slate-50 border-2 border-transparent focus:border-primary/50 focus:bg-white rounded-xl p-4 transition-all outline-none text-sm" placeholder="9876543210" />
                                         </div>
                                         <div className="space-y-1">
-                                            <label className="text-[10px] font-bold uppercase tracking-wider text-slate-500 ml-1">Select Your Recovery Plan</label>
+                                            <label className="text-[10px] font-bold uppercase tracking-wider text-slate-500 ml-1">SELECT YOUR RECOVERY PLAN</label>
                                             <select name="package" className="w-full bg-slate-50 border-2 border-transparent focus:border-primary/50 focus:bg-white rounded-xl p-4 transition-all outline-none appearance-none text-sm">
                                                 <option>Complimentary Audit Only</option>
                                                 <option>Foundation Plan</option>
@@ -647,6 +648,80 @@
             );
         };
 
+        const FeedbackForm = () => {
+            const [submitted, setSubmitted] = useState(false);
+            const [loading, setLoading] = useState(false);
+
+            const handleSubmit = async (e) => {
+                e.preventDefault();
+                setLoading(true);
+
+                const formData = new FormData(e.target);
+                const scriptURL = "https://script.google.com/macros/s/AKfycbxBJsFUuktxF7b5zdAcVbI4Wa5YrJVcfcOYoOy4ZHFcLY25iUSCAiV6jHrCP-HXYW7rEQ/exec";
+
+                try {
+                    await fetch(scriptURL, {
+                        method: 'POST',
+                        body: formData,
+                        mode: 'no-cors',
+                    });
+                    setSubmitted(true);
+                } catch (error) {
+                    console.error("Submission error:", error);
+                    alert("Something went wrong. Please try again.");
+                } finally {
+                    setLoading(false);
+                }
+            };
+
+            return (
+                <section id="feedback" className="py-24 px-6 bg-slate-50/50">
+                    <div className="max-w-4xl mx-auto">
+                        <div className="text-center mb-12">
+                            <h2 className="text-3xl md:text-4xl font-bold mb-4">Your Experience Matters</h2>
+                            <p className="text-slate-500 max-w-xl mx-auto">Help us improve Forty Two Capital by sharing your feedback or suggestions.</p>
+                        </div>
+
+                        <div className="bg-white p-8 md:p-12 rounded-[40px] shadow-xl border border-slate-100">
+                            {submitted ? (
+                                <div className="text-center py-10 space-y-4 animate-in fade-in zoom-in duration-500">
+                                    <div className="w-16 h-16 bg-primary/20 text-primary mx-auto rounded-full flex items-center justify-center">
+                                        <Icon name="heart" className="w-8 h-8" />
+                                    </div>
+                                    <h3 className="text-2xl font-bold">Thank You for Your Feedback!</h3>
+                                    <p className="text-slate-500 max-w-sm mx-auto">Your insights help us provide better credit advisory services to all our clients.</p>
+                                    <button onClick={() => setSubmitted(false)} className="text-primary font-bold underline">Submit another feedback</button>
+                                </div>
+                            ) : (
+                                <form onSubmit={handleSubmit} className="space-y-6">
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                        <div className="space-y-1">
+                                            <label className="text-[10px] font-bold uppercase tracking-wider text-slate-500 ml-1">Email ID</label>
+                                            <input name="email" required type="email" className="w-full bg-slate-50 border-2 border-transparent focus:border-primary/50 focus:bg-white rounded-xl p-4 transition-all outline-none text-sm" placeholder="john@example.com" />
+                                        </div>
+                                        <div className="space-y-1">
+                                            <label className="text-[10px] font-bold uppercase tracking-wider text-slate-500 ml-1">Mobile Number (+91)</label>
+                                            <input name="phone" required type="tel" pattern="[6-9][0-9]{9}" className="w-full bg-slate-50 border-2 border-transparent focus:border-primary/50 focus:bg-white rounded-xl p-4 transition-all outline-none text-sm" placeholder="9876543210" />
+                                        </div>
+                                    </div>
+                                    <div className="space-y-1">
+                                        <label className="text-[10px] font-bold uppercase tracking-wider text-slate-500 ml-1">Your Feedback</label>
+                                        <textarea name="feedback" required rows="4" className="w-full bg-slate-50 border-2 border-transparent focus:border-primary/50 focus:bg-white rounded-xl p-4 transition-all outline-none text-sm resize-none" placeholder="How was your experience with us? Any suggestions for improvement?"></textarea>
+                                    </div>
+                                    <button
+                                        disabled={loading}
+                                        className={`w-full py-4 bg-slate-900 text-white font-bold rounded-2xl shadow-xl hover:bg-slate-800 transition-all flex items-center justify-center gap-2 ${loading ? 'opacity-70 cursor-not-allowed' : ''}`}
+                                    >
+                                        {loading ? 'Submitting...' : 'Submit Feedback'}
+                                    </button>
+                                </form>
+                            )}
+                        </div>
+                    </div>
+                </section>
+            );
+        };
+
         const Footer = () => (
             <footer className="py-12 border-t border-slate-100 mx-6">
                 <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
@@ -664,6 +739,10 @@
                     </div>
                     <div className="flex flex-wrap justify-center gap-6 text-[11px] text-slate-500 font-medium">
                         <a href="https://docs.google.com/forms/d/e/1FAIpQLSeU5ai1HFNaZdRksfWM_Akebw8pXVTErx3N-y0dVC3yLp9GaA/viewform?usp=header" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">Request an Audit</a>
+                        <button onClick={() => {
+                            const element = document.getElementById('feedback');
+                            if (element) element.scrollIntoView({ behavior: 'smooth' });
+                        }} className="hover:text-primary transition-colors">Share Feedback</button>
                         <a href="#" className="hover:text-primary transition-colors">Privacy Policy</a>
                         <a href="#" className="hover:text-primary transition-colors">Terms of Service</a>
                         <a href="#" className="hover:text-primary transition-colors">RBI Guidelines</a>

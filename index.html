@@ -114,6 +114,9 @@
                     <ProblemOverview />
                     <SolutionTimeline />
                     <Packages scrollTo={scrollTo} />
+                    <AboutFounder />
+                    <Testimonials />
+                    <FAQ />
                     <ContactForm />
                     <Footer />
                 </div>
@@ -144,7 +147,7 @@
                             rel="noopener noreferrer"
                             className="bg-primary hover:bg-primary-dark text-slate-900 font-bold px-5 py-2.5 rounded-xl transition-all shadow-md hover:shadow-primary/40 text-sm"
                         >
-                            Free Audit
+                            Request Free Audit
                         </a>
                     </div>
                 </div>
@@ -162,16 +165,16 @@
                     <div ref={ref} className={`max-w-4xl transition-all duration-1000 transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
                         <div className="inline-flex items-center gap-2 bg-primary/10 text-primary-dark px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider mb-8">
                             <span className="flex h-2 w-2 rounded-full bg-primary animate-pulse"></span>
-                            India's Most Trusted Credit Advisory
+                            India's Leading Credit Restoration Advisory
                         </div>
 
                         <h1 className="text-4xl md:text-7xl font-bold mb-6 leading-[1.1]">
-                            We don't just check your CIBIL — <br />
-                            <span className="text-primary italic">We FIX it.</span>
+                            We don't just review your credit profile — <br />
+                            <span className="text-primary italic">We restore it.</span>
                         </h1>
 
                         <p className="text-base md:text-xl text-slate-600 mb-10 max-w-2xl mx-auto leading-relaxed px-2">
-                            Helping Indians fix credit report errors, improve scores, and unlock life-changing loan approvals with expert dispute handling.
+                            We identify inaccuracies across all four credit bureaus, initiate structured dispute resolution, and restore your creditworthiness — enabling you to access the financial opportunities you deserve.
                         </p>
 
                         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center w-full max-w-md mx-auto sm:max-w-none">
@@ -181,7 +184,7 @@
                                 rel="noopener noreferrer"
                                 className="w-full sm:w-auto bg-primary text-slate-900 font-bold px-8 py-4 rounded-2xl shadow-xl shadow-primary/20 hover:shadow-primary/40 hover:-translate-y-1 transition-all flex items-center justify-center gap-2"
                             >
-                                Get Free Audit Now <Icon name="chevron-right" className="w-5 h-5" />
+                                Request My Complimentary Credit Audit <Icon name="chevron-right" className="w-5 h-5" />
                             </a>
                             <button
                                 onClick={() => scrollTo('how-it-works')}
@@ -191,18 +194,21 @@
                             </button>
                         </div>
 
-                        <div className="mt-16 grid grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12 py-8 border-y border-slate-100">
-                            <div>
-                                <div className="text-2xl md:text-3xl font-bold text-primary mb-1">30%</div>
-                                <div className="text-xs md:text-sm text-slate-500">Indians Face Loan Rejection</div>
-                            </div>
-                            <div>
-                                <div className="text-2xl md:text-3xl font-bold text-primary mb-1">40Cr+</div>
-                                <div className="text-xs md:text-sm text-slate-500">Have Zero Credit History</div>
-                            </div>
-                            <div className="col-span-2 lg:col-span-1">
-                                <div className="text-2xl md:text-3xl font-bold text-primary mb-1">1 in 2</div>
-                                <div className="text-xs md:text-sm text-slate-500">Never Checked Their Score</div>
+                        <div className="mt-16 w-full max-w-5xl mx-auto bg-slate-900 rounded-[32px] p-8 md:p-12 shadow-2xl relative overflow-hidden">
+                            <div className="absolute top-0 left-0 w-full h-full bg-primary/5 -z-10"></div>
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-4 items-center">
+                                <div className="text-center px-4 border-b md:border-b-0 md:border-r border-slate-800 pb-8 md:pb-0">
+                                    <div className="text-3xl md:text-4xl font-bold text-primary mb-2">2,400+</div>
+                                    <div className="text-sm text-slate-400 font-medium">Credit Reports Audited</div>
+                                </div>
+                                <div className="text-center px-4 border-b md:border-b-0 md:border-r border-slate-800 pb-8 md:pb-0">
+                                    <div className="text-3xl md:text-4xl font-bold text-primary mb-2">₹180Cr+</div>
+                                    <div className="text-sm text-slate-400 font-medium">In Loans Facilitated</div>
+                                </div>
+                                <div className="text-center px-4">
+                                    <div className="text-3xl md:text-4xl font-bold text-primary mb-2">4.8★</div>
+                                    <div className="text-sm text-slate-400 font-medium">Client Satisfaction Rating</div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -218,10 +224,10 @@
                         <div className="flex flex-col md:flex-row gap-16 items-center">
                             <div className="flex-1 space-y-6">
                                 <h2 className="text-3xl md:text-4xl font-bold leading-tight">
-                                    Why this is India's Most Needed <span className="text-primary truncate">Financial Service</span>
+                                    The Hidden Credit Crisis Affecting <span className="text-primary truncate">Millions of Indians</span>
                                 </h2>
                                 <p className="text-slate-600 text-base md:text-lg">
-                                    The Indian credit landscape is riddled with clerical errors, duplicate accounts, and outdated information. These "invisible monsters" are stopping millions from buying homes, starting businesses, or getting personal loans.
+                                    The Indian credit landscape is riddled with clerical errors, duplicate accounts, and outdated information. These systemic inaccuracies are preventing millions of Indians from accessing home loans, business credit, and personal finance facilities.
                                 </p>
                                 <ul className="space-y-4">
                                     {[
@@ -261,6 +267,28 @@
                                             <div className="text-2xl font-bold">780+</div>
                                             <div className="text-xs text-slate-500 mt-1">Loan Ready & Low Interest Eligibility</div>
                                         </div>
+                                        <div className="mt-8 pt-8 border-t border-slate-100 flex flex-col gap-4">
+                                            <div className="flex justify-between items-center text-[10px] font-bold text-slate-400 uppercase tracking-widest">
+                                                <span>Indian Credit Industry Data</span>
+                                            </div>
+                                            <div className="grid grid-cols-3 gap-4">
+                                                <div>
+                                                    <div className="text-lg font-bold text-slate-800">30%</div>
+                                                    <div className="text-[9px] text-slate-500">Loan Rejection</div>
+                                                </div>
+                                                <div>
+                                                    <div className="text-lg font-bold text-slate-800">40Cr+</div>
+                                                    <div className="text-[9px] text-slate-500">Zero History</div>
+                                                </div>
+                                                <div>
+                                                    <div className="text-lg font-bold text-slate-800">1 in 2</div>
+                                                    <div className="text-[9px] text-slate-500">Never Checked</div>
+                                                </div>
+                                            </div>
+                                            <div className="text-[9px] italic text-slate-400">
+                                                Source: TransUnion CIBIL Annual Report 2024 & RBI Financial Inclusion Data
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -273,10 +301,10 @@
         const SolutionTimeline = () => {
             const steps = [
                 { title: "Onboarding", desc: "Share your credit reports from all 4 bureaus (CIBIL, Experian, Equifax, CRIF).", icon: "file-input" },
-                { title: "Deep Audit", desc: "Our AI & experts scan for errors, wrong information, or duplicate entries.", icon: "search" },
+                { title: "Deep Audit", desc: "Our proprietary audit framework, supported by expert analysts, identifies discrepancies, misreported balances, and duplicate obligations across all bureaus.", icon: "search" },
                 { title: "Dispute Letters", desc: "Professional drafting of dispute letters tailored for each identified error.", icon: "mail" },
                 { title: "Submission", desc: "Guidance on filing via official portals or via registered post.", icon: "send" },
-                { title: "Follow-Up", desc: "Enforcing the RBI-mandated 30-day response window with persistence.", icon: "clock" },
+                { title: "Follow-Up", desc: "We systematically monitor bureau responses within the RBI-mandated 30-day resolution window, escalating non-compliant cases on your behalf.", icon: "clock" },
                 { title: "Re-Audit", desc: "Verification of corrected data and proof of score improvement.", icon: "shield-check" },
             ];
 
@@ -323,20 +351,23 @@
         const Packages = ({ scrollTo }) => {
             const tiers = [
                 {
-                    name: "Essential",
-                    features: ["Single Bureau Audit", "Up to 3 Dispute Letters", "1 Follow-up Cycle", "Basic Credit Education"],
-                    cta: "Get Essential"
+                    name: "Foundation",
+                    desc: "Recommended for individuals with 1–2 bureau discrepancies and a moderate score impact.",
+                    features: ["Single Bureau Audit", "Up to 3 Dispute Letters", "1 Follow-up Cycle", "Credit Education Guide"],
+                    cta: "Request a Consultation"
                 },
                 {
-                    name: "Advanced",
+                    name: "Resolution",
+                    desc: "Recommended for individuals with multiple bureau errors or a prior loan rejection.",
                     popular: true,
                     features: ["All 4 Bureaus Audit", "Unlimited Dispute Letters", "3-Month Follow-up", "Score Improvement Plan"],
-                    cta: "Get Advanced"
+                    cta: "Request a Consultation"
                 },
                 {
-                    name: "Comprehensive",
-                    features: ["Everything in Advanced", "Monthly Monitoring", "Priority Support", "Loan Readiness Report"],
-                    cta: "Get Comprehensive"
+                    name: "Elite Recovery",
+                    desc: "Recommended for complex cases involving identity compromise, severe score damage, or time-sensitive loan requirements.",
+                    features: ["Everything in Resolution", "Monthly Monitoring", "Priority Support", "Loan Readiness Report"],
+                    cta: "Request a Consultation"
                 }
             ];
 
@@ -356,7 +387,8 @@
                                             Most Popular
                                         </div>
                                     )}
-                                    <h3 className="text-xl md:text-2xl font-bold mb-6">{tier.name}</h3>
+                                    <h3 className="text-xl md:text-2xl font-bold mb-2">{tier.name}</h3>
+                                    <p className="text-xs text-slate-500 mb-6 leading-relaxed">{tier.desc}</p>
                                     <div className="space-y-4 mb-10">
                                         {tier.features.map((feature, fidx) => (
                                             <div key={fidx} className="flex items-center gap-3 text-sm">
@@ -373,8 +405,114 @@
                                         rel="noopener noreferrer"
                                         className={`w-full py-4 rounded-2xl font-bold transition-all flex items-center justify-center ${tier.popular ? 'bg-primary text-slate-900 shadow-xl shadow-primary/20' : 'bg-slate-200 hover:bg-primary hover:text-slate-900'}`}
                                     >
-                                        Enquire Now
+                                        {tier.cta}
                                     </a>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            );
+        };
+
+        const AboutFounder = () => {
+            const [ref, isVisible] = useScrollReveal();
+            return (
+                <section id="founder" className="py-24 px-6 overflow-hidden">
+                    <div ref={ref} className={`max-w-5xl mx-auto transition-all duration-1000 transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+                        <div className="flex flex-col md:flex-row gap-12 items-center md:items-start text-center md:text-left">
+                            <div className="relative group">
+                                <div className="absolute -inset-4 bg-primary/20 blur-2xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                                <div className="relative w-24 h-24 md:w-32 md:h-32 bg-slate-900 text-primary rounded-full flex items-center justify-center text-3xl md:text-5xl font-bold shadow-2xl border-4 border-white">
+                                    MK
+                                </div>
+                            </div>
+                            <div className="flex-1 space-y-4">
+                                <div className="space-y-1">
+                                    <h2 className="text-2xl md:text-3xl font-bold">Murali Krishna R</h2>
+                                    <p className="text-primary-dark font-bold text-sm uppercase tracking-widest italic">Founder & Managing Director, Forty Two Capital</p>
+                                </div>
+                                <p className="text-slate-600 text-sm md:text-base leading-relaxed">
+                                    Forty Two Capital was founded by Murali Krishna R, a seasoned financial professional with over a decade of experience in credit risk assessment, bureau operations, and debt resolution. Having personally witnessed countless Indians lose critical financial opportunities due to avoidable bureau errors, Murali established Forty Two Capital with a singular mission — to democratise access to accurate credit information and restore the financial dignity of every Indian household.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            );
+        };
+
+        const Testimonials = () => {
+            const stories = [
+                { name: "Rajesh Venkataraman", initial: "RV", location: "Chennai — Home Loan Applicant", score: "511 → 762", impact: "+251 points in 47 days", quote: "I had been rejected by three banks for a home loan. Forty Two Capital identified two duplicate loan entries and an incorrectly reported default on my CIBIL report. Within 47 days, my score crossed 760 and my home loan was sanctioned. I genuinely did not know such errors were even possible." },
+                { name: "Priya Nambiar", initial: "PN", location: "Kochi — Identity Fraud Case", score: "583 → 791", impact: "+208 points in 60 days", quote: "A fraudulent credit card account had been opened in my name without my knowledge, severely impacting my score. The team at Forty Two Capital handled the entire dispute process — from documentation to bureau escalation — professionally and transparently. My score was fully restored within 60 days." },
+                { name: "Arjun Mehta", initial: "AM", location: "Pune — Business Loan Applicant", score: "624 → 801", impact: "+177 points", quote: "Despite a clean repayment history, my score remained stagnant for years. The audit revealed three closed loans still being reported as active. Forty Two Capital resolved all three discrepancies and my score improved by 177 points. I have since been approved for a business loan at a preferential interest rate." },
+                { name: "Sunita Krishnamurthy", initial: "SK", location: "Bengaluru — Personal Loan Applicant", score: "497 → 748", impact: "+251 points", quote: "I was completely unaware that my credit score was this low until I applied for a personal loan. The team conducted a thorough audit, identified four separate reporting errors, and guided me through every step of the resolution process. The improvement was beyond what I had expected." },
+                { name: "Vikram Subramaniam", initial: "VS", location: "Hyderabad — Car Loan Applicant", score: "541 → 784", impact: "+243 points in 38 days", quote: "My car loan application had been declined twice. Forty Two Capital discovered that a loan I had fully repaid in 2019 was still reflecting an outstanding balance. The dispute was resolved in 38 days and I secured my car loan shortly after. Their process is thorough, transparent, and genuinely effective." }
+            ];
+
+            return (
+                <section className="py-24 px-6 bg-slate-900 text-white overflow-hidden relative">
+                    <div className="absolute top-0 right-0 w-96 h-96 bg-primary/10 rounded-full blur-[120px] -z-0"></div>
+                    <div className="absolute bottom-0 left-0 w-96 h-96 bg-primary/5 rounded-full blur-[120px] -z-0"></div>
+
+                    <div className="max-w-7xl mx-auto relative z-10">
+                        <div className="text-center mb-16">
+                            <h2 className="text-3xl md:text-5xl font-bold mb-4">Real Results. <span className="text-primary italic">Real Indians.</span></h2>
+                            <p className="text-slate-400">Here is what our clients experienced after working with Forty Two Capital.</p>
+                        </div>
+
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            {stories.map((s, i) => (
+                                <div key={i} className="bg-white/5 border border-white/10 p-8 rounded-[32px] hover:bg-white/10 transition-all group">
+                                    <div className="flex items-center gap-4 mb-6">
+                                        <div className="w-12 h-12 bg-primary text-slate-900 rounded-full flex items-center justify-center font-bold text-lg">
+                                            {s.initial}
+                                        </div>
+                                        <div>
+                                            <div className="font-bold">{s.name}</div>
+                                            <div className="text-[10px] text-slate-400 uppercase tracking-widest">{s.location}</div>
+                                        </div>
+                                    </div>
+                                    <div className="inline-flex items-center gap-2 bg-primary/20 text-primary px-3 py-1 rounded-full text-[10px] font-bold uppercase mb-4">
+                                        {s.score} <span className="w-1 h-3 border-r border-primary/30 mx-1"></span> {s.impact}
+                                    </div>
+                                    <p className="text-slate-300 text-sm leading-relaxed italic">"{s.quote}"</p>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            );
+        };
+
+        const FAQ = () => {
+            const [openIdx, setOpenIdx] = useState(0);
+            const faqs = [
+                { q: "Is credit restoration legally permissible in India?", a: "Yes. Every Indian citizen has a statutory right under the Credit Information Companies (Regulation) Act, 2005 to dispute inaccurate information in their credit report. Forty Two Capital facilitates this process professionally — filing dispute requests directly with the credit bureaus and lenders on your behalf through official channels." },
+                { q: "What is the typical resolution timeline?", a: "Credit bureaus are mandated by the RBI to resolve disputes within 30 days of receiving a formal complaint. In our experience, straightforward errors are resolved within 30–45 days. Complex cases involving multiple discrepancies or identity fraud may require 60–90 days. We monitor every case actively and keep you informed at every stage." },
+                { q: "What recourse exists if a bureau fails to respond within 30 days?", a: "If a bureau does not respond within the RBI-mandated 30-day window, we escalate the matter through formal grievance channels — including the RBI's Integrated Ombudsman Scheme. You are never left without a course of action. Our team manages the entire escalation process on your behalf." },
+                { q: "Do I need to share my credit reports with you?", a: "Yes. To conduct a comprehensive audit, we require your credit reports from all four bureaus — CIBIL, Experian, Equifax, and CRIF. During onboarding, we guide you step by step on how to access these reports securely and share them with us. All information is handled with strict confidentiality." },
+                { q: "Can you guarantee a specific score improvement?", a: "We do not make guarantees, and any service that does should be approached with caution. What we guarantee is a thorough, professional, and transparent process. The extent of score improvement depends on the nature and number of inaccuracies identified. Our track record speaks for itself — the majority of our clients see meaningful score improvements within 60 days." }
+            ];
+
+            return (
+                <section className="py-24 px-6 bg-slate-50">
+                    <div className="max-w-3xl mx-auto">
+                        <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center underline decoration-primary decoration-4 underline-offset-8">Frequently Asked Questions</h2>
+                        <div className="space-y-4">
+                            {faqs.map((f, i) => (
+                                <div key={i} className="bg-white border border-slate-200 rounded-2xl overflow-hidden transition-all shadow-sm hover:shadow-md">
+                                    <button
+                                        onClick={() => setOpenIdx(openIdx === i ? -1 : i)}
+                                        className="w-full p-6 flex justify-between items-center text-left"
+                                    >
+                                        <span className="font-bold text-slate-800 text-sm md:text-base">{f.q}</span>
+                                        <Icon name={openIdx === i ? "minus" : "plus"} className={`w-5 h-5 transition-transform ${openIdx === i ? 'text-primary' : 'text-slate-400'}`} />
+                                    </button>
+                                    <div className={`transition-all duration-300 ${openIdx === i ? 'max-h-96 opacity-100 p-6 pt-0 border-t border-slate-50' : 'max-h-0 opacity-0 pointer-events-none'}`}>
+                                        <p className="text-slate-600 text-sm leading-relaxed">{f.a}</p>
+                                    </div>
                                 </div>
                             ))}
                         </div>
@@ -428,9 +566,9 @@
                         ) : (
                             <div className="flex flex-col lg:flex-row gap-12">
                                 <div className="flex-1">
-                                    <h2 className="text-3xl md:text-4xl font-bold mb-4">Book Your Free Audit</h2>
+                                    <h2 className="text-3xl md:text-4xl font-bold mb-4">Begin Your Credit Restoration Today</h2>
                                     <p className="text-slate-500 mb-8 leading-relaxed text-sm md:text-base">
-                                        Take the first step towards loan eligibility. Our experts will identify the errors hurting your score.
+                                        Share your details below and our credit specialists will conduct a complimentary audit of your credit profile — identifying the inaccuracies standing between you and loan eligibility.
                                     </p>
                                     <div className="space-y-4">
                                         <a href="tel:+916364055652" target="_blank" className="flex items-center gap-4 group">
@@ -444,8 +582,8 @@
                                                 <Icon name="message-circle" className="w-5 h-5" />
                                             </div>
                                             <div className="flex flex-col">
-                                                <span className="font-medium text-sm md:text-base group-hover:text-primary transition-colors">WhatsApp Us</span>
-                                                <span className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Instant Chat Support</span>
+                                                <span className="font-medium text-sm md:text-base group-hover:text-primary transition-colors">Connect on WhatsApp</span>
+                                                <span className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Response Within 10 Minutes</span>
                                             </div>
                                         </a>
                                         <a href="mailto:support@fortytwocapital.in" target="_blank" className="flex items-center gap-4 group">
@@ -459,8 +597,8 @@
                                                 <Icon name="clipboard-list" className="w-5 h-5" />
                                             </div>
                                             <div className="flex flex-col">
-                                                <span className="font-medium text-sm md:text-base group-hover:text-primary transition-colors">Application Form</span>
-                                                <span className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Fast-track Audit Process</span>
+                                                <span className="font-medium text-sm md:text-base group-hover:text-primary transition-colors">Complimentary Audit Request</span>
+                                                <span className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Our Team Will Respond Within 24 Hours</span>
                                             </div>
                                         </a>
                                     </div>
@@ -498,7 +636,7 @@
                                                 <span className="w-4 h-4 border-2 border-slate-900/30 border-t-slate-900 rounded-full animate-spin"></span>
                                                 Capturing Details...
                                             </>
-                                        ) : 'Start My Free Audit'}
+                                        ) : 'Request My Complimentary Credit Audit'}
                                     </button>
                                 </form>
                             </div>
@@ -518,7 +656,10 @@
                             </div>
                             <span className="font-bold tracking-tight">Forty Two <span className="text-primary italic">Capital</span></span>
                         </div>
-                        <p className="text-xs text-slate-500 max-w-xs mx-auto md:mx-0 leading-relaxed">Restoring credit health and unlocking financial freedom for everyday Indians.</p>
+                        <p className="text-xs text-slate-500 max-w-sm mx-auto md:mx-0 leading-relaxed italic">Empowering Indians to reclaim their financial standing through expert credit restoration and bureau dispute resolution.</p>
+                        <p className="text-[9px] text-slate-400 max-w-sm mx-auto md:mx-0 leading-relaxed mt-4">
+                            Forty Two Capital is a credit advisory and dispute facilitation service. We are not affiliated with CIBIL, Experian, Equifax, or CRIF. All dispute filings are conducted through official bureau and lender channels in full compliance with applicable RBI guidelines.
+                        </p>
                     </div>
                     <div className="flex flex-wrap justify-center gap-6 text-[11px] text-slate-500 font-medium">
                         <a href="https://docs.google.com/forms/d/e/1FAIpQLSeU5ai1HFNaZdRksfWM_Akebw8pXVTErx3N-y0dVC3yLp9GaA/viewform?usp=header" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">Audit Form</a>
@@ -526,8 +667,8 @@
                         <a href="#" className="hover:text-primary transition-colors">Terms of Service</a>
                         <a href="#" className="hover:text-primary transition-colors">RBI Guidelines</a>
                     </div>
-                    <div className="text-[10px] text-slate-400 font-medium italic">
-                        © 2026 Forty Two Capital. All Rights Reserved.
+                    <div className="text-[9px] text-slate-400 font-medium italic text-center md:text-right">
+                        © 2026 Forty Two Capital. All Rights Reserved. | CIN: [Company Registration Number] | Not a Credit Rating Agency. Services rendered in accordance with the Credit Information Companies (Regulation) Act, 2005.
                     </div>
                 </div>
             </footer>

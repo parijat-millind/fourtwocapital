@@ -20,11 +20,22 @@
         tailwind.config = {
             theme: {
                 extend: {
-                    colors: {
+                                        colors: {
                         primary: {
-                            DEFAULT: '#3D52A0', /* Royal Blue */
-                            dark: '#2D3B73',
+                            DEFAULT: '#060709', /* Modern Black */
+                            dark: '#1a1b1d',
                         },
+                        secondary: {
+                            DEFAULT: '#9DD0C7', /* Mint Action Color */
+                            dark: '#7FBBAF',
+                        },
+                        accent: {
+                            DEFAULT: '#F3CEC0', /* Peach Highlight */
+                            dark: '#E2B8AB',
+                        },
+                        lightbg: '#F3EAE5', /* Warm Linen Background */
+                        muted: '#D1CEC9',
+                    },
                         secondary: {
                             DEFAULT: '#8697C4', /* Corporate Slate */
                             dark: '#6B7BA8',
@@ -98,14 +109,14 @@
             width: 6px;
         }
         ::-webkit-scrollbar-track {
-            background: #F5F7FA;
+            background: #F3EAE5;
         }
         ::-webkit-scrollbar-thumb {
-            background: #2F5D8C;
+            background: #060709;
             border-radius: 10px;
         }
         ::-webkit-scrollbar-thumb:hover {
-            background: #00B4D8;
+            background: #9DD0C7;
         }
     </style>
 </head>
@@ -118,7 +129,7 @@
                 <div class="w-10 h-10 bg-accent rounded-lg flex items-center justify-center text-primary font-bold text-xl font-serif">
                     42
                 </div>
-                <span class="text-xl font-serif font-bold tracking-tight">Forty Two <span class="text-accent font-bold">Capital</span></span>
+                <span class="text-xl font-serif font-bold tracking-tight">Forty Two <span class="text-secondary font-bold">Capital</span></span>
             </div>
             
             <div class="hidden md:flex items-center gap-10 text-sm font-semibold tracking-wide uppercase">
@@ -128,14 +139,14 @@
                 <a href="#" class="hover:text-accent transition-colors">Contact</a>
             </div>
             
-            <button class="bg-accent hover:bg-accent text-primary px-6 py-2.5 rounded-full font-bold text-sm transition-all shadow-lg shadow-accent/20 active:scale-95">
+            <button class="bg-accent hover:bg-secondary text-primary px-6 py-2.5 rounded-full font-bold text-sm transition-all shadow-lg shadow-accent/20 active:scale-95">
                 Request Consultation
             </button>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <main class="relative pt-48 pb-32 px-6 overflow-hidden min-h-screen flex items-center bg-gradient-to-br from-navy-900 to-navy-800 text-white">
+    <main class="relative pt-48 pb-32 px-6 overflow-hidden min-h-screen flex items-center bg-lightbg text-primary">
         <!-- 3D Background Container -->
         <div id="hero-3d" class="hero-3d-container"></div>
         
@@ -169,7 +180,7 @@
 
     <!-- Stats Bar -->
     <section class="py-12 px-6">
-        <div class="max-w-7xl mx-auto bg-navy-800 text-white rounded-[40px] px-12 py-16 grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
+        <div class="max-w-7xl mx-auto bg-white text-primary border border-accent/20 shadow-xl rounded-[40px] px-12 py-16 grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
             <div class="space-y-4">
                 <div class="text-5xl font-serif font-bold accent-gradient italic">₹180Cr+</div>
                 <div class="text-xs font-bold uppercase tracking-widest text-primary/40">In Private Loans Facilitated</div>
@@ -198,37 +209,37 @@
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <!-- Card 1 -->
-                <div class="group bg-navy-800 text-white shadow-2xl p-10 rounded-[40px] hover:border-accent/50 transition-all duration-500 hover:-translate-y-2">
+                <div class="group bg-white text-primary border border-accent/20 shadow-xl shadow-2xl p-10 rounded-[40px] hover:border-accent/50 transition-all duration-500 hover:-translate-y-2">
                     <div class="w-16 h-16 glass-accent rounded-2xl flex items-center justify-center mb-10 group-hover:scale-110 transition-transform">
                         <i data-lucide="pie-chart" class="w-8 h-8 text-accent"></i>
                     </div>
                     <h4 class="text-2xl font-serif font-bold mb-4">Portfolio Consultation</h4>
                     <p class="text-primary/50 leading-relaxed mb-8">Holistic review of your current assets to identify systemic risks and untapped growth opportunities.</p>
-                    <a href="#" class="text-accent font-bold text-sm flex items-center gap-2 group-hover:gap-4 transition-all uppercase tracking-widest">
+                    <a href="#" class="text-secondary font-bold text-sm flex items-center gap-2 group-hover:gap-4 transition-all uppercase tracking-widest">
                         Learn More <i data-lucide="chevron-right" class="w-4 h-4"></i>
                     </a>
                 </div>
                 
                 <!-- Card 2 -->
-                <div class="group bg-navy-800 text-white shadow-2xl p-10 rounded-[40px] hover:border-accent/50 transition-all duration-500 hover:-translate-y-2">
+                <div class="group bg-white text-primary border border-accent/20 shadow-xl shadow-2xl p-10 rounded-[40px] hover:border-accent/50 transition-all duration-500 hover:-translate-y-2">
                     <div class="w-16 h-16 glass-accent rounded-2xl flex items-center justify-center mb-10 group-hover:scale-110 transition-transform">
                         <i data-lucide="trending-up" class="w-8 h-8 text-accent"></i>
                     </div>
                     <h4 class="text-2xl font-serif font-bold mb-4">Stock Insights</h4>
                     <p class="text-primary/50 leading-relaxed mb-8">Proprietary equity research and high-conviction ideas tailored to your risk-return objectives.</p>
-                    <a href="#" class="text-accent font-bold text-sm flex items-center gap-2 group-hover:gap-4 transition-all uppercase tracking-widest">
+                    <a href="#" class="text-secondary font-bold text-sm flex items-center gap-2 group-hover:gap-4 transition-all uppercase tracking-widest">
                         Learn More <i data-lucide="chevron-right" class="w-4 h-4"></i>
                     </a>
                 </div>
                 
                 <!-- Card 3 -->
-                <div class="group bg-navy-800 text-white shadow-2xl p-10 rounded-[40px] hover:border-accent/50 transition-all duration-500 hover:-translate-y-2">
+                <div class="group bg-white text-primary border border-accent/20 shadow-xl shadow-2xl p-10 rounded-[40px] hover:border-accent/50 transition-all duration-500 hover:-translate-y-2">
                     <div class="w-16 h-16 glass-accent rounded-2xl flex items-center justify-center mb-10 group-hover:scale-110 transition-transform">
                         <i data-lucide="shield-check" class="w-8 h-8 text-accent"></i>
                     </div>
                     <h4 class="text-2xl font-serif font-bold mb-4">Market Updates</h4>
                     <p class="text-primary/50 leading-relaxed mb-8">Daily intelligence on global shifts, regulatory changes, and their impact on your wealth legacy.</p>
-                    <a href="#" class="text-accent font-bold text-sm flex items-center gap-2 group-hover:gap-4 transition-all uppercase tracking-widest">
+                    <a href="#" class="text-secondary font-bold text-sm flex items-center gap-2 group-hover:gap-4 transition-all uppercase tracking-widest">
                         Learn More <i data-lucide="chevron-right" class="w-4 h-4"></i>
                     </a>
                 </div>
@@ -256,11 +267,11 @@
             // Create a complex wireframe sphere
             const geometry = new THREE.IcosahedronGeometry(10, 2);
             const material = new THREE.MeshPhongMaterial({
-                color: 0x00B4D8,
+                color: 0x9DD0C7,
                 wireframe: true,
                 transparent: true,
                 opacity: 0.4,
-                emissive: 0x00B4D8,
+                emissive: 0x9DD0C7,
                 emissiveIntensity: 0.5
             });
             const sphere = new THREE.Mesh(geometry, material);
@@ -269,7 +280,7 @@
             // Add an inner solid sphere with glass effect
             const innerGeo = new THREE.IcosahedronGeometry(9, 1);
             const innerMat = new THREE.MeshPhysicalMaterial({
-                color: 0x3A0CA3,
+                color: 0xF3CEC0,
                 roughness: 0,
                 metalness: 0.5,
                 transmission: 0.5,

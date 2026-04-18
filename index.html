@@ -36,11 +36,22 @@
         tailwind.config = {
             theme: {
                 extend: {
-                    colors: {
+                                        colors: {
                         primary: {
-                            DEFAULT: '#3D52A0', /* Royal Blue */
-                            dark: '#2D3B73',
+                            DEFAULT: '#060709', /* Modern Black */
+                            dark: '#1a1b1d',
                         },
+                        secondary: {
+                            DEFAULT: '#9DD0C7', /* Mint Action Color */
+                            dark: '#7FBBAF',
+                        },
+                        accent: {
+                            DEFAULT: '#F3CEC0', /* Peach Highlight */
+                            dark: '#E2B8AB',
+                        },
+                        lightbg: '#F3EAE5', /* Warm Linen Background */
+                        muted: '#D1CEC9',
+                    },
                         secondary: {
                             DEFAULT: '#8697C4', /* Corporate Slate */
                             dark: '#6B7BA8',
@@ -62,7 +73,7 @@
     <style>
         @layer base {
             body {
-                @apply font-sans antialiased bg-lightbg text-primary;
+                @apply font-sans antialiased bg-white text-primary;
             }
         }
 
@@ -136,7 +147,7 @@
 
         const Navbar = ({ scrollTo }) => (
             <nav className="fixed w-full z-50 flex justify-center bg-primary text-white border-b border-primary-dark shadow-sm">
-                <div className="max-w-7xl w-full px-6 py-4 flex justify-between items-center bg-primary">
+                <div className="max-w-7xl w-full px-6 py-4 flex justify-between items-center bg-white">
                     <div className="flex items-center gap-2">
                         <div className="w-8 h-8 bg-accent rounded-lg flex items-center justify-center text-primary">
                             <Icon name="activity" className="w-5 h-5" />
@@ -160,7 +171,7 @@
                             href="https://docs.google.com/forms/d/e/1FAIpQLSeU5ai1HFNaZdRksfWM_Akebw8pXVTErx3N-y0dVC3yLp9GaA/viewform?usp=header"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="bg-accent hover:bg-white hover:text-accent text-white font-bold px-5 py-2.5 rounded-xl transition-all shadow-[0_4px_14px_0_rgba(0,180,216,0.39)] hover:shadow-[0_6px_20px_rgba(0,180,216,0.23)] border-2 border-transparent hover:border-accent text-sm"
+                            className="bg-secondary hover:bg-primary hover:text-white text-primary font-bold px-5 py-2.5 rounded-xl transition-all shadow-sm text-sm"
                         >
                             Request Free Audit
                         </a>
@@ -172,23 +183,23 @@
         const Hero = ({ scrollTo }) => {
             const [ref, isVisible] = useScrollReveal();
             return (
-                <section className="relative pt-32 pb-32 px-6 overflow-hidden flex flex-col items-center text-center bg-gradient-to-br from-primary via-[#7091E6] to-secondary text-white">
+                <section className="relative pt-32 pb-32 px-6 overflow-hidden flex flex-col items-center text-center bg-lightbg text-primary">
                     {/* Background glows */}
                     <div className="absolute top-0 -left-20 w-72 h-72 bg-secondary/20 rounded-full blur-[120px] -z-10"></div>
                     <div className="absolute bottom-40 -right-20 w-96 h-96 bg-secondary/5 rounded-full blur-[150px] -z-10"></div>
 
                     <div ref={ref} className={`max-w-4xl transition-all duration-1000 transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-                        <div className="inline-flex items-center gap-2 bg-secondary/5 text-secondary px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider mb-8">
+                        <div className="inline-flex items-center gap-2 bg-secondary/20 text-secondary px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider mb-8">
                             <span className="flex h-2 w-2 rounded-full bg-accent animate-pulse"></span>
                             India's Leading Credit Restoration Advisory
                         </div>
 
-                        <h1 className="text-4xl md:text-7xl font-bold mb-6 leading-[1.1] text-white">
+                        <h1 className="text-4xl md:text-7xl font-bold mb-6 leading-[1.1] text-primary">
                             We don't just review your credit profile — <br />
-                            <span className="text-accent font-bold">We restore it.</span>
+                            <span className="text-secondary font-bold">We restore it.</span>
                         </h1>
 
-                        <p className="text-base md:text-xl text-slate-200 mb-10 max-w-2xl mx-auto leading-relaxed px-2">
+                        <p className="text-base md:text-xl text-slate-600 mb-10 max-w-2xl mx-auto leading-relaxed px-2">
                             We identify inaccuracies across all four credit bureaus, initiate structured dispute resolution, and restore your creditworthiness — enabling you to access the financial opportunities you deserve.
                         </p>
 
@@ -197,7 +208,7 @@
                                 href="https://docs.google.com/forms/d/e/1FAIpQLSeU5ai1HFNaZdRksfWM_Akebw8pXVTErx3N-y0dVC3yLp9GaA/viewform?usp=header"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="w-full sm:w-auto bg-accent text-white hover:bg-white hover:text-accent border-2 border-transparent hover:border-accent font-bold px-8 py-4 rounded-2xl shadow-[0_4px_14px_0_rgba(0,180,216,0.39)] hover:shadow-[0_6px_20px_rgba(0,180,216,0.23)] hover:-translate-y-1 transition-all flex items-center justify-center gap-2"
+                                className="w-full sm:w-auto bg-secondary text-primary hover:bg-primary hover:text-white font-bold px-8 py-4 rounded-2xl shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all flex items-center justify-center gap-2"
                             >
                                 Request Our Complimentary Audit <Icon name="chevron-right" className="w-5 h-5" />
                             </a>
@@ -209,19 +220,19 @@
                             </button>
                         </div>
 
-                        <div className="mt-16 w-full max-w-5xl mx-auto bg-white rounded-[32px] border border-slate-100 shadow-[0_10px_40px_-15px_rgba(58,12,163,0.3)] p-8 md:p-12 relative overflow-hidden">
+                        <div className="mt-16 w-full max-w-5xl mx-auto bg-white rounded-[32px] border border-accent/20 shadow-xl p-8 md:p-12 relative overflow-hidden">
                             <div className="absolute top-0 left-0 w-full h-full bg-secondary/5 -z-10"></div>
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-4 items-center">
                                 <div className="text-center px-4 border-b md:border-b-0 md:border-r border-slate-100 pb-8 md:pb-0">
-                                    <div className="text-3xl md:text-4xl font-bold text-accent mb-2">2,400+</div>
+                                    <div className="text-3xl md:text-4xl font-bold text-secondary mb-2">2,400+</div>
                                     <div className="text-sm text-slate-500 font-medium">Credit Reports Audited</div>
                                 </div>
                                 <div className="text-center px-4 border-b md:border-b-0 md:border-r border-slate-100 pb-8 md:pb-0">
-                                    <div className="text-3xl md:text-4xl font-bold text-accent mb-2">₹180Cr+</div>
+                                    <div className="text-3xl md:text-4xl font-bold text-secondary mb-2">₹180Cr+</div>
                                     <div className="text-sm text-slate-500 font-medium">In Loans Facilitated</div>
                                 </div>
                                 <div className="text-center px-4">
-                                    <div className="text-3xl md:text-4xl font-bold text-accent mb-2">4.8★</div>
+                                    <div className="text-3xl md:text-4xl font-bold text-secondary mb-2">4.8★</div>
                                     <div className="text-sm text-slate-500 font-medium">Client Satisfaction Rating</div>
                                 </div>
                             </div>
@@ -343,7 +354,7 @@
                                             style={{ transitionDelay: `${idx * 100}ms` }}
                                         >
                                             <div className="w-14 h-14 rounded-2xl bg-white shadow-xl flex items-center justify-center mb-6 relative border-2 border-accent/20">
-                                                <div className="absolute -top-3 -left-3 w-6 h-6 bg-accent text-primary rounded-full text-[10px] font-bold flex items-center justify-center">
+                                                <div className="absolute -top-3 -left-3 w-6 h-6 bg-secondary text-primary rounded-full text-[10px] font-bold flex items-center justify-center">
                                                     {idx + 1}
                                                 </div>
                                                 <Icon name={step.icon} className="w-6 h-6 text-accent" />
@@ -395,7 +406,7 @@
                             {tiers.map((tier, idx) => (
                                 <div key={idx} className={`relative bg-white p-8 rounded-[32px] border-2 transition-all hover:-translate-y-2 ${tier.popular ? 'border-accent shadow-2xl shadow-accent/10' : 'border-slate-200 hover:border-accent/50'}`}>
                                     {tier.popular && (
-                                        <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-accent text-primary text-[10px] font-bold px-4 py-1.5 rounded-full uppercase">
+                                        <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-secondary text-primary text-[10px] font-bold px-4 py-1.5 rounded-full uppercase">
                                             Most Popular
                                         </div>
                                     )}
@@ -415,7 +426,7 @@
                                         href="https://docs.google.com/forms/d/e/1FAIpQLSeU5ai1HFNaZdRksfWM_Akebw8pXVTErx3N-y0dVC3yLp9GaA/viewform?usp=header"
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className={`w-full py-4 rounded-2xl font-bold transition-all flex items-center justify-center ${tier.popular ? 'bg-accent text-primary shadow-xl shadow-accent/20' : 'bg-slate-200 hover:bg-accent hover:text-primary'}`}
+                                        className={`w-full py-4 rounded-2xl font-bold transition-all flex items-center justify-center ${tier.popular ? 'bg-secondary text-primary shadow-xl shadow-accent/20' : 'bg-slate-200 hover:bg-accent hover:text-primary'}`}
                                     >
                                         {tier.cta}
                                     </a>
@@ -465,12 +476,12 @@
 
             return (
                 <section className="py-24 px-6 bg-primary text-white overflow-hidden relative">
-                    <div className="absolute top-0 right-0 w-96 h-96 bg-accent/20 rounded-full blur-[120px] -z-0"></div>
-                    <div className="absolute bottom-0 left-0 w-96 h-96 bg-accent/10 rounded-full blur-[120px] -z-0"></div>
+                    <div className="absolute top-0 right-0 w-96 h-96 bg-secondary/10 rounded-full blur-[120px] -z-0"></div>
+                    <div className="absolute bottom-0 left-0 w-96 h-96 bg-accent/5 rounded-full blur-[120px] -z-0"></div>
 
                     <div className="max-w-7xl mx-auto relative z-10">
                         <div className="text-center mb-16">
-                            <h2 className="text-3xl md:text-5xl font-bold mb-4">Real Results. <span className="text-accent font-bold">Real Indians.</span></h2>
+                            <h2 className="text-3xl md:text-5xl font-bold mb-4">Real Results. <span className="text-secondary font-bold">Real Indians.</span></h2>
                             <p className="text-slate-400">Here is what our clients experienced after working with Forty Two Capital.</p>
                         </div>
 
@@ -478,7 +489,7 @@
                             {stories.map((s, i) => (
                                 <div key={i} className="bg-white/5 border border-white/10 p-8 rounded-[32px] hover:bg-white/10 transition-all group">
                                     <div className="flex items-center gap-4 mb-6">
-                                        <div className="w-12 h-12 bg-accent text-primary rounded-full flex items-center justify-center font-bold text-lg">
+                                        <div className="w-12 h-12 bg-secondary text-primary rounded-full flex items-center justify-center font-bold text-lg">
                                             {s.initial}
                                         </div>
                                         <div>
@@ -486,7 +497,7 @@
                                             <div className="text-[10px] text-slate-400 uppercase tracking-widest">{s.location}</div>
                                         </div>
                                     </div>
-                                    <div className="inline-flex items-center gap-2 bg-secondary/20 text-accent px-3 py-1 rounded-full text-[10px] font-bold uppercase mb-4">
+                                    <div className="inline-flex items-center gap-2 bg-accent/20 text-accent px-3 py-1 rounded-full text-[10px] font-bold uppercase mb-4">
                                         {s.score} <span className="w-1 h-3 border-r border-accent/30 mx-1"></span> {s.impact}
                                     </div>
                                     <p className="text-slate-300 text-sm leading-relaxed italic">"{s.quote}"</p>
@@ -566,14 +577,14 @@
 
                         {submitted ? (
                             <div className="text-center py-10 space-y-6 animate-in fade-in zoom-in duration-500">
-                                <div className="w-20 h-20 bg-secondary/20 text-accent mx-auto rounded-full flex items-center justify-center">
+                                <div className="w-20 h-20 bg-accent/20 text-accent mx-auto rounded-full flex items-center justify-center">
                                     <Icon name="check-check" className="w-10 h-10" />
                                 </div>
                                 <h3 className="text-2xl md:text-3xl font-bold">Inquiry Received!</h3>
                                 <p className="text-slate-500 max-w-sm mx-auto text-sm md:text-base px-4">
                                     A senior credit advisor from <span className="font-bold">Forty Two Capital</span> will contact you shortly to start your audit.
                                 </p>
-                                <button onClick={() => setSubmitted(false)} className="text-accent font-bold underline">Send another inquiry</button>
+                                <button onClick={() => setSubmitted(false)} className="text-secondary font-bold underline">Send another inquiry</button>
                             </div>
                         ) : (
                             <div className="flex flex-col lg:flex-row gap-12">
@@ -641,7 +652,7 @@
                                     </div>
                                     <button
                                         disabled={loading}
-                                        className={`w-full py-4 bg-accent hover:bg-white hover:text-accent border-2 border-transparent hover:border-accent text-white font-bold rounded-2xl shadow-[0_4px_14px_0_rgba(0,180,216,0.39)] hover:shadow-[0_6px_20px_rgba(0,180,216,0.23)] hover:-translate-y-1 transition-all mt-4 text-sm flex items-center justify-center gap-2 ${loading ? 'opacity-70 cursor-not-allowed' : ''}`}
+                                        className={`w-full py-4 bg-secondary text-primary font-bold rounded-2xl shadow-sm hover:bg-primary hover:text-white transition-all mt-4 text-sm flex items-center justify-center gap-2 ${loading ? 'opacity-70 cursor-not-allowed' : ''}`}
                                     >
                                         {loading ? (
                                             <>
@@ -695,12 +706,12 @@
                         <div className="bg-white p-8 md:p-12 rounded-[40px] shadow-xl border border-slate-100">
                             {submitted ? (
                                 <div className="text-center py-10 space-y-4 animate-in fade-in zoom-in duration-500">
-                                    <div className="w-16 h-16 bg-secondary/20 text-accent mx-auto rounded-full flex items-center justify-center">
+                                    <div className="w-16 h-16 bg-accent/20 text-accent mx-auto rounded-full flex items-center justify-center">
                                         <Icon name="heart" className="w-8 h-8" />
                                     </div>
                                     <h3 className="text-2xl font-bold">Thank You for Your Feedback!</h3>
                                     <p className="text-slate-500 max-w-sm mx-auto">Your insights help us provide better credit advisory services to all our clients.</p>
-                                    <button onClick={() => setSubmitted(false)} className="text-accent font-bold underline">Submit another feedback</button>
+                                    <button onClick={() => setSubmitted(false)} className="text-secondary font-bold underline">Submit another feedback</button>
                                 </div>
                             ) : (
                                 <form onSubmit={handleSubmit} className="space-y-6">
@@ -740,7 +751,7 @@
                             <div className="w-6 h-6 bg-accent rounded flex items-center justify-center text-primary">
                                 <Icon name="activity" className="w-4 h-4" />
                             </div>
-                            <span className="font-bold tracking-tight">Forty Two <span className="text-accent font-bold">Capital</span></span>
+                            <span className="font-bold tracking-tight">Forty Two <span className="text-secondary font-bold">Capital</span></span>
                         </div>
                         <p className="text-xs text-slate-500 max-w-sm mx-auto md:mx-0 leading-relaxed italic">Empowering Indians to reclaim their financial standing through expert credit restoration and bureau dispute resolution.</p>
                         <p className="text-[9px] text-slate-400 max-w-sm mx-auto md:mx-0 leading-relaxed mt-4">

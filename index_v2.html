@@ -57,14 +57,14 @@
             border: 1px solid rgba(11, 31, 58, 0.08);
         }
         
-        .glass-gold {
-            background: rgba(212, 175, 55, 0.05);
+        .glass-accent {
+            background: rgba(0, 180, 216, 0.05);
             backdrop-filter: blur(8px);
-            border: 1px solid rgba(212, 175, 55, 0.2);
+            border: 1px solid rgba(0, 180, 216, 0.2);
         }
 
-        .gold-gradient {
-            background: linear-gradient(135deg, #D4AF37 0%, #F4D03F 50%, #B8912A 100%);
+        .accent-gradient {
+            background: linear-gradient(135deg, #00B4D8 0%, #90E0EF 50%, #0077B6 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -101,7 +101,7 @@
             border-radius: 10px;
         }
         ::-webkit-scrollbar-thumb:hover {
-            background: #D4AF37;
+            background: #00B4D8;
         }
     </style>
 </head>
@@ -131,20 +131,20 @@
     </nav>
 
     <!-- Hero Section -->
-    <main class="relative pt-48 pb-32 px-6 overflow-hidden min-h-screen flex items-center">
+    <main class="relative pt-48 pb-32 px-6 overflow-hidden min-h-screen flex items-center bg-gradient-to-br from-navy-900 to-navy-800 text-white">
         <!-- 3D Background Container -->
         <div id="hero-3d" class="hero-3d-container"></div>
         
         <div class="max-w-7xl mx-auto w-full relative z-10">
             <div class="max-w-3xl">
-                <div class="inline-flex items-center gap-2 glass-gold px-4 py-2 rounded-full text-xs font-bold uppercase tracking-[0.2em] mb-8 animate-pulse-slow">
+                <div class="inline-flex items-center gap-2 glass-accent px-4 py-2 rounded-full text-xs font-bold uppercase tracking-[0.2em] mb-8 animate-pulse-slow">
                     <span class="w-2 h-2 rounded-full bg-accent"></span>
                     Now Advising Over ₹500Cr in Assets
                 </div>
                 
                 <h1 class="text-6xl md:text-8xl font-serif font-bold leading-[1.05] mb-8">
                     Beyond Wealth. <br/>
-                    <span class="gold-gradient">Absolute Strategy.</span>
+                    <span class="accent-gradient">Absolute Strategy.</span>
                 </h1>
                 
                 <p class="text-xl md:text-2xl text-primary/60 font-light mb-12 leading-relaxed max-w-2xl">
@@ -165,17 +165,17 @@
 
     <!-- Stats Bar -->
     <section class="py-12 px-6">
-        <div class="max-w-7xl mx-auto glass rounded-[40px] px-12 py-16 grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
+        <div class="max-w-7xl mx-auto bg-navy-800 text-white rounded-[40px] px-12 py-16 grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
             <div class="space-y-4">
-                <div class="text-5xl font-serif font-bold gold-gradient italic">₹180Cr+</div>
+                <div class="text-5xl font-serif font-bold accent-gradient italic">₹180Cr+</div>
                 <div class="text-xs font-bold uppercase tracking-widest text-primary/40">In Private Loans Facilitated</div>
             </div>
             <div class="space-y-4 border-y md:border-y-0 md:border-x border-primary/10 py-8 md:py-0">
-                <div class="text-5xl font-serif font-bold gold-gradient italic">2,400+</div>
+                <div class="text-5xl font-serif font-bold accent-gradient italic">2,400+</div>
                 <div class="text-xs font-bold uppercase tracking-widest text-primary/40">High-Impact Portfolio Audits</div>
             </div>
             <div class="space-y-4">
-                <div class="text-5xl font-serif font-bold gold-gradient italic">4.8★</div>
+                <div class="text-5xl font-serif font-bold accent-gradient italic">4.8★</div>
                 <div class="text-xs font-bold uppercase tracking-widest text-primary/40">Client Satisfaction Rating</div>
             </div>
         </div>
@@ -194,8 +194,8 @@
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <!-- Card 1 -->
-                <div class="group glass p-10 rounded-[40px] hover:border-accent/50 transition-all duration-500 hover:-translate-y-2">
-                    <div class="w-16 h-16 glass-gold rounded-2xl flex items-center justify-center mb-10 group-hover:scale-110 transition-transform">
+                <div class="group bg-navy-800 text-white shadow-2xl p-10 rounded-[40px] hover:border-accent/50 transition-all duration-500 hover:-translate-y-2">
+                    <div class="w-16 h-16 glass-accent rounded-2xl flex items-center justify-center mb-10 group-hover:scale-110 transition-transform">
                         <i data-lucide="pie-chart" class="w-8 h-8 text-accent"></i>
                     </div>
                     <h4 class="text-2xl font-serif font-bold mb-4">Portfolio Consultation</h4>
@@ -206,8 +206,8 @@
                 </div>
                 
                 <!-- Card 2 -->
-                <div class="group glass p-10 rounded-[40px] hover:border-accent/50 transition-all duration-500 hover:-translate-y-2">
-                    <div class="w-16 h-16 glass-gold rounded-2xl flex items-center justify-center mb-10 group-hover:scale-110 transition-transform">
+                <div class="group bg-navy-800 text-white shadow-2xl p-10 rounded-[40px] hover:border-accent/50 transition-all duration-500 hover:-translate-y-2">
+                    <div class="w-16 h-16 glass-accent rounded-2xl flex items-center justify-center mb-10 group-hover:scale-110 transition-transform">
                         <i data-lucide="trending-up" class="w-8 h-8 text-accent"></i>
                     </div>
                     <h4 class="text-2xl font-serif font-bold mb-4">Stock Insights</h4>
@@ -218,8 +218,8 @@
                 </div>
                 
                 <!-- Card 3 -->
-                <div class="group glass p-10 rounded-[40px] hover:border-accent/50 transition-all duration-500 hover:-translate-y-2">
-                    <div class="w-16 h-16 glass-gold rounded-2xl flex items-center justify-center mb-10 group-hover:scale-110 transition-transform">
+                <div class="group bg-navy-800 text-white shadow-2xl p-10 rounded-[40px] hover:border-accent/50 transition-all duration-500 hover:-translate-y-2">
+                    <div class="w-16 h-16 glass-accent rounded-2xl flex items-center justify-center mb-10 group-hover:scale-110 transition-transform">
                         <i data-lucide="shield-check" class="w-8 h-8 text-accent"></i>
                     </div>
                     <h4 class="text-2xl font-serif font-bold mb-4">Market Updates</h4>
@@ -252,11 +252,11 @@
             // Create a complex wireframe sphere
             const geometry = new THREE.IcosahedronGeometry(10, 2);
             const material = new THREE.MeshPhongMaterial({
-                color: 0xD4AF37,
+                color: 0x00B4D8,
                 wireframe: true,
                 transparent: true,
                 opacity: 0.4,
-                emissive: 0xD4AF37,
+                emissive: 0x00B4D8,
                 emissiveIntensity: 0.5
             });
             const sphere = new THREE.Mesh(geometry, material);
@@ -265,7 +265,7 @@
             // Add an inner solid sphere with glass effect
             const innerGeo = new THREE.IcosahedronGeometry(9, 1);
             const innerMat = new THREE.MeshPhysicalMaterial({
-                color: 0x1A2542,
+                color: 0x3A0CA3,
                 roughness: 0,
                 metalness: 0.5,
                 transmission: 0.5,

@@ -38,9 +38,18 @@
                 extend: {
                     colors: {
                         primary: {
-                            DEFAULT: '#90EE90',
-                            dark: '#76C776',
+                            DEFAULT: '#0B1F3A',
+                            dark: '#081528',
                         },
+                        secondary: {
+                            DEFAULT: '#2F5D8C',
+                            dark: '#214365',
+                        },
+                        accent: {
+                            DEFAULT: '#D4AF37',
+                            dark: '#B8912A',
+                        },
+                        lightbg: '#F5F7FA',
                     },
                     fontFamily: {
                         sans: ['Outfit', 'sans-serif'],
@@ -52,7 +61,7 @@
     <style>
         @layer base {
             body {
-                @apply font-sans antialiased bg-white text-slate-900;
+                @apply font-sans antialiased bg-lightbg text-primary;
             }
         }
 
@@ -66,7 +75,7 @@
         }
 
         ::-webkit-scrollbar-thumb {
-            @apply bg-primary/30 rounded-full hover:bg-primary/50;
+            @apply bg-secondary/30 rounded-full hover:bg-secondary/50;
         }
     </style>
 </head>
@@ -125,32 +134,32 @@
         }
 
         const Navbar = ({ scrollTo }) => (
-            <nav className="fixed w-full z-50 flex justify-center bg-white border-b border-slate-100 shadow-sm">
-                <div className="max-w-7xl w-full px-6 py-4 flex justify-between items-center bg-white">
+            <nav className="fixed w-full z-50 flex justify-center bg-primary text-white border-b border-primary-dark shadow-sm">
+                <div className="max-w-7xl w-full px-6 py-4 flex justify-between items-center bg-primary">
                     <div className="flex items-center gap-2">
-                        <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center text-slate-900">
+                        <div className="w-8 h-8 bg-accent rounded-lg flex items-center justify-center text-primary">
                             <Icon name="activity" className="w-5 h-5" />
                         </div>
-                        <span className="text-xl font-bold tracking-tight">Forty Two <span className="text-primary truncate">Capital</span></span>
+                        <span className="text-xl font-bold tracking-tight">Forty Two <span className="text-accent truncate">Capital</span></span>
                     </div>
 
                     <div className="hidden md:flex items-center gap-8 text-sm font-medium">
-                        <button onClick={() => scrollTo('about')} className="hover:text-primary transition-colors">About Us</button>
-                        <button onClick={() => scrollTo('how-it-works')} className="hover:text-primary transition-colors">How It Works</button>
-                        <button onClick={() => scrollTo('packages')} className="hover:text-primary transition-colors">Packages</button>
-                        <button onClick={() => scrollTo('contact')} className="hover:text-primary transition-colors">Contact Us</button>
+                        <button onClick={() => scrollTo('about')} className="hover:text-accent transition-colors">About Us</button>
+                        <button onClick={() => scrollTo('how-it-works')} className="hover:text-accent transition-colors">How It Works</button>
+                        <button onClick={() => scrollTo('packages')} className="hover:text-accent transition-colors">Packages</button>
+                        <button onClick={() => scrollTo('contact')} className="hover:text-accent transition-colors">Contact Us</button>
                     </div>
 
                     <div className="flex items-center gap-6">
-                        <a href="tel:+916364055652" className="hidden lg:flex items-center gap-2 text-slate-700 hover:text-primary transition-colors">
-                            <Icon name="phone" className="w-4 h-4 text-primary" />
+                        <a href="tel:+916364055652" className="hidden lg:flex items-center gap-2 text-slate-300 hover:text-accent transition-colors">
+                            <Icon name="phone" className="w-4 h-4 text-accent" />
                             <span className="text-sm font-bold">+91 6364055652</span>
                         </a>
                         <a
                             href="https://docs.google.com/forms/d/e/1FAIpQLSeU5ai1HFNaZdRksfWM_Akebw8pXVTErx3N-y0dVC3yLp9GaA/viewform?usp=header"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="bg-primary hover:bg-primary-dark text-slate-900 font-bold px-5 py-2.5 rounded-xl transition-all shadow-md hover:shadow-primary/40 text-sm"
+                            className="bg-accent hover:bg-accent-dark text-primary font-bold px-5 py-2.5 rounded-xl transition-all shadow-md hover:shadow-accent/40 text-sm"
                         >
                             Request Free Audit
                         </a>
@@ -164,18 +173,18 @@
             return (
                 <section className="relative pt-32 pb-20 px-6 overflow-hidden flex flex-col items-center text-center">
                     {/* Background glows */}
-                    <div className="absolute top-0 -left-20 w-72 h-72 bg-primary/20 rounded-full blur-[120px] -z-10"></div>
-                    <div className="absolute bottom-40 -right-20 w-96 h-96 bg-primary/10 rounded-full blur-[150px] -z-10"></div>
+                    <div className="absolute top-0 -left-20 w-72 h-72 bg-secondary/20 rounded-full blur-[120px] -z-10"></div>
+                    <div className="absolute bottom-40 -right-20 w-96 h-96 bg-secondary/10 rounded-full blur-[150px] -z-10"></div>
 
                     <div ref={ref} className={`max-w-4xl transition-all duration-1000 transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-                        <div className="inline-flex items-center gap-2 bg-primary/10 text-primary-dark px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider mb-8">
-                            <span className="flex h-2 w-2 rounded-full bg-primary animate-pulse"></span>
+                        <div className="inline-flex items-center gap-2 bg-secondary/10 text-accent-dark px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider mb-8">
+                            <span className="flex h-2 w-2 rounded-full bg-accent animate-pulse"></span>
                             India's Leading Credit Restoration Advisory
                         </div>
 
                         <h1 className="text-4xl md:text-7xl font-bold mb-6 leading-[1.1]">
                             We don't just review your credit profile — <br />
-                            <span className="text-primary italic">We restore it.</span>
+                            <span className="text-accent italic">We restore it.</span>
                         </h1>
 
                         <p className="text-base md:text-xl text-slate-600 mb-10 max-w-2xl mx-auto leading-relaxed px-2">
@@ -187,31 +196,31 @@
                                 href="https://docs.google.com/forms/d/e/1FAIpQLSeU5ai1HFNaZdRksfWM_Akebw8pXVTErx3N-y0dVC3yLp9GaA/viewform?usp=header"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="w-full sm:w-auto bg-primary text-slate-900 font-bold px-8 py-4 rounded-2xl shadow-xl shadow-primary/20 hover:shadow-primary/40 hover:-translate-y-1 transition-all flex items-center justify-center gap-2"
+                                className="w-full sm:w-auto bg-accent text-primary font-bold px-8 py-4 rounded-2xl shadow-xl shadow-accent/20 hover:shadow-accent/40 hover:-translate-y-1 transition-all flex items-center justify-center gap-2"
                             >
                                 Request My Complimentary Credit Audit <Icon name="chevron-right" className="w-5 h-5" />
                             </a>
                             <button
                                 onClick={() => scrollTo('how-it-works')}
-                                className="w-full sm:w-auto px-8 py-4 rounded-2xl border-2 border-slate-200 hover:border-primary transition-all font-semibold"
+                                className="w-full sm:w-auto px-8 py-4 rounded-2xl border-2 border-slate-200 hover:border-accent transition-all font-semibold"
                             >
                                 See How It Works
                             </button>
                         </div>
 
-                        <div className="mt-16 w-full max-w-5xl mx-auto bg-slate-900 rounded-[32px] p-8 md:p-12 shadow-2xl relative overflow-hidden">
-                            <div className="absolute top-0 left-0 w-full h-full bg-primary/5 -z-10"></div>
+                        <div className="mt-16 w-full max-w-5xl mx-auto bg-primary rounded-[32px] p-8 md:p-12 shadow-2xl relative overflow-hidden">
+                            <div className="absolute top-0 left-0 w-full h-full bg-secondary/5 -z-10"></div>
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-4 items-center">
                                 <div className="text-center px-4 border-b md:border-b-0 md:border-r border-slate-800 pb-8 md:pb-0">
-                                    <div className="text-3xl md:text-4xl font-bold text-primary mb-2">2,400+</div>
+                                    <div className="text-3xl md:text-4xl font-bold text-accent mb-2">2,400+</div>
                                     <div className="text-sm text-slate-400 font-medium">Credit Reports Audited</div>
                                 </div>
                                 <div className="text-center px-4 border-b md:border-b-0 md:border-r border-slate-800 pb-8 md:pb-0">
-                                    <div className="text-3xl md:text-4xl font-bold text-primary mb-2">₹180Cr+</div>
+                                    <div className="text-3xl md:text-4xl font-bold text-accent mb-2">₹180Cr+</div>
                                     <div className="text-sm text-slate-400 font-medium">In Loans Facilitated</div>
                                 </div>
                                 <div className="text-center px-4">
-                                    <div className="text-3xl md:text-4xl font-bold text-primary mb-2">4.8★</div>
+                                    <div className="text-3xl md:text-4xl font-bold text-accent mb-2">4.8★</div>
                                     <div className="text-sm text-slate-400 font-medium">Client Satisfaction Rating</div>
                                 </div>
                             </div>
@@ -224,12 +233,12 @@
         const ProblemOverview = () => {
             const [ref, isVisible] = useScrollReveal();
             return (
-                <section id="about" className="py-24 px-6 bg-slate-50/50">
+                <section id="about" className="py-24 px-6 bg-lightbg">
                     <div ref={ref} className={`max-w-7xl mx-auto transition-all duration-1000 transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
                         <div className="flex flex-col md:flex-row gap-16 items-center">
                             <div className="flex-1 space-y-6">
                                 <h2 className="text-3xl md:text-4xl font-bold leading-tight">
-                                    The Hidden Credit Crisis Affecting <span className="text-primary truncate">Millions of Indians</span>
+                                    The Hidden Credit Crisis Affecting <span className="text-accent truncate">Millions of Indians</span>
                                 </h2>
                                 <p className="text-slate-600 text-base md:text-lg">
                                     The Indian credit landscape is riddled with clerical errors, duplicate accounts, and outdated information. These systemic inaccuracies are preventing millions of Indians from accessing home loans, business credit, and personal finance facilities.
@@ -251,7 +260,7 @@
                                 </ul>
                             </div>
                             <div className="flex-1 relative w-full max-w-md mx-auto md:max-w-none">
-                                <div className="absolute -inset-4 bg-primary/20 blur-3xl rounded-full opacity-50"></div>
+                                <div className="absolute -inset-4 bg-secondary/20 blur-3xl rounded-full opacity-50"></div>
                                 <div className="relative bg-white p-8 rounded-[32px] shadow-2xl border border-slate-100">
                                     <div className="space-y-6">
                                         <div className="flex justify-between items-center">
@@ -267,8 +276,8 @@
                                                 <div className="text-sm text-slate-500">3 Significant Errors Found</div>
                                             </div>
                                         </div>
-                                        <div className="p-4 bg-primary/10 rounded-2xl border border-primary/20">
-                                            <div className="text-xs font-bold uppercase text-primary-dark mb-1">Our Target</div>
+                                        <div className="p-4 bg-secondary/10 rounded-2xl border border-accent/20">
+                                            <div className="text-xs font-bold uppercase text-accent-dark mb-1">Our Target</div>
                                             <div className="text-2xl font-bold">780+</div>
                                             <div className="text-xs text-slate-500 mt-1">Loan Ready & Low Interest Eligibility</div>
                                         </div>
@@ -332,11 +341,11 @@
                                             className={`flex flex-col items-center text-center transition-all duration-700 transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
                                             style={{ transitionDelay: `${idx * 100}ms` }}
                                         >
-                                            <div className="w-14 h-14 rounded-2xl bg-white shadow-xl flex items-center justify-center mb-6 relative border-2 border-primary/20">
-                                                <div className="absolute -top-3 -left-3 w-6 h-6 bg-primary text-slate-900 rounded-full text-[10px] font-bold flex items-center justify-center">
+                                            <div className="w-14 h-14 rounded-2xl bg-white shadow-xl flex items-center justify-center mb-6 relative border-2 border-accent/20">
+                                                <div className="absolute -top-3 -left-3 w-6 h-6 bg-accent text-primary rounded-full text-[10px] font-bold flex items-center justify-center">
                                                     {idx + 1}
                                                 </div>
-                                                <Icon name={step.icon} className="w-6 h-6 text-primary" />
+                                                <Icon name={step.icon} className="w-6 h-6 text-accent" />
                                             </div>
                                             <h3 className="font-bold mb-2 text-sm md:text-base">{step.title}</h3>
                                             <p className="text-[11px] md:text-xs text-slate-500 leading-relaxed px-4 sm:px-0">{step.desc}</p>
@@ -374,7 +383,7 @@
             ];
 
             return (
-                <section id="packages" className="py-24 px-6 bg-slate-50/50">
+                <section id="packages" className="py-24 px-6 bg-lightbg">
                     <div className="max-w-7xl mx-auto">
                         <div className="text-center mb-16">
                             <h2 className="text-3xl md:text-4xl font-bold mb-4">SELECT YOUR RECOVERY PLAN</h2>
@@ -383,9 +392,9 @@
 
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                             {tiers.map((tier, idx) => (
-                                <div key={idx} className={`relative bg-white p-8 rounded-[32px] border-2 transition-all hover:-translate-y-2 ${tier.popular ? 'border-primary shadow-2xl shadow-primary/10' : 'border-slate-200 hover:border-primary/50'}`}>
+                                <div key={idx} className={`relative bg-white p-8 rounded-[32px] border-2 transition-all hover:-translate-y-2 ${tier.popular ? 'border-accent shadow-2xl shadow-accent/10' : 'border-slate-200 hover:border-accent/50'}`}>
                                     {tier.popular && (
-                                        <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-primary text-slate-900 text-[10px] font-bold px-4 py-1.5 rounded-full uppercase">
+                                        <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-accent text-primary text-[10px] font-bold px-4 py-1.5 rounded-full uppercase">
                                             Most Popular
                                         </div>
                                     )}
@@ -394,7 +403,7 @@
                                     <div className="space-y-4 mb-10">
                                         {tier.features.map((feature, fidx) => (
                                             <div key={fidx} className="flex items-center gap-3 text-sm">
-                                                <div className="text-primary">
+                                                <div className="text-accent">
                                                     <Icon name="check-circle-2" className="w-5 h-5" />
                                                 </div>
                                                 <span className="text-slate-700">{feature}</span>
@@ -405,7 +414,7 @@
                                         href="https://docs.google.com/forms/d/e/1FAIpQLSeU5ai1HFNaZdRksfWM_Akebw8pXVTErx3N-y0dVC3yLp9GaA/viewform?usp=header"
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className={`w-full py-4 rounded-2xl font-bold transition-all flex items-center justify-center ${tier.popular ? 'bg-primary text-slate-900 shadow-xl shadow-primary/20' : 'bg-slate-200 hover:bg-primary hover:text-slate-900'}`}
+                                        className={`w-full py-4 rounded-2xl font-bold transition-all flex items-center justify-center ${tier.popular ? 'bg-accent text-primary shadow-xl shadow-accent/20' : 'bg-slate-200 hover:bg-accent hover:text-primary'}`}
                                     >
                                         {tier.cta}
                                     </a>
@@ -424,15 +433,15 @@
                     <div ref={ref} className={`max-w-5xl mx-auto transition-all duration-1000 transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
                         <div className="flex flex-col md:flex-row gap-12 items-center md:items-start text-center md:text-left">
                             <div className="relative group">
-                                <div className="absolute -inset-4 bg-primary/20 blur-2xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                                <div className="relative w-24 h-24 md:w-32 md:h-32 bg-slate-900 text-primary rounded-full flex items-center justify-center text-3xl md:text-5xl font-bold shadow-2xl border-4 border-white">
+                                <div className="absolute -inset-4 bg-secondary/20 blur-2xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                                <div className="relative w-24 h-24 md:w-32 md:h-32 bg-primary text-accent rounded-full flex items-center justify-center text-3xl md:text-5xl font-bold shadow-2xl border-4 border-white">
                                     SV
                                 </div>
                             </div>
                             <div className="flex-1 space-y-4">
                                 <div className="space-y-1">
                                     <h2 className="text-2xl md:text-3xl font-bold">Sowmiya & Venkatagiri</h2>
-                                    <p className="text-primary-dark font-bold text-sm uppercase tracking-widest italic">Founders, Forty Two Capital</p>
+                                    <p className="text-accent-dark font-bold text-sm uppercase tracking-widest italic">Founders, Forty Two Capital</p>
                                 </div>
                                 <p className="text-slate-600 text-sm md:text-base leading-relaxed">
                                     Forty Two Capital was founded by Sowmiya and Venkatagiri, seasoned financial professionals with extensive experience in credit risk assessment, bureau operations, and debt resolution. Having personally witnessed countless Indians lose critical financial opportunities due to avoidable bureau errors, they established Forty Two Capital with a singular mission — to democratise access to accurate credit information and restore the financial dignity of every Indian household.
@@ -454,13 +463,13 @@
             ];
 
             return (
-                <section className="py-24 px-6 bg-slate-900 text-white overflow-hidden relative">
-                    <div className="absolute top-0 right-0 w-96 h-96 bg-primary/10 rounded-full blur-[120px] -z-0"></div>
-                    <div className="absolute bottom-0 left-0 w-96 h-96 bg-primary/5 rounded-full blur-[120px] -z-0"></div>
+                <section className="py-24 px-6 bg-primary text-white overflow-hidden relative">
+                    <div className="absolute top-0 right-0 w-96 h-96 bg-secondary/10 rounded-full blur-[120px] -z-0"></div>
+                    <div className="absolute bottom-0 left-0 w-96 h-96 bg-secondary/5 rounded-full blur-[120px] -z-0"></div>
 
                     <div className="max-w-7xl mx-auto relative z-10">
                         <div className="text-center mb-16">
-                            <h2 className="text-3xl md:text-5xl font-bold mb-4">Real Results. <span className="text-primary italic">Real Indians.</span></h2>
+                            <h2 className="text-3xl md:text-5xl font-bold mb-4">Real Results. <span className="text-accent italic">Real Indians.</span></h2>
                             <p className="text-slate-400">Here is what our clients experienced after working with Forty Two Capital.</p>
                         </div>
 
@@ -468,7 +477,7 @@
                             {stories.map((s, i) => (
                                 <div key={i} className="bg-white/5 border border-white/10 p-8 rounded-[32px] hover:bg-white/10 transition-all group">
                                     <div className="flex items-center gap-4 mb-6">
-                                        <div className="w-12 h-12 bg-primary text-slate-900 rounded-full flex items-center justify-center font-bold text-lg">
+                                        <div className="w-12 h-12 bg-accent text-primary rounded-full flex items-center justify-center font-bold text-lg">
                                             {s.initial}
                                         </div>
                                         <div>
@@ -476,8 +485,8 @@
                                             <div className="text-[10px] text-slate-400 uppercase tracking-widest">{s.location}</div>
                                         </div>
                                     </div>
-                                    <div className="inline-flex items-center gap-2 bg-primary/20 text-primary px-3 py-1 rounded-full text-[10px] font-bold uppercase mb-4">
-                                        {s.score} <span className="w-1 h-3 border-r border-primary/30 mx-1"></span> {s.impact}
+                                    <div className="inline-flex items-center gap-2 bg-secondary/20 text-accent px-3 py-1 rounded-full text-[10px] font-bold uppercase mb-4">
+                                        {s.score} <span className="w-1 h-3 border-r border-accent/30 mx-1"></span> {s.impact}
                                     </div>
                                     <p className="text-slate-300 text-sm leading-relaxed italic">"{s.quote}"</p>
                                 </div>
@@ -501,7 +510,7 @@
             return (
                 <section className="py-24 px-6 bg-slate-50">
                     <div className="max-w-3xl mx-auto">
-                        <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center underline decoration-primary decoration-4 underline-offset-8">Frequently Asked Questions</h2>
+                        <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center underline decoration-accent decoration-4 underline-offset-8">Frequently Asked Questions</h2>
                         <div className="space-y-4">
                             {faqs.map((f, i) => (
                                 <div key={i} className="bg-white border border-slate-200 rounded-2xl overflow-hidden transition-all shadow-sm hover:shadow-md">
@@ -510,7 +519,7 @@
                                         className="w-full p-6 flex justify-between items-center text-left"
                                     >
                                         <span className="font-bold text-slate-800 text-sm md:text-base">{f.q}</span>
-                                        <Icon name={openIdx === i ? "minus" : "plus"} className={`w-5 h-5 transition-transform ${openIdx === i ? 'text-primary' : 'text-slate-400'}`} />
+                                        <Icon name={openIdx === i ? "minus" : "plus"} className={`w-5 h-5 transition-transform ${openIdx === i ? 'text-accent' : 'text-slate-400'}`} />
                                     </button>
                                     <div className={`transition-all duration-300 ${openIdx === i ? 'max-h-96 opacity-100 p-6 pt-0 border-t border-slate-50' : 'max-h-0 opacity-0 pointer-events-none'}`}>
                                         <p className="text-slate-600 text-sm leading-relaxed">{f.a}</p>
@@ -552,18 +561,18 @@
             return (
                 <section id="contact" className="py-24 px-6">
                     <div className="max-w-4xl mx-auto bg-white p-6 md:p-12 rounded-[40px] shadow-2xl relative overflow-hidden border border-slate-100">
-                        <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl -z-10"></div>
+                        <div className="absolute top-0 right-0 w-64 h-64 bg-secondary/5 rounded-full blur-3xl -z-10"></div>
 
                         {submitted ? (
                             <div className="text-center py-10 space-y-6 animate-in fade-in zoom-in duration-500">
-                                <div className="w-20 h-20 bg-primary/20 text-primary mx-auto rounded-full flex items-center justify-center">
+                                <div className="w-20 h-20 bg-secondary/20 text-accent mx-auto rounded-full flex items-center justify-center">
                                     <Icon name="check-check" className="w-10 h-10" />
                                 </div>
                                 <h3 className="text-2xl md:text-3xl font-bold">Inquiry Received!</h3>
                                 <p className="text-slate-500 max-w-sm mx-auto text-sm md:text-base px-4">
                                     A senior credit advisor from <span className="font-bold">Forty Two Capital</span> will contact you shortly to start your audit.
                                 </p>
-                                <button onClick={() => setSubmitted(false)} className="text-primary font-bold underline">Send another inquiry</button>
+                                <button onClick={() => setSubmitted(false)} className="text-accent font-bold underline">Send another inquiry</button>
                             </div>
                         ) : (
                             <div className="flex flex-col lg:flex-row gap-12">
@@ -574,32 +583,32 @@
                                     </p>
                                     <div className="space-y-4">
                                         <a href="tel:+916364055652" target="_blank" className="flex items-center gap-4 group">
-                                            <div className="w-10 h-10 rounded-xl bg-slate-100 flex items-center justify-center group-hover:bg-primary transition-colors">
+                                            <div className="w-10 h-10 rounded-xl bg-slate-100 flex items-center justify-center group-hover:bg-accent transition-colors">
                                                 <Icon name="phone" className="w-5 h-5" />
                                             </div>
-                                            <span className="font-medium text-sm md:text-base group-hover:text-primary transition-colors">+91 6364055652</span>
+                                            <span className="font-medium text-sm md:text-base group-hover:text-accent transition-colors">+91 6364055652</span>
                                         </a>
                                         <a href="https://wa.me/916364055652" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 group">
-                                            <div className="w-10 h-10 rounded-xl bg-slate-100 flex items-center justify-center group-hover:bg-primary transition-colors">
+                                            <div className="w-10 h-10 rounded-xl bg-slate-100 flex items-center justify-center group-hover:bg-accent transition-colors">
                                                 <Icon name="message-circle" className="w-5 h-5" />
                                             </div>
                                             <div className="flex flex-col">
-                                                <span className="font-medium text-sm md:text-base group-hover:text-primary transition-colors">Connect on WhatsApp</span>
+                                                <span className="font-medium text-sm md:text-base group-hover:text-accent transition-colors">Connect on WhatsApp</span>
                                                 <span className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Response Within 10 Minutes</span>
                                             </div>
                                         </a>
                                         <a href="mailto:support@fortytwocapital.in" target="_blank" className="flex items-center gap-4 group">
-                                            <div className="w-10 h-10 rounded-xl bg-slate-100 flex items-center justify-center group-hover:bg-primary transition-colors">
+                                            <div className="w-10 h-10 rounded-xl bg-slate-100 flex items-center justify-center group-hover:bg-accent transition-colors">
                                                 <Icon name="mail" className="w-5 h-5" />
                                             </div>
-                                            <span className="font-medium text-sm md:text-base group-hover:text-primary transition-colors">support@fortytwocapital.in</span>
+                                            <span className="font-medium text-sm md:text-base group-hover:text-accent transition-colors">support@fortytwocapital.in</span>
                                         </a>
                                         <a href="https://docs.google.com/forms/d/e/1FAIpQLSeU5ai1HFNaZdRksfWM_Akebw8pXVTErx3N-y0dVC3yLp9GaA/viewform?usp=header" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 group">
-                                            <div className="w-10 h-10 rounded-xl bg-slate-100 flex items-center justify-center group-hover:bg-primary transition-colors">
+                                            <div className="w-10 h-10 rounded-xl bg-slate-100 flex items-center justify-center group-hover:bg-accent transition-colors">
                                                 <Icon name="clipboard-list" className="w-5 h-5" />
                                             </div>
                                             <div className="flex flex-col">
-                                                <span className="font-medium text-sm md:text-base group-hover:text-primary transition-colors">Complimentary Audit Request</span>
+                                                <span className="font-medium text-sm md:text-base group-hover:text-accent transition-colors">Complimentary Audit Request</span>
                                                 <span className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Our Team Will Respond Within 24 Hours</span>
                                             </div>
                                         </a>
@@ -608,16 +617,16 @@
                                 <form onSubmit={handleSubmit} className="flex-1 space-y-4">
                                     <div className="space-y-1">
                                         <label className="text-[10px] font-bold uppercase tracking-wider text-slate-500 ml-1">Full Name</label>
-                                        <input name="name" required type="text" className="w-full bg-slate-50 border-2 border-transparent focus:border-primary/50 focus:bg-white rounded-xl p-4 transition-all outline-none text-sm" placeholder="John Doe" />
+                                        <input name="name" required type="text" className="w-full bg-slate-50 border-2 border-transparent focus:border-accent/50 focus:bg-white rounded-xl p-4 transition-all outline-none text-sm" placeholder="John Doe" />
                                     </div>
                                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                         <div className="space-y-1">
                                             <label className="text-[10px] font-bold uppercase tracking-wider text-slate-500 ml-1">Phone Number (+91)</label>
-                                            <input name="phone" required type="tel" pattern="[6-9][0-9]{9}" className="w-full bg-slate-50 border-2 border-transparent focus:border-primary/50 focus:bg-white rounded-xl p-4 transition-all outline-none text-sm" placeholder="9876543210" />
+                                            <input name="phone" required type="tel" pattern="[6-9][0-9]{9}" className="w-full bg-slate-50 border-2 border-transparent focus:border-accent/50 focus:bg-white rounded-xl p-4 transition-all outline-none text-sm" placeholder="9876543210" />
                                         </div>
                                         <div className="space-y-1">
                                             <label className="text-[10px] font-bold uppercase tracking-wider text-slate-500 ml-1">SELECT YOUR RECOVERY PLAN</label>
-                                            <select name="package" className="w-full bg-slate-50 border-2 border-transparent focus:border-primary/50 focus:bg-white rounded-xl p-4 transition-all outline-none appearance-none text-sm">
+                                            <select name="package" className="w-full bg-slate-50 border-2 border-transparent focus:border-accent/50 focus:bg-white rounded-xl p-4 transition-all outline-none appearance-none text-sm">
                                                 <option>Complimentary Audit Only</option>
                                                 <option>Foundation Plan</option>
                                                 <option>Resolution Plan</option>
@@ -627,11 +636,11 @@
                                     </div>
                                     <div className="space-y-1">
                                         <label className="text-[10px] font-bold uppercase tracking-wider text-slate-500 ml-1">Email Address</label>
-                                        <input name="email" required type="email" className="w-full bg-slate-50 border-2 border-transparent focus:border-primary/50 focus:bg-white rounded-xl p-4 transition-all outline-none text-sm" placeholder="john@example.com" />
+                                        <input name="email" required type="email" className="w-full bg-slate-50 border-2 border-transparent focus:border-accent/50 focus:bg-white rounded-xl p-4 transition-all outline-none text-sm" placeholder="john@example.com" />
                                     </div>
                                     <button
                                         disabled={loading}
-                                        className={`w-full py-4 bg-primary text-slate-900 font-bold rounded-2xl shadow-xl shadow-primary/20 hover:shadow-primary/40 hover:-translate-y-1 transition-all mt-4 text-sm flex items-center justify-center gap-2 ${loading ? 'opacity-70 cursor-not-allowed' : ''}`}
+                                        className={`w-full py-4 bg-accent text-primary font-bold rounded-2xl shadow-xl shadow-accent/20 hover:shadow-accent/40 hover:-translate-y-1 transition-all mt-4 text-sm flex items-center justify-center gap-2 ${loading ? 'opacity-70 cursor-not-allowed' : ''}`}
                                     >
                                         {loading ? (
                                             <>
@@ -675,7 +684,7 @@
             };
 
             return (
-                <section id="feedback" className="py-24 px-6 bg-slate-50/50">
+                <section id="feedback" className="py-24 px-6 bg-lightbg">
                     <div className="max-w-4xl mx-auto">
                         <div className="text-center mb-12">
                             <h2 className="text-3xl md:text-4xl font-bold mb-4">Your Experience Matters</h2>
@@ -685,32 +694,32 @@
                         <div className="bg-white p-8 md:p-12 rounded-[40px] shadow-xl border border-slate-100">
                             {submitted ? (
                                 <div className="text-center py-10 space-y-4 animate-in fade-in zoom-in duration-500">
-                                    <div className="w-16 h-16 bg-primary/20 text-primary mx-auto rounded-full flex items-center justify-center">
+                                    <div className="w-16 h-16 bg-secondary/20 text-accent mx-auto rounded-full flex items-center justify-center">
                                         <Icon name="heart" className="w-8 h-8" />
                                     </div>
                                     <h3 className="text-2xl font-bold">Thank You for Your Feedback!</h3>
                                     <p className="text-slate-500 max-w-sm mx-auto">Your insights help us provide better credit advisory services to all our clients.</p>
-                                    <button onClick={() => setSubmitted(false)} className="text-primary font-bold underline">Submit another feedback</button>
+                                    <button onClick={() => setSubmitted(false)} className="text-accent font-bold underline">Submit another feedback</button>
                                 </div>
                             ) : (
                                 <form onSubmit={handleSubmit} className="space-y-6">
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                         <div className="space-y-1">
                                             <label className="text-[10px] font-bold uppercase tracking-wider text-slate-500 ml-1">Email ID</label>
-                                            <input name="email" required type="email" className="w-full bg-slate-50 border-2 border-transparent focus:border-primary/50 focus:bg-white rounded-xl p-4 transition-all outline-none text-sm" placeholder="john@example.com" />
+                                            <input name="email" required type="email" className="w-full bg-slate-50 border-2 border-transparent focus:border-accent/50 focus:bg-white rounded-xl p-4 transition-all outline-none text-sm" placeholder="john@example.com" />
                                         </div>
                                         <div className="space-y-1">
                                             <label className="text-[10px] font-bold uppercase tracking-wider text-slate-500 ml-1">Mobile Number (+91)</label>
-                                            <input name="phone" required type="tel" pattern="[6-9][0-9]{9}" className="w-full bg-slate-50 border-2 border-transparent focus:border-primary/50 focus:bg-white rounded-xl p-4 transition-all outline-none text-sm" placeholder="9876543210" />
+                                            <input name="phone" required type="tel" pattern="[6-9][0-9]{9}" className="w-full bg-slate-50 border-2 border-transparent focus:border-accent/50 focus:bg-white rounded-xl p-4 transition-all outline-none text-sm" placeholder="9876543210" />
                                         </div>
                                     </div>
                                     <div className="space-y-1">
                                         <label className="text-[10px] font-bold uppercase tracking-wider text-slate-500 ml-1">Your Feedback</label>
-                                        <textarea name="feedback" required rows="4" className="w-full bg-slate-50 border-2 border-transparent focus:border-primary/50 focus:bg-white rounded-xl p-4 transition-all outline-none text-sm resize-none" placeholder="How was your experience with us? Any suggestions for improvement?"></textarea>
+                                        <textarea name="feedback" required rows="4" className="w-full bg-slate-50 border-2 border-transparent focus:border-accent/50 focus:bg-white rounded-xl p-4 transition-all outline-none text-sm resize-none" placeholder="How was your experience with us? Any suggestions for improvement?"></textarea>
                                     </div>
                                     <button
                                         disabled={loading}
-                                        className={`w-full py-4 bg-slate-900 text-white font-bold rounded-2xl shadow-xl hover:bg-slate-800 transition-all flex items-center justify-center gap-2 ${loading ? 'opacity-70 cursor-not-allowed' : ''}`}
+                                        className={`w-full py-4 bg-primary text-white font-bold rounded-2xl shadow-xl hover:bg-slate-800 transition-all flex items-center justify-center gap-2 ${loading ? 'opacity-70 cursor-not-allowed' : ''}`}
                                     >
                                         {loading ? 'Submitting...' : 'Submit Feedback'}
                                     </button>
@@ -723,14 +732,14 @@
         };
 
         const Footer = () => (
-            <footer className="py-12 border-t border-slate-100 mx-6">
-                <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+            <footer className="py-12 bg-primary text-white w-full">
+                <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8 px-6">
                     <div className="text-center md:text-left">
                         <div className="flex items-center justify-center md:justify-start gap-2 mb-4">
-                            <div className="w-6 h-6 bg-primary rounded flex items-center justify-center text-slate-900">
+                            <div className="w-6 h-6 bg-accent rounded flex items-center justify-center text-primary">
                                 <Icon name="activity" className="w-4 h-4" />
                             </div>
-                            <span className="font-bold tracking-tight">Forty Two <span className="text-primary italic">Capital</span></span>
+                            <span className="font-bold tracking-tight">Forty Two <span className="text-accent italic">Capital</span></span>
                         </div>
                         <p className="text-xs text-slate-500 max-w-sm mx-auto md:mx-0 leading-relaxed italic">Empowering Indians to reclaim their financial standing through expert credit restoration and bureau dispute resolution.</p>
                         <p className="text-[9px] text-slate-400 max-w-sm mx-auto md:mx-0 leading-relaxed mt-4">
@@ -738,14 +747,14 @@
                         </p>
                     </div>
                     <div className="flex flex-wrap justify-center gap-6 text-[11px] text-slate-500 font-medium">
-                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSeU5ai1HFNaZdRksfWM_Akebw8pXVTErx3N-y0dVC3yLp9GaA/viewform?usp=header" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">Request an Audit</a>
+                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSeU5ai1HFNaZdRksfWM_Akebw8pXVTErx3N-y0dVC3yLp9GaA/viewform?usp=header" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors">Request an Audit</a>
                         <button onClick={() => {
                             const element = document.getElementById('feedback');
                             if (element) element.scrollIntoView({ behavior: 'smooth' });
-                        }} className="hover:text-primary transition-colors">Share Feedback</button>
-                        <a href="#" className="hover:text-primary transition-colors">Privacy Policy</a>
-                        <a href="#" className="hover:text-primary transition-colors">Terms of Service</a>
-                        <a href="#" className="hover:text-primary transition-colors">RBI Guidelines</a>
+                        }} className="hover:text-accent transition-colors">Share Feedback</button>
+                        <a href="#" className="hover:text-accent transition-colors">Privacy Policy</a>
+                        <a href="#" className="hover:text-accent transition-colors">Terms of Service</a>
+                        <a href="#" className="hover:text-accent transition-colors">RBI Guidelines</a>
                     </div>
                     <div className="text-[9px] text-slate-400 font-medium italic text-center md:text-right">
                         © 2026 Forty Two Capital. All Rights Reserved. | CIN: [Company Registration Number] | Not a Credit Rating Agency. Services rendered in accordance with the Credit Information Companies (Regulation) Act, 2005.

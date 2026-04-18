@@ -38,18 +38,19 @@
                 extend: {
                     colors: {
                         primary: {
-                            DEFAULT: '#4B2E83', /* Deep Purple */
-                            dark: '#382262',
+                            DEFAULT: '#3D52A0', /* Royal Blue */
+                            dark: '#2D3B73',
                         },
                         secondary: {
-                            DEFAULT: '#3A0CA3', /* Indigo */
-                            dark: '#2A0876',
+                            DEFAULT: '#8697C4', /* Corporate Slate */
+                            dark: '#6B7BA8',
                         },
                         accent: {
-                            DEFAULT: '#00B4D8', /* Electric Blue */
-                            dark: '#0092B0',
+                            DEFAULT: '#7091E6', /* Action Blue */
+                            dark: '#5677CE',
                         },
-                        lightbg: '#FFFFFF',
+                        lightbg: '#EDE8F5', /* Frost Background */
+                        muted: '#ADBBDA', /* Subtle Periwinkle */
                     },
                     fontFamily: {
                         sans: ['Outfit', 'sans-serif'],
@@ -61,7 +62,7 @@
     <style>
         @layer base {
             body {
-                @apply font-sans antialiased bg-white text-slate-900;
+                @apply font-sans antialiased bg-lightbg text-primary;
             }
         }
 
@@ -171,7 +172,7 @@
         const Hero = ({ scrollTo }) => {
             const [ref, isVisible] = useScrollReveal();
             return (
-                <section className="relative pt-32 pb-32 px-6 overflow-hidden flex flex-col items-center text-center bg-gradient-to-br from-primary to-secondary text-white">
+                <section className="relative pt-32 pb-32 px-6 overflow-hidden flex flex-col items-center text-center bg-gradient-to-br from-primary via-[#7091E6] to-secondary text-white">
                     {/* Background glows */}
                     <div className="absolute top-0 -left-20 w-72 h-72 bg-secondary/20 rounded-full blur-[120px] -z-10"></div>
                     <div className="absolute bottom-40 -right-20 w-96 h-96 bg-secondary/5 rounded-full blur-[150px] -z-10"></div>
@@ -184,7 +185,7 @@
 
                         <h1 className="text-4xl md:text-7xl font-bold mb-6 leading-[1.1] text-white">
                             We don't just review your credit profile — <br />
-                            <span className="text-accent italic">We restore it.</span>
+                            <span className="text-accent font-bold">We restore it.</span>
                         </h1>
 
                         <p className="text-base md:text-xl text-slate-200 mb-10 max-w-2xl mx-auto leading-relaxed px-2">
@@ -233,7 +234,7 @@
         const ProblemOverview = () => {
             const [ref, isVisible] = useScrollReveal();
             return (
-                <section id="about" className="py-24 px-6 bg-white">
+                <section id="about" className="py-24 px-6 bg-lightbg">
                     <div ref={ref} className={`max-w-7xl mx-auto transition-all duration-1000 transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
                         <div className="flex flex-col md:flex-row gap-16 items-center">
                             <div className="flex-1 space-y-6">
@@ -383,7 +384,7 @@
             ];
 
             return (
-                <section id="packages" className="py-24 px-6 bg-white">
+                <section id="packages" className="py-24 px-6 bg-lightbg">
                     <div className="max-w-7xl mx-auto">
                         <div className="text-center mb-16">
                             <h2 className="text-3xl md:text-4xl font-bold mb-4">SELECT YOUR RECOVERY PLAN</h2>
@@ -464,12 +465,12 @@
 
             return (
                 <section className="py-24 px-6 bg-primary text-white overflow-hidden relative">
-                    <div className="absolute top-0 right-0 w-96 h-96 bg-secondary/5 rounded-full blur-[120px] -z-0"></div>
-                    <div className="absolute bottom-0 left-0 w-96 h-96 bg-secondary/5 rounded-full blur-[120px] -z-0"></div>
+                    <div className="absolute top-0 right-0 w-96 h-96 bg-accent/20 rounded-full blur-[120px] -z-0"></div>
+                    <div className="absolute bottom-0 left-0 w-96 h-96 bg-accent/10 rounded-full blur-[120px] -z-0"></div>
 
                     <div className="max-w-7xl mx-auto relative z-10">
                         <div className="text-center mb-16">
-                            <h2 className="text-3xl md:text-5xl font-bold mb-4">Real Results. <span className="text-accent italic">Real Indians.</span></h2>
+                            <h2 className="text-3xl md:text-5xl font-bold mb-4">Real Results. <span className="text-accent font-bold">Real Indians.</span></h2>
                             <p className="text-slate-400">Here is what our clients experienced after working with Forty Two Capital.</p>
                         </div>
 
@@ -508,7 +509,7 @@
             ];
 
             return (
-                <section className="py-24 px-6 bg-slate-50">
+                <section className="py-24 px-6 bg-lightbg">
                     <div className="max-w-3xl mx-auto">
                         <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center underline decoration-accent decoration-4 underline-offset-8">Frequently Asked Questions</h2>
                         <div className="space-y-4">
@@ -684,7 +685,7 @@
             };
 
             return (
-                <section id="feedback" className="py-24 px-6 bg-white">
+                <section id="feedback" className="py-24 px-6 bg-lightbg">
                     <div className="max-w-4xl mx-auto">
                         <div className="text-center mb-12">
                             <h2 className="text-3xl md:text-4xl font-bold mb-4">Your Experience Matters</h2>
@@ -739,7 +740,7 @@
                             <div className="w-6 h-6 bg-accent rounded flex items-center justify-center text-primary">
                                 <Icon name="activity" className="w-4 h-4" />
                             </div>
-                            <span className="font-bold tracking-tight">Forty Two <span className="text-accent italic">Capital</span></span>
+                            <span className="font-bold tracking-tight">Forty Two <span className="text-accent font-bold">Capital</span></span>
                         </div>
                         <p className="text-xs text-slate-500 max-w-sm mx-auto md:mx-0 leading-relaxed italic">Empowering Indians to reclaim their financial standing through expert credit restoration and bureau dispute resolution.</p>
                         <p className="text-[9px] text-slate-400 max-w-sm mx-auto md:mx-0 leading-relaxed mt-4">

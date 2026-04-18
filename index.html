@@ -36,32 +36,21 @@
         tailwind.config = {
             theme: {
                 extend: {
-                                        colors: {
+                    colors: {
                         primary: {
-                            DEFAULT: '#060709', /* Modern Black */
-                            dark: '#1a1b1d',
+                            DEFAULT: '#A64AC9', /* Vivid Purple */
+                            dark: '#8B3AA9',
                         },
                         secondary: {
-                            DEFAULT: '#9DD0C7', /* Mint Action Color */
-                            dark: '#7FBBAF',
+                            DEFAULT: '#17E9E0', /* Electric Cyan */
+                            dark: '#12BFB8',
                         },
                         accent: {
-                            DEFAULT: '#F3CEC0', /* Peach Highlight */
-                            dark: '#E2B8AB',
+                            DEFAULT: '#FCCD04', /* Energetic Gold */
+                            dark: '#D9B103',
                         },
-                        lightbg: '#F3EAE5', /* Warm Linen Background */
-                        muted: '#D1CEC9',
-                    },
-                        secondary: {
-                            DEFAULT: '#8697C4', /* Corporate Slate */
-                            dark: '#6B7BA8',
-                        },
-                        accent: {
-                            DEFAULT: '#7091E6', /* Action Blue */
-                            dark: '#5677CE',
-                        },
-                        lightbg: '#EDE8F5', /* Frost Background */
-                        muted: '#ADBBDA', /* Subtle Periwinkle */
+                        lightbg: '#F5E6CC', /* Warm Beige Background */
+                        muted: '#FFB48F', /* Coral Accent */
                     },
                     fontFamily: {
                         sans: ['Outfit', 'sans-serif'],
@@ -73,7 +62,7 @@
     <style>
         @layer base {
             body {
-                @apply font-sans antialiased bg-white text-primary;
+                @apply font-sans antialiased bg-lightbg text-primary;
             }
         }
 
@@ -147,7 +136,7 @@
 
         const Navbar = ({ scrollTo }) => (
             <nav className="fixed w-full z-50 flex justify-center bg-primary text-white border-b border-primary-dark shadow-sm">
-                <div className="max-w-7xl w-full px-6 py-4 flex justify-between items-center bg-white">
+                <div className="max-w-7xl w-full px-6 py-4 flex justify-between items-center bg-primary">
                     <div className="flex items-center gap-2">
                         <div className="w-8 h-8 bg-accent rounded-lg flex items-center justify-center text-primary">
                             <Icon name="activity" className="w-5 h-5" />
@@ -171,7 +160,7 @@
                             href="https://docs.google.com/forms/d/e/1FAIpQLSeU5ai1HFNaZdRksfWM_Akebw8pXVTErx3N-y0dVC3yLp9GaA/viewform?usp=header"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="bg-secondary hover:bg-primary hover:text-white text-primary font-bold px-5 py-2.5 rounded-xl transition-all shadow-sm text-sm"
+                            className="bg-accent hover:bg-secondary text-primary font-bold px-5 py-2.5 rounded-xl transition-all shadow-lg text-sm"
                         >
                             Request Free Audit
                         </a>
@@ -183,7 +172,7 @@
         const Hero = ({ scrollTo }) => {
             const [ref, isVisible] = useScrollReveal();
             return (
-                <section className="relative pt-32 pb-32 px-6 overflow-hidden flex flex-col items-center text-center bg-lightbg text-primary">
+                <section className="relative pt-32 pb-32 px-6 overflow-hidden flex flex-col items-center text-center bg-gradient-to-br from-primary to-primary-dark text-white">
                     {/* Background glows */}
                     <div className="absolute top-0 -left-20 w-72 h-72 bg-secondary/20 rounded-full blur-[120px] -z-10"></div>
                     <div className="absolute bottom-40 -right-20 w-96 h-96 bg-secondary/5 rounded-full blur-[150px] -z-10"></div>
@@ -196,10 +185,10 @@
 
                         <h1 className="text-4xl md:text-7xl font-bold mb-6 leading-[1.1] text-primary">
                             We don't just review your credit profile — <br />
-                            <span className="text-secondary font-bold">We restore it.</span>
+                            <span className="text-accent font-bold">We restore it.</span>
                         </h1>
 
-                        <p className="text-base md:text-xl text-slate-600 mb-10 max-w-2xl mx-auto leading-relaxed px-2">
+                        <p className="text-base md:text-xl text-white/80 mb-10 max-w-2xl mx-auto leading-relaxed px-2">
                             We identify inaccuracies across all four credit bureaus, initiate structured dispute resolution, and restore your creditworthiness — enabling you to access the financial opportunities you deserve.
                         </p>
 
@@ -220,7 +209,7 @@
                             </button>
                         </div>
 
-                        <div className="mt-16 w-full max-w-5xl mx-auto bg-white rounded-[32px] border border-accent/20 shadow-xl p-8 md:p-12 relative overflow-hidden">
+                        <div className="mt-16 w-full max-w-5xl mx-auto bg-white rounded-[32px] border border-muted/30 shadow-xl p-8 md:p-12 relative overflow-hidden">
                             <div className="absolute top-0 left-0 w-full h-full bg-secondary/5 -z-10"></div>
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-4 items-center">
                                 <div className="text-center px-4 border-b md:border-b-0 md:border-r border-slate-100 pb-8 md:pb-0">
@@ -288,7 +277,7 @@
                                                 <div className="text-sm text-slate-500">3 Significant Errors Found</div>
                                             </div>
                                         </div>
-                                        <div className="p-4 bg-secondary/5 rounded-2xl border border-accent/20">
+                                        <div className="p-4 bg-secondary/5 rounded-2xl border border-muted/30">
                                             <div className="text-xs font-bold uppercase text-secondary mb-1">Our Target</div>
                                             <div className="text-2xl font-bold">780+</div>
                                             <div className="text-xs text-slate-500 mt-1">Loan Ready & Low Interest Eligibility</div>
@@ -353,7 +342,7 @@
                                             className={`flex flex-col items-center text-center transition-all duration-700 transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
                                             style={{ transitionDelay: `${idx * 100}ms` }}
                                         >
-                                            <div className="w-14 h-14 rounded-2xl bg-white shadow-xl flex items-center justify-center mb-6 relative border-2 border-accent/20">
+                                            <div className="w-14 h-14 rounded-2xl bg-white shadow-xl flex items-center justify-center mb-6 relative border-2 border-muted/30">
                                                 <div className="absolute -top-3 -left-3 w-6 h-6 bg-secondary text-primary rounded-full text-[10px] font-bold flex items-center justify-center">
                                                     {idx + 1}
                                                 </div>
@@ -453,7 +442,7 @@
                             <div className="flex-1 space-y-4">
                                 <div className="space-y-1">
                                     <h2 className="text-2xl md:text-3xl font-bold">Sowmiya & Venkatagiri</h2>
-                                    <p className="text-secondary font-bold text-sm uppercase tracking-widest italic">Founders, Forty Two Capital</p>
+                                    <p className="text-accent font-bold text-sm uppercase tracking-widest italic">Founders, Forty Two Capital</p>
                                 </div>
                                 <p className="text-slate-600 text-sm md:text-base leading-relaxed">
                                     Forty Two Capital was founded by Sowmiya and Venkatagiri, seasoned financial professionals with extensive experience in credit risk assessment, bureau operations, and debt resolution. Having personally witnessed countless Indians lose critical financial opportunities due to avoidable bureau errors, they established Forty Two Capital with a singular mission — to democratise access to accurate credit information and restore the financial dignity of every Indian household.
@@ -481,7 +470,7 @@
 
                     <div className="max-w-7xl mx-auto relative z-10">
                         <div className="text-center mb-16">
-                            <h2 className="text-3xl md:text-5xl font-bold mb-4">Real Results. <span className="text-secondary font-bold">Real Indians.</span></h2>
+                            <h2 className="text-3xl md:text-5xl font-bold mb-4">Real Results. <span className="text-accent font-bold">Real Indians.</span></h2>
                             <p className="text-slate-400">Here is what our clients experienced after working with Forty Two Capital.</p>
                         </div>
 
@@ -584,7 +573,7 @@
                                 <p className="text-slate-500 max-w-sm mx-auto text-sm md:text-base px-4">
                                     A senior credit advisor from <span className="font-bold">Forty Two Capital</span> will contact you shortly to start your audit.
                                 </p>
-                                <button onClick={() => setSubmitted(false)} className="text-secondary font-bold underline">Send another inquiry</button>
+                                <button onClick={() => setSubmitted(false)} className="text-accent font-bold underline">Send another inquiry</button>
                             </div>
                         ) : (
                             <div className="flex flex-col lg:flex-row gap-12">
@@ -711,7 +700,7 @@
                                     </div>
                                     <h3 className="text-2xl font-bold">Thank You for Your Feedback!</h3>
                                     <p className="text-slate-500 max-w-sm mx-auto">Your insights help us provide better credit advisory services to all our clients.</p>
-                                    <button onClick={() => setSubmitted(false)} className="text-secondary font-bold underline">Submit another feedback</button>
+                                    <button onClick={() => setSubmitted(false)} className="text-accent font-bold underline">Submit another feedback</button>
                                 </div>
                             ) : (
                                 <form onSubmit={handleSubmit} className="space-y-6">
@@ -751,7 +740,7 @@
                             <div className="w-6 h-6 bg-accent rounded flex items-center justify-center text-primary">
                                 <Icon name="activity" className="w-4 h-4" />
                             </div>
-                            <span className="font-bold tracking-tight">Forty Two <span className="text-secondary font-bold">Capital</span></span>
+                            <span className="font-bold tracking-tight">Forty Two <span className="text-accent font-bold">Capital</span></span>
                         </div>
                         <p className="text-xs text-slate-500 max-w-sm mx-auto md:mx-0 leading-relaxed italic">Empowering Indians to reclaim their financial standing through expert credit restoration and bureau dispute resolution.</p>
                         <p className="text-[9px] text-slate-400 max-w-sm mx-auto md:mx-0 leading-relaxed mt-4">

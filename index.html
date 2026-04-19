@@ -122,6 +122,7 @@
                     <Navbar scrollTo={scrollTo} />
                     <Hero scrollTo={scrollTo} />
                     <ProblemOverview />
+                    <Benefits />
                     <SolutionTimeline />
                     <Packages scrollTo={scrollTo} />
                     <AboutFounder />
@@ -130,6 +131,7 @@
                     <ContactForm />
                     <FeedbackForm />
                     <Footer />
+                    <WhatsAppWidget />
                 </div>
             );
         }
@@ -311,12 +313,12 @@
 
         const SolutionTimeline = () => {
             const steps = [
-                { title: "Onboarding", desc: "Share your credit reports from all 4 bureaus (CIBIL, Experian, Equifax, CRIF).", icon: "file-input" },
-                { title: "Deep Audit", desc: "Our proprietary audit framework, supported by expert analysts, identifies discrepancies, misreported balances, and duplicate obligations across all bureaus.", icon: "search" },
-                { title: "Dispute Letters", desc: "Professional drafting of dispute letters tailored for each identified error.", icon: "mail" },
-                { title: "Submission", desc: "Guidance on filing via official portals or via registered post.", icon: "send" },
-                { title: "Follow-Up", desc: "We systematically monitor bureau responses within the RBI-mandated 30-day resolution window, escalating non-compliant cases on your behalf.", icon: "clock" },
-                { title: "Re-Audit", desc: "Verification of corrected data and proof of score improvement.", icon: "shield-check" },
+                { title: "Onboarding", desc: "Share your credit reports from all 4 bureaus (CIBIL, Experian, Equifax, CRIF).", icon: "file-input", time: "Day 1" },
+                { title: "Deep Audit", desc: "Our analysts perform a holistic review of your credit tapestry to identify misreported obligations.", icon: "search", time: "Day 2-3" },
+                { title: "Dispute Filing", desc: "Professional drafting and submission of dispute letters tailored for each identified error.", icon: "mail", time: "Day 5" },
+                { title: "Investigation", desc: "Bureaus investigate the claims within the RBI-mandated 30-day resolution window.", icon: "clock", time: "Day 35" },
+                { title: "Follow-Up", desc: "We systematically monitor responses and escalate non-compliant cases on your behalf.", icon: "send", time: "Day 45" },
+                { title: "Score Launch", desc: "Verification of corrected data and the final elevation of your credit standing.", icon: "shield-check", time: "Day 50+" },
             ];
 
             return (
@@ -347,6 +349,7 @@
                                                 </div>
                                                 <Icon name={step.icon} className="w-6 h-6 text-accent" />
                                             </div>
+                                            <div className="text-[10px] font-black tracking-tight text-accent uppercase mb-1">{step.time}</div>
                                             <h3 className="font-bold mb-2 text-sm md:text-base">{step.title}</h3>
                                             <p className="text-[11px] md:text-xs text-slate-500 leading-relaxed px-4 sm:px-0">{step.desc}</p>
                                         </div>
@@ -359,26 +362,59 @@
             );
         };
 
+        const Benefits = () => {
+            const benefits = [
+                { title: "Home Loans Approved", desc: "Borrow ₹25–50 lakhs at preferential interest rates.", icon: "home" },
+                { title: "Instant Card Approval", desc: "Access premium cards with high credit limits.", icon: "credit-card" },
+                { title: "MSME Credit Lines", desc: "Fuel your business growth with ready capital.", icon: "landmark" },
+                { title: "Lower Interest Rates", desc: "Save lakhs over your loan tenure with high scores.", icon: "trending-down" },
+                { title: "Fast-Track Auto Loans", desc: "Finance your dream car in as little as 48 hours.", icon: "car" },
+                { title: "Financial Freedom", desc: "The confidence of knowing your credit is perfect.", icon: "umbrella" }
+            ];
+
+            return (
+                <section className="py-24 px-6 bg-primary text-[#FBE9D0]">
+                    <div className="max-w-7xl mx-auto">
+                        <div className="text-center mb-16">
+                            <h2 className="text-3xl md:text-4xl font-bold mb-4">What a 780+ Score <span className="text-accent font-black tracking-tight">Unlocks</span></h2>
+                            <p className="text-slate-400">A high credit score is your ticket to India's most exclusive financial facilities.</p>
+                        </div>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                            {benefits.map((b, i) => (
+                                <div key={i} className="bg-white/5 border border-white/10 p-8 rounded-2xl hover:border-accent/40 transition-all group">
+                                    <div className="w-12 h-12 bg-accent/20 text-accent rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                                        <Icon name={b.icon} className="w-6 h-6" />
+                                    </div>
+                                    <h3 className="text-xl font-bold mb-3">{b.title}</h3>
+                                    <p className="text-sm text-slate-400 leading-relaxed">{b.desc}</p>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            );
+        };
+
         const Packages = ({ scrollTo }) => {
             const tiers = [
                 {
                     name: "Foundation",
                     desc: "Recommended for individuals with 1–2 bureau discrepancies and a moderate score impact.",
                     features: ["Single Bureau Audit", "Up to 3 Dispute Letters", "1 Follow-up Cycle", "Credit Education Guide"],
-                    cta: "Request a Consultation"
+                    cta: "Get Started"
                 },
                 {
                     name: "Resolution",
                     desc: "Recommended for individuals with multiple bureau errors or a prior loan rejection.",
                     popular: true,
                     features: ["All 4 Bureaus Audit", "Unlimited Dispute Letters", "3-Month Follow-up", "Score Improvement Plan"],
-                    cta: "Request a Consultation"
+                    cta: "Get Started"
                 },
                 {
                     name: "Elite Recovery",
                     desc: "Recommended for complex cases involving identity compromise, severe score damage, or time-sensitive loan requirements.",
                     features: ["Everything in Resolution", "Monthly Monitoring", "Priority Support", "Loan Readiness Report"],
-                    cta: "Request a Consultation"
+                    cta: "Get Started"
                 }
             ];
 
@@ -506,10 +542,13 @@
             const faqs = [
                 { q: "Is credit restoration legally permissible in India?", a: "Yes. Every Indian citizen has a statutory right under the Credit Information Companies (Regulation) Act, 2005 to dispute inaccurate information in their credit report. Forty Two Capital facilitates this process professionally — filing dispute requests directly with the credit bureaus and lenders on your behalf through official channels." },
                 { q: "What is the typical resolution timeline?", a: "Credit bureaus are mandated by the RBI to resolve disputes within 30 days of receiving a formal complaint. In our experience, straightforward errors are resolved within 30–45 days. Complex cases involving multiple discrepancies or identity fraud may require 60–90 days. We monitor every case actively and keep you informed at every stage." },
-                { q: "What recourse exists if a bureau fails to respond within 30 days?", a: "If a bureau does not respond within the RBI-mandated 30-day window, we escalate the matter through formal grievance channels — including the RBI's Integrated Ombudsman Scheme. You are never left without a course of action. Our team manages the entire escalation process on your behalf." },
-                { q: "Do I need to share my credit reports with you?", a: "Yes. To conduct a comprehensive audit, we require your credit reports from all four bureaus — CIBIL, Experian, Equifax, and CRIF. During onboarding, we guide you step by step on how to access these reports securely and share them with us. All information is handled with strict confidentiality." },
-                { q: "Can you guarantee a specific score improvement?", a: "We do not make guarantees, and any service that does should be approached with caution. What we guarantee is a thorough, professional, and transparent process. The extent of score improvement depends on the nature and number of inaccuracies identified. Our track record speaks for itself — the majority of our clients see meaningful score improvements within 60 days." }
+                { q: "How does your service differ from disputing on my own?", a: "While you can dispute errors manually, Forty Two Capital uses a proprietary audit framework to identify systemic errors you might miss. We handle all 4 bureaus simultaneously, prepare professionally drafted documentation, and sustain the follow-up pressure that most individuals find overwhelming. We persist until the error is corrected." },
+                { q: "Is my sensitive data secure with you?", a: "Absolutely. We employ 256-bit SSL encryption and comply with all RBI and data protection guidelines. Your credit reports and personal information are treated with the highest level of confidentiality and are never shared with third-party marketing firms. You can request data deletion at any point." },
+                { q: "Do you guarantee a specific score improvement?", a: "No legitimate firm can guarantee a specific digit increase as the final score calculation rests with the bureaus. However, we do guarantee a holistic audit identifying every inaccuracy and a systematic action plan to address them. Most clients see meaningful score elevation within 30-60 days once errors are removed." },
+                { q: "What if I have a score below 500?", a: "Scores below 500 often have the most significant room for improvement, frequently due to severe misreporting or mixed files. We specialize in complex recovery cases and have successfully restored credit dignity for clients starting from very low baselines." },
+                { q: "Are there any hidden charges in the packages?", a: "No. Our pricing is transparent and includes the entire audit and dispute facilitation lifecycle for the duration of the chosen plan. There are no surprise fees for additional dispute letters or follow-ups within your plan's scope." }
             ];
+
 
             return (
                 <section className="py-24 px-6 bg-lightbg">
@@ -653,6 +692,16 @@
                                             </>
                                         ) : 'Request Our Complimentary Audit'}
                                     </button>
+                                    <div className="flex flex-col items-center gap-2 mt-4">
+                                        <p className="text-[10px] text-slate-400 font-bold uppercase tracking-widest flex items-center gap-1">
+                                            <Icon name="lock" className="w-3 h-3" /> 100% Secure. No spam. Data encrypted.
+                                        </p>
+                                        <div className="flex gap-4 opacity-50 grayscale hover:grayscale-0 transition-all">
+                                            <img src="https://img.icons8.com/color/48/ssl.png" alt="SSL" className="h-6" />
+                                            <img src="https://img.icons8.com/ios-filled/50/244855/safe.png" alt="Privacy" className="h-5" />
+                                            <img src="https://img.icons8.com/ios-filled/50/244855/rbi.png" alt="RBI" className="h-5" />
+                                        </div>
+                                    </div>
                                 </form>
                             </div>
                         )}
@@ -734,6 +783,21 @@
                 </section>
             );
         };
+
+        const WhatsAppWidget = () => (
+            <a
+                href="https://wa.me/916364055652"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="fixed bottom-6 right-6 z-[100] bg-[#25D366] text-white p-4 rounded-full shadow-2xl hover:scale-110 active:scale-95 transition-all group flex items-center gap-3"
+            >
+                <span className="max-w-0 overflow-hidden group-hover:max-w-xs transition-all duration-500 font-bold text-sm whitespace-nowrap">
+                    Chat with an Expert
+                </span>
+                <Icon name="message-circle" className="w-6 h-6" />
+                <div className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full animate-pulse border-2 border-white"></div>
+            </a>
+        );
 
         const Footer = () => (
             <footer className="py-12 bg-primary text-[#FBE9D0] w-full">

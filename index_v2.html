@@ -14,6 +14,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <script src="https://unpkg.com/framer-motion@10.16.4/dist/framer-motion.js"></script>
     
     <script>
@@ -410,54 +411,52 @@
 
     </section>
 
-    <!-- Knowledge Hub / Blog Preview -->
-    <section id="knowledge" class="py-32 px-6">
-        <div class="max-w-7xl mx-auto">
-            <div class="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
-                <div class="max-w-2xl">
-                    <h2 class="text-accent font-bold uppercase tracking-widest text-sm mb-4">Credit Intelligence</h2>
-                    <h3 class="text-4xl md:text-5xl font-serif font-bold">The Knowledge Hub</h3>
+    <!-- Lead Magnet Section -->
+    <section class="py-32 px-6 bg-[#90AEAD]/40 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-16 relative z-10">
+            <div class="flex-1">
+                <h2 class="text-4xl md:text-6xl font-black mb-6 leading-tight text-primary">
+                    Can't read your <br/><span class="text-white italic underline decoration-accent">CIBIL Report?</span>
+                </h2>
+                <p class="text-primary/70 text-lg mb-10 max-w-xl font-medium">
+                    Most Indians get confused by bureau jargon. Download our **Ultimate Guide to Reading Your Credit Report** and identify errors yourself.
+                </p>
+                <div class="space-y-4">
+                    <div class="flex items-center gap-3 text-primary font-bold">
+                        <i data-lucide="check-circle" class="w-6 h-6 text-accent"></i> <span>Decoding the 'Days Past Due' (DPD) codes</span>
+                    </div>
+                    <div class="flex items-center gap-3 text-primary font-bold">
+                        <i data-lucide="check-circle" class="w-6 h-6 text-accent"></i> <span>Identifying unauthorized commercial enquiries</span>
+                    </div>
+                    <div class="flex items-center gap-3 text-primary font-bold">
+                        <i data-lucide="check-circle" class="w-6 h-6 text-accent"></i> <span>Understanding the 'Mixed File' anomaly</span>
+                    </div>
+                    <div class="flex items-center gap-3 text-primary font-bold">
+                        <i data-lucide="check-circle" class="w-6 h-6 text-accent"></i> <span>How to spot a dead account that's still open</span>
+                    </div>
                 </div>
-                <button class="text-primary font-bold flex items-center gap-2 hover:text-accent transition-colors">
-                    View All Articles <i data-lucide="arrow-right" class="w-5 h-5"></i>
-                </button>
             </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="group cursor-pointer">
-                    <div class="bg-primary/5 rounded-[40px] p-10 mb-8 group-hover:bg-accent transition-all duration-700 min-h-[300px] flex flex-col justify-between">
-                        <div class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform">
-                            <i data-lucide="file-text" class="w-8 h-8 text-accent"></i>
-                        </div>
-                        <div>
-                            <p class="text-[10px] font-bold uppercase tracking-widest text-primary/40 mb-4 group-hover:text-white/60">Dispute Strategy</p>
-                            <h4 class="text-2xl font-serif font-bold group-hover:text-white">How to remove duplicate accounts in CIBIL.</h4>
-                        </div>
-                    </div>
+            <div class="w-full lg:w-[450px] relative group">
+                <div class="absolute -top-6 -right-6 w-24 h-24 bg-accent rounded-full flex flex-col items-center justify-center text-white text-[10px] font-black uppercase tracking-tighter transform rotate-12 shadow-xl z-20 border-4 border-white">
+                    <span>Free</span>
+                    <span>Guide</span>
                 </div>
-                
-                <div class="group cursor-pointer">
-                    <div class="bg-primary/5 rounded-[40px] p-10 mb-8 group-hover:bg-accent transition-all duration-700 min-h-[300px] flex flex-col justify-between">
-                        <div class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform">
-                            <i data-lucide="alert-triangle" class="w-8 h-8 text-accent"></i>
+                <div class="bg-[#244855] rounded-[48px] p-10 md:p-14 shadow-2xl relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-bl-full"></div>
+                    <h3 class="text-2xl font-serif font-bold text-white text-center mb-10">Get Your Free Copy</h3>
+                    <form id="pdf-form" class="space-y-6">
+                        <div class="space-y-2">
+                            <input type="text" id="user-name" placeholder="Your Name" required class="w-full bg-white/10 border border-white/20 rounded-2xl px-6 py-4 text-white placeholder:text-white/40 focus:outline-none focus:border-accent transition-all font-medium">
                         </div>
-                        <div>
-                            <p class="text-[10px] font-bold uppercase tracking-widest text-primary/40 mb-4 group-hover:text-white/60">Regulatory Knowledge</p>
-                            <h4 class="text-2xl font-serif font-bold group-hover:text-white">Understanding the 'Settled' status trap.</h4>
+                        <div class="space-y-2">
+                            <input type="email" id="user-email" placeholder="Email Address" required class="w-full bg-white/10 border border-white/20 rounded-2xl px-6 py-4 text-white placeholder:text-white/40 focus:outline-none focus:border-accent transition-all font-medium">
                         </div>
-                    </div>
-                </div>
-                
-                <div class="group cursor-pointer">
-                    <div class="bg-primary/5 rounded-[40px] p-10 mb-8 group-hover:bg-accent transition-all duration-700 min-h-[300px] flex flex-col justify-between">
-                        <div class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform">
-                            <i data-lucide="clock" class="w-8 h-8 text-accent"></i>
-                        </div>
-                        <div>
-                            <p class="text-[10px] font-bold uppercase tracking-widest text-primary/40 mb-4 group-hover:text-white/60">Timeline Guide</p>
-                            <h4 class="text-2xl font-serif font-bold group-hover:text-white">CIBIL dispute status time: What to expect.</h4>
-                        </div>
-                    </div>
+                        <button type="submit" class="w-full bg-accent text-white py-5 rounded-2xl font-bold hover:scale-105 transition-all shadow-xl shadow-accent/20 active:scale-95 flex items-center justify-center gap-3">
+                            Download My PDF Guide <i data-lucide="download" class="w-5 h-5"></i>
+                        </button>
+                    </form>
+                    <p class="text-[9px] text-white/30 text-center mt-8 uppercase font-bold tracking-widest">10,000+ Downloads This Month</p>
                 </div>
             </div>
         </div>
@@ -705,6 +704,88 @@
         };
 
         initHero3D();
+
+        // PDF Generation Logic
+        const pdfContent = `
+          <!DOCTYPE html>
+          <html lang="en">
+          <head>
+          <meta charset="UTF-8">
+          <style>
+            :root {
+              --navy: #244855; --orange: #E64833; --terra: #874F41; --sage: #90AEAD; --cream: #FBE9D0;
+            }
+            body { font-family: 'Helvetica', serif; background: var(--cream); color: #2a2622; margin: 0; padding: 20px; }
+            .cover { background: var(--navy); color: white; padding: 60px 40px; border-radius: 20px; margin-bottom: 40px; }
+            h1 { font-size: 48px; margin-bottom: 20px; }
+            .section { margin-bottom: 30px; border-bottom: 1px solid var(--sage); padding-bottom: 20px; }
+            h2 { color: var(--navy); margin-top: 40px; }
+            .callout { background: white; padding: 20px; border-left: 5px solid var(--orange); margin: 20px 0; }
+            table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+            th { background: var(--navy); color: white; padding: 10px; text-align: left; }
+            td { padding: 10px; border-bottom: 1px solid var(--sage); }
+          </style>
+          </head>
+          <body>
+            <div class="cover">
+              <h1>YOUR CIBIL REPORT, DECODED.</h1>
+              <p>A practical handbook for Indian borrowers by Forty Two Capital.</p>
+            </div>
+            <div class="section">
+              <h2>01 The Anatomy of a CIBIL Report</h2>
+              <p>A CIBIL Consumer Credit Information Report (CIR) is built from five standard sections...</p>
+            </div>
+            <div class="section">
+              <h2>02 Decoding DPD Codes</h2>
+              <table>
+                <tr><th>Code</th><th>What It Means</th></tr>
+                <tr><td>000 / STD</td><td>Standard. Paid on or before due date.</td></tr>
+                <tr><td>001-029</td><td>Late by 1-29 days.</td></tr>
+                <tr><td>090+</td><td>Severe overdue. Potential NPA.</td></tr>
+              </table>
+            </div>
+            <div class="section">
+              <h2>03 Unauthorized Enquiries</h2>
+              <p>Every time you apply for credit, a hard enquiry is triggered. Identification is key...</p>
+            </div>
+            <p style="text-align: center; color: var(--terra); margin-top: 50px;">© 2026 Forty Two Capital • fortytwocapital.in</p>
+          </body>
+          </html>
+        `;
+
+        document.getElementById('pdf-form').onsubmit = function(e) {
+            e.preventDefault();
+            const btn = e.target.querySelector('button');
+            const originalHtml = btn.innerHTML;
+            
+            btn.innerHTML = `<span class="animate-spin mr-2">◌</span> Preparing Guide...`;
+            btn.disabled = true;
+
+            const name = document.getElementById('user-name').value;
+            const email = document.getElementById('user-email').value;
+
+            console.log(`Lead Captured: ${name} (${email})`);
+
+            const element = document.createElement('div');
+            element.innerHTML = pdfContent;
+            
+            const opt = {
+                margin:       10,
+                filename:     'FortyTwoCapital_CIBIL_Guide.pdf',
+                image:        { type: 'jpeg', quality: 0.98 },
+                html2canvas:  { scale: 2 },
+                jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+            };
+
+            html2pdf().set(opt).from(element).save().then(() => {
+                btn.innerHTML = `Success! Check Downloads`;
+                setTimeout(() => {
+                    btn.innerHTML = originalHtml;
+                    btn.disabled = false;
+                    e.target.reset();
+                }, 3000);
+            });
+        };
     </script>
 </body>
 </html>

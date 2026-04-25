@@ -146,8 +146,15 @@
 
     <!-- Hero Section -->
     <main class="relative pt-48 pb-32 px-6 overflow-hidden min-h-screen flex items-center bg-gradient-to-br from-primary to-[#1B3640] text-[#FBE9D0]">
-        <!-- 3D Background Container -->
-        <div id="hero-3d" class="hero-3d-container"></div>
+        <!-- [REACT TSX MIGRATION TARGET] 
+             During Next.js migration, replace this entire container with:
+             <BusinessHero3D /> (from /components/BusinessHero3D.tsx)
+             For now, these optimized static WebP/PNGs serve as immediate LCP drivers. -->
+        <div id="hero-react-root" class="hero-3d-container relative">
+            <img src="/assets/hero_core_nodes_1777080776926.png" alt="Audit Core" class="absolute top-[10%] -right-[5%] w-64 lg:w-96 opacity-60 blur-sm animate-pulse-slow object-contain z-0 pointer-events-none" />
+            <img src="/assets/hero_shield_defense_1777080792427.png" alt="Credit Defense" class="absolute top-[15%] right-[10%] w-72 lg:w-[32rem] opacity-90 object-contain z-10 drop-shadow-2xl hover:scale-105 transition-transform duration-700" />
+            <img src="/assets/hero_catalyst_graph_1777080807910.png" alt="Growth Catalyst" class="absolute bottom-[-10%] right-[2%] w-60 lg:w-80 opacity-70 blur-[2px] object-contain z-0 pointer-events-none hover:blur-none transition-all duration-700" />
+        </div>
         
         <div class="max-w-7xl mx-auto w-full relative z-10">
             <div class="max-w-4xl">
@@ -644,75 +651,10 @@
             }
         });
 
-        // Three.js Hero Background (Preserving the original beautiful 3D effect)
-        const initHero3D = () => {
-            const container = document.getElementById('hero-3d');
-            if (!container) return;
-
-            const scene = new THREE.Scene();
-            const camera = new THREE.PerspectiveCamera(75, container.offsetWidth / container.offsetHeight, 0.1, 1000);
-            const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-            
-            renderer.setSize(container.offsetWidth, container.offsetHeight);
-            container.appendChild(renderer.domElement);
-
-            // Create a complex wireframe sphere
-            const geometry = new THREE.IcosahedronGeometry(10, 2);
-            const material = new THREE.MeshPhongMaterial({
-                color: 0x90AEAD,
-                wireframe: true,
-                transparent: true,
-                opacity: 0.4,
-                emissive: 0x90AEAD,
-                emissiveIntensity: 0.5
-            });
-            const sphere = new THREE.Mesh(geometry, material);
-            scene.add(sphere);
-
-            // Add an inner solid sphere with glass effect
-            const innerGeo = new THREE.IcosahedronGeometry(9, 1);
-            const innerMat = new THREE.MeshPhysicalMaterial({
-                color: 0xE64833,
-                roughness: 0,
-                metalness: 0.5,
-                transmission: 0.5,
-                thickness: 2,
-                transparent: true,
-                opacity: 0.8
-            });
-            const innerSphere = new THREE.Mesh(innerGeo, innerMat);
-            scene.add(innerSphere);
-
-            // Lighting
-            const light = new THREE.PointLight(0xFFFFFF, 1, 100);
-            light.position.set(20, 20, 20);
-            scene.add(light);
-            
-            const ambientLight = new THREE.AmbientLight(0x404040);
-            scene.add(ambientLight);
-
-            camera.position.z = 25;
-
-            // Animation
-            const animate = () => {
-                requestAnimationFrame(animate);
-                sphere.rotation.y += 0.002;
-                sphere.rotation.x += 0.001;
-                innerSphere.rotation.y -= 0.001;
-                renderer.render(scene, camera);
-            };
-
-            animate();
-
-            // Resize listener
-            window.addEventListener('resize', () => {
-                camera.aspect = container.offsetWidth / container.offsetHeight;
-                camera.updateProjectionMatrix();
-                renderer.setSize(container.offsetWidth, container.offsetHeight);
-            });
-        };
-
-        initHero3D();
+        // [REACT TSX MIGRATION NOTE]
+        // Native Three.js Hero Background logic removed to optimize LCP.
+        // It has been replaced by optimized 2D render assets in HTML preview.
+        // When migrating to Next.js, use the <BusinessHero3D /> component from /components/BusinessHero3D.tsx
 
         // PDF Generation Logic
         const pdfContent = `

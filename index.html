@@ -146,7 +146,6 @@
                     <SolutionTimeline />
                     <CaseStudies />
                     <Packages scrollTo={scrollTo} />
-                    <AboutFounder />
                     <Testimonials />
                     <CreditEducation />
                     <FAQ />
@@ -576,66 +575,6 @@
             );
         };
 
-
-        const AboutFounder = () => {
-            const [ref, isVisible] = useScrollReveal();
-            return (
-                <section id="founder" className="py-24 px-6 overflow-hidden bg-lightbg/30">
-                    <div ref={ref} className={`max-w-6xl mx-auto transition-all duration-1000 transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-                        <div className="flex flex-col md:flex-row gap-16 items-start">
-                            <div className="w-full md:w-1/3 relative group">
-                                <div className="absolute -inset-4 bg-accent/20 blur-3xl rounded-full opacity-50 group-hover:opacity-80 transition-opacity"></div>
-                                <div className="relative aspect-square bg-primary rounded-[40px] overflow-hidden border-8 border-white shadow-2xl flex flex-col items-center justify-center p-8 text-center">
-                                    <div className="w-32 h-32 bg-accent/10 text-accent rounded-full flex items-center justify-center mb-6 border-2 border-accent/20">
-                                        <Icon name="user" className="w-16 h-16" />
-                                    </div>
-                                    <h3 className="text-white text-2xl font-bold tracking-tight">Murali krishna R</h3>
-                                    <p className="text-accent text-sm font-black tracking-widest uppercase mt-2">The Founder</p>
-                                </div>
-                            </div>
-                            
-                            <div className="flex-1 space-y-8">
-                                <div className="space-y-4">
-                                    <h2 className="text-3xl md:text-4xl font-black tracking-tight text-primary">Expertise driven by <span className="text-accent italic">Financial Empathy</span></h2>
-                                    <p className="text-slate-600 text-base md:text-lg leading-relaxed">
-                                        Forty Two Capital isn't just an AI platform; it's the result of seeing firsthand how "clerical glitches" ruin real human lives.
-                                    </p>
-                                </div>
-
-                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pb-8 border-b border-muted/30">
-                                    <div className="flex gap-4">
-                                        <div className="w-10 h-10 rounded-full bg-secondary/10 text-secondary flex items-center justify-center shrink-0">
-                                            <Icon name="shield-check" className="w-5 h-5" />
-                                        </div>
-                                        <div>
-                                            <h4 className="font-bold text-primary">Certified Expertise</h4>
-                                            <p className="text-xs text-slate-500">Ex-Banking professional specializing in loan risk and multi-bureau documentation.</p>
-                                        </div>
-                                    </div>
-                                    <div className="flex gap-4">
-                                        <div className="w-10 h-10 rounded-full bg-secondary/10 text-secondary flex items-center justify-center shrink-0">
-                                            <Icon name="landmark" className="w-5 h-5" />
-                                        </div>
-                                        <div>
-                                            <h4 className="font-bold text-primary">Compliant Approach</h4>
-                                            <p className="text-xs text-slate-500">Every dispute is handled in total alignment with RBI & Credit Information Companies Acts.</p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className="bg-white p-8 rounded-3xl border border-muted/30 relative">
-                                    <Icon name="quote" className="absolute top-4 right-6 w-12 h-12 text-secondary opacity-10" />
-                                    <p className="text-slate-700 italic leading-relaxed text-sm md:text-base relative z-10">
-                                        "After a decade in mainstream banking, I realized that the average Indian is defenseless against bureau errors. I founded Forty Two Capital to be your advocate—ensuring that your credit score reflects your true character, not a clerical error. I treat your score as if it were my own."
-                                    </p>
-                                    <div className="mt-4 font-black text-accent text-xs uppercase tracking-widest">— A note from the founder</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            );
-        };
 
         const Testimonials = () => {
             const stories = [

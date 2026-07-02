@@ -286,6 +286,8 @@
     .popular-tag{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:var(--accent);color:#fff;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:6px 16px;border-radius:99px;white-space:nowrap}
     .tier h3{font-size:22px;margin-bottom:8px}
     .tier .who{font-size:13.5px;color:var(--muted);margin-bottom:26px;min-height:60px}
+    .tier li.excluded{color:var(--muted);opacity:.65}
+    .tier li.excluded .icon{color:var(--accent)}
     .tier ul{list-style:none;display:grid;gap:14px;margin-bottom:32px;flex:1}
     .tier li{display:flex;gap:12px;align-items:flex-start;font-size:15px;color:var(--ink)}
     .tier li .icon{width:19px;height:19px;color:var(--teal);margin-top:3px}
@@ -383,6 +385,10 @@
     .footer-col h3{color:var(--on-dark);font-family:var(--font-body);font-size:12.5px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;margin-bottom:16px}
     .footer-col a{display:block;color:var(--on-dark-muted);text-decoration:none;font-size:14px;padding:5px 0;transition:color .15s}
     .footer-col a:hover{color:var(--on-dark)}
+    .footer-badges{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin:0 auto 36px}
+    .footer-badge{background:rgba(246,238,223,.05);border:1px solid rgba(246,238,223,.14);border-radius:99px;padding:9px 18px;display:flex;align-items:center;gap:9px}
+    .footer-badge .icon{width:16px;height:16px;color:var(--sage)}
+    .footer-badge strong{color:var(--on-dark);font-size:12.5px;font-weight:600;white-space:nowrap}
     .footer-legal{font-size:11.5px;line-height:1.7;color:rgba(246,238,223,.5);border-top:1px solid rgba(246,238,223,.1);padding-top:24px;margin-bottom:20px}
     .footer-bottom{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;font-size:12.5px;color:rgba(246,238,223,.5)}
 
@@ -929,12 +935,17 @@
         <div class="grid-3">
           <div class="card tier reveal">
             <h3>Foundation</h3>
-            <p class="who">For individuals with 1–2 bureau discrepancies and a moderate score impact.</p>
+            <p class="who">For 1–2 bureau discrepancies and a moderate score impact.</p>
             <ul>
-              <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Single bureau audit</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Single bureau audit (CIBIL)</li>
               <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Up to 3 dispute letters</li>
-              <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>1 follow-up cycle</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>1 follow-up cycle (30 days)</li>
               <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Credit education guide</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Written audit report</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Email support</li>
+              <li class="excluded"><svg class="icon" aria-hidden="true"><use href="#i-x"/></svg>Multi-bureau coverage</li>
+              <li class="excluded"><svg class="icon" aria-hidden="true"><use href="#i-x"/></svg>Monthly monitoring</li>
+              <li class="excluded"><svg class="icon" aria-hidden="true"><use href="#i-x"/></svg>Priority support</li>
             </ul>
             <a class="btn" href="#contact">Start with Foundation</a>
           </div>
@@ -945,19 +956,29 @@
             <ul>
               <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>All 4 bureaus audited</li>
               <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Unlimited dispute letters</li>
-              <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>3-month follow-up</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>3-month follow-up cycle</li>
               <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Score improvement plan</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Loan readiness report</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Dedicated specialist</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>WhatsApp priority channel</li>
+              <li class="excluded"><svg class="icon" aria-hidden="true"><use href="#i-x"/></svg>Monthly monitoring</li>
+              <li class="excluded"><svg class="icon" aria-hidden="true"><use href="#i-x"/></svg>Identity fraud resolution</li>
             </ul>
             <a class="btn btn-primary" href="#contact">Start with Resolution</a>
           </div>
           <div class="card tier reveal">
             <h3>Elite Recovery</h3>
-            <p class="who">For complex cases: identity compromise, severe score damage, or urgent loan timelines.</p>
+            <p class="who">For identity compromise, severe score damage, or urgent loan needs.</p>
             <ul>
               <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Everything in Resolution</li>
-              <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Monthly monitoring</li>
-              <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Priority support</li>
-              <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Loan readiness report</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Monthly bureau monitoring</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Identity fraud resolution</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>CIC Act legal escalation</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Priority 4-hour response</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Loan application support</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Annual credit health review</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Dedicated senior specialist</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Complete documentation support</li>
             </ul>
             <a class="btn" href="#contact">Start with Elite</a>
           </div>
@@ -1225,6 +1246,11 @@
           <a href="mailto:support@fortytwocapital.in?subject=Feedback%20for%20Forty%20Two%20Capital">Share feedback</a>
           <a href="#contact">Request a free audit</a>
         </div>
+      </div>
+      <div class="footer-badges">
+        <div class="footer-badge"><svg class="icon" aria-hidden="true"><use href="#i-lock"/></svg><strong>256-bit SSL</strong></div>
+        <div class="footer-badge"><svg class="icon" aria-hidden="true"><use href="#i-scale"/></svg><strong>RBI Compliant</strong></div>
+        <div class="footer-badge"><svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg><strong>No Data Sharing</strong></div>
       </div>
       <p class="footer-legal">Forty Two Capital is a credit advisory and dispute facilitation service. We are not a credit rating agency and are not affiliated with CIBIL, Experian, Equifax, or CRIF. All dispute filings are conducted through official bureau and lender channels in accordance with the Credit Information Companies (Regulation) Act, 2005 and applicable RBI guidelines.</p>
       <div class="footer-bottom">

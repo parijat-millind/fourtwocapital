@@ -53,6 +53,7 @@
     "@type": "FAQPage",
     "mainEntity": [
       {"@type":"Question","name":"Is credit restoration legally permissible in India?","acceptedAnswer":{"@type":"Answer","text":"Yes. Every Indian citizen has a statutory right under the Credit Information Companies (Regulation) Act, 2005 to dispute inaccurate information in their credit report. Forty Two Capital facilitates this process professionally through official bureau and lender channels."}},
+      {"@type":"Question","name":"Will filing disputes damage my credit score?","acceptedAnswer":{"@type":"Answer","text":"No. Filing a dispute is a statutory right and is not recorded as a negative event. Disputes are not credit enquiries and have no direct impact on your score."}},
       {"@type":"Question","name":"What is the typical resolution timeline?","acceptedAnswer":{"@type":"Answer","text":"Credit bureaus are mandated by the RBI to resolve disputes within 30 days of a formal complaint. Straightforward errors are typically resolved within 30–45 days; complex cases may take 60–90 days."}},
       {"@type":"Question","name":"How does your service differ from disputing on my own?","acceptedAnswer":{"@type":"Answer","text":"We audit all 4 bureaus simultaneously with a structured framework, draft professional documentation, and sustain follow-up and escalation until errors are corrected."}},
       {"@type":"Question","name":"Is my data secure?","acceptedAnswer":{"@type":"Answer","text":"Your reports and personal information are kept strictly confidential, never shared with third-party marketers, and you can request deletion at any time."}},
@@ -67,18 +68,17 @@
   <style>
     /* ============ Design tokens ============ */
     :root{
-      --ink:#14303B;            /* headings, dark surfaces */
-      --teal:#244855;           /* primary brand */
+      --ink:#14303B;
+      --teal:#244855;
       --teal-deep:#1B3640;
-      --paper:#FAF4E9;          /* page background */
-      --cream:#FBE9D0;          /* brand cream */
+      --paper:#FAF4E9;
+      --cream:#FBE9D0;
       --card:#FFFFFF;
-      --accent:#CF3A26;         /* CTA ember (AA on white) */
+      --accent:#CF3A26;
       --accent-hover:#B53220;
-      --accent-soft:rgba(230,72,51,.10);
       --sage:#90AEAD;
       --copper:#874F41;
-      --body:#3D5560;           /* body text on light */
+      --body:#3D5560;
       --muted:#566A74;
       --line:rgba(36,72,85,.14);
       --on-dark:#F6EEDF;
@@ -103,7 +103,7 @@
     h1,h2,h3{font-family:var(--font-display);color:var(--ink);line-height:1.15;font-weight:600}
     .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--copper);margin-bottom:16px}
     .eyebrow::before{content:"";width:24px;height:2px;background:var(--accent);border-radius:2px}
-    .section-head{max-width:640px;margin:0 auto 56px;text-align:center}
+    .section-head{max-width:660px;margin:0 auto 56px;text-align:center}
     .section-head h2{font-size:clamp(28px,4vw,40px);margin-bottom:14px}
     .section-head p{color:var(--muted);font-size:17px}
 
@@ -118,92 +118,88 @@
     .btn-primary:hover{background:var(--accent-hover);transform:translateY(-2px);box-shadow:var(--shadow-lg)}
     .btn-secondary{background:transparent;color:var(--on-dark);border-color:rgba(246,238,223,.4)}
     .btn-secondary:hover{border-color:var(--on-dark);transform:translateY(-2px)}
-    .btn-light{background:var(--cream);color:var(--teal-deep)}
-    .btn-light:hover{background:#fff;transform:translateY(-2px)}
     .btn-sm{padding:11px 20px;font-size:14px}
 
-    /* ============ Header ============ */
-    .site-header{position:fixed;inset:0 0 auto 0;z-index:100;background:rgba(27,54,64,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(246,238,223,.10);transition:box-shadow .2s}
-    .site-header.scrolled{box-shadow:0 4px 24px rgba(0,0,0,.25)}
+    /* ============ Header (transparent → solid on scroll) ============ */
+    .site-header{position:fixed;inset:0 0 auto 0;z-index:100;--hfg:var(--on-dark);--hmut:var(--on-dark-muted);background:transparent;transition:background .25s,box-shadow .25s;border-bottom:1px solid transparent}
+    .site-header.solid{--hfg:var(--ink);--hmut:var(--muted);background:rgba(250,244,233,.94);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 2px 20px rgba(20,48,59,.10);border-bottom-color:var(--line)}
     .header-inner{max-width:1160px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px}
     .brand{display:flex;align-items:center;gap:12px;text-decoration:none}
     .brand img{height:44px;width:auto;border-radius:8px}
-    .brand-name{font-family:var(--font-display);font-weight:700;font-size:19px;color:var(--on-dark);letter-spacing:.01em}
-    .nav-links{display:flex;align-items:center;gap:32px;list-style:none}
-    .nav-links a{color:var(--on-dark-muted);text-decoration:none;font-size:15px;font-weight:500;transition:color .15s}
-    .nav-links a:hover{color:var(--on-dark)}
-    .header-cta{display:flex;align-items:center;gap:20px}
-    .header-phone{display:flex;align-items:center;gap:8px;color:var(--on-dark-muted);text-decoration:none;font-size:14px;font-weight:600;transition:color .15s}
-    .header-phone:hover{color:var(--on-dark)}
-    .header-phone .icon{width:16px;height:16px;color:var(--sage)}
-    .menu-toggle{display:none;background:none;border:0;color:var(--on-dark);cursor:pointer;padding:8px}
+    .brand-name{font-family:var(--font-display);font-weight:700;font-size:19px;color:var(--hfg);letter-spacing:.01em;transition:color .25s}
+    .nav-links{display:flex;align-items:center;gap:26px;list-style:none}
+    .nav-links a{color:var(--hmut);text-decoration:none;font-size:14.5px;font-weight:500;transition:color .15s;padding:6px 2px;border-bottom:2px solid transparent}
+    .nav-links a:hover{color:var(--hfg)}
+    .nav-links a.active{color:var(--hfg);border-bottom-color:var(--accent);font-weight:600}
+    .header-cta{display:flex;align-items:center;gap:18px}
+    .header-phone{display:flex;align-items:center;gap:8px;color:var(--hmut);text-decoration:none;font-size:14px;font-weight:600;transition:color .15s}
+    .header-phone:hover{color:var(--hfg)}
+    .header-phone .icon{width:16px;height:16px;color:var(--accent)}
+    .menu-toggle{display:none;background:none;border:0;color:var(--hfg);cursor:pointer;padding:8px}
     .menu-toggle .icon{width:26px;height:26px}
-    .mobile-menu{display:none;background:var(--teal-deep);border-top:1px solid rgba(246,238,223,.10);padding:12px 24px 28px}
+    .mobile-menu{display:none;background:var(--teal-deep);border-top:1px solid rgba(246,238,223,.10);padding:12px 24px 28px;max-height:calc(100vh - 76px);overflow:auto}
     .mobile-menu.open{display:block}
-    .mobile-menu a{display:block;padding:14px 4px;color:var(--on-dark);text-decoration:none;font-size:17px;font-weight:500;border-bottom:1px solid rgba(246,238,223,.08)}
+    .mobile-menu a{display:block;padding:13px 4px;color:var(--on-dark);text-decoration:none;font-size:16px;font-weight:500;border-bottom:1px solid rgba(246,238,223,.08)}
     .mobile-menu .btn{width:100%;margin-top:18px}
 
-    /* ============ Hero ============ */
-    .hero{position:relative;overflow:hidden;background:linear-gradient(150deg,var(--teal) 0%,var(--teal-deep) 60%,#152B33 100%);color:var(--on-dark);padding:172px 0 0;text-align:center}
+    /* ============ Hero (2-column) ============ */
+    .hero{position:relative;overflow:hidden;background:linear-gradient(150deg,var(--teal) 0%,var(--teal-deep) 60%,#152B33 100%);color:var(--on-dark);padding:168px 0 96px}
     .hero::before,.hero::after{content:"";position:absolute;border-radius:50%;filter:blur(110px);pointer-events:none}
     .hero::before{width:420px;height:420px;background:rgba(144,174,173,.16);top:-120px;left:-140px}
     .hero::after{width:480px;height:480px;background:rgba(230,72,51,.08);bottom:-80px;right:-160px}
-    .hero-inner{position:relative;z-index:1;max-width:860px;margin:0 auto;padding:0 24px}
-    .hero-badge{display:inline-flex;align-items:center;gap:10px;background:rgba(230,72,51,.14);color:#FF8A76;border:1px solid rgba(230,72,51,.25);padding:8px 18px;border-radius:99px;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:32px}
+    .hero .container{position:relative;z-index:1;display:grid;grid-template-columns:1.15fr .85fr;gap:64px;align-items:center}
+    .hero-badge{display:inline-flex;align-items:center;gap:10px;background:rgba(230,72,51,.14);color:#FF8A76;border:1px solid rgba(230,72,51,.25);padding:8px 18px;border-radius:99px;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:28px}
     .hero-badge .dot{width:8px;height:8px;border-radius:50%;background:#FF8A76;animation:pulse 2s ease-in-out infinite}
     @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
-    .hero h1{color:var(--on-dark);font-size:clamp(34px,5.6vw,62px);margin-bottom:24px;font-weight:600}
+    .hero h1{color:var(--on-dark);font-size:clamp(34px,4.6vw,58px);margin-bottom:22px;font-weight:600}
     .hero h1 em{font-style:italic;color:#FF8A76}
-    .hero-sub{font-size:clamp(16px,2vw,19px);color:var(--on-dark-muted);max-width:620px;margin:0 auto 40px}
-    .hero-actions{display:flex;flex-wrap:wrap;gap:16px;justify-content:center;margin-bottom:20px}
-    .hero-note{font-size:13px;color:var(--on-dark-muted)}
-    .hero-stats{position:relative;z-index:1;max-width:880px;margin:64px auto -72px;background:var(--card);border-radius:var(--r-lg);box-shadow:var(--shadow-lg);padding:40px 24px;display:grid;grid-template-columns:repeat(3,1fr)}
-    .hero-stats>div{padding:0 24px;text-align:center}
-    .hero-stats>div+div{border-left:1px solid var(--line)}
-    .stat-value{font-family:var(--font-display);font-size:clamp(26px,3.4vw,38px);font-weight:700;color:var(--teal)}
-    .stat-label{font-size:13px;font-weight:600;color:var(--muted);margin-top:6px;text-transform:uppercase;letter-spacing:.06em}
-    .hero-spacer{height:72px;background:var(--paper)}
+    .hero-sub{font-size:clamp(16px,1.6vw,18.5px);color:var(--on-dark-muted);max-width:540px;margin-bottom:36px}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:18px}
+    .hero-note{font-size:13px;color:var(--on-dark-muted);margin-bottom:44px}
+    .hero-stats{display:grid;grid-template-columns:repeat(3,auto);gap:40px;justify-content:start}
+    .stat-value{font-family:var(--font-display);font-size:clamp(26px,2.8vw,36px);font-weight:700;color:var(--on-dark)}
+    .stat-label{font-size:12px;font-weight:600;color:var(--on-dark-muted);margin-top:4px;text-transform:uppercase;letter-spacing:.06em}
 
-    /* ============ Trust strip ============ */
-    .trust-strip{background:var(--paper);padding:56px 0 0}
-    .trust-strip .container{display:flex;flex-wrap:wrap;justify-content:center;gap:14px 40px}
-    .trust-item{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:600;color:var(--teal)}
-    .trust-item .icon{width:19px;height:19px;color:var(--copper)}
+    /* Report card (hero visual) */
+    .report-card{background:var(--card);border-radius:var(--r-lg);box-shadow:var(--shadow-lg);padding:34px;max-width:420px;margin-left:auto;width:100%}
+    .report-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px}
+    .report-head strong{font-size:13px;letter-spacing:.08em;color:var(--ink)}
+    .tag-critical{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;background:rgba(207,58,38,.1);color:var(--accent);padding:5px 12px;border-radius:99px}
+    .score-row{display:flex;align-items:center;gap:18px;margin-bottom:22px}
+    .score-ring{width:72px;height:72px;border-radius:50%;border:5px solid #E8E0D2;border-top-color:var(--accent);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:20px;color:var(--ink);flex:none}
+    .target-box{background:var(--paper);border:1px solid var(--line);border-radius:var(--r-sm);padding:16px 20px;margin-bottom:22px}
+    .target-box .lbl{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--copper)}
+    .target-box .val{font-family:var(--font-display);font-size:28px;font-weight:700;color:var(--teal)}
+    .mini-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;border-top:1px solid var(--line);padding-top:18px}
+    .mini-stats strong{display:block;font-size:17px;color:var(--ink)}
+    .mini-stats span{font-size:11.5px;color:var(--muted)}
+    .source-note{font-size:11px;color:var(--muted);margin-top:12px}
+
+    /* ============ Trust bar ============ */
+    .trust-strip{background:var(--card);border-bottom:1px solid var(--line);padding:26px 0}
+    .trust-strip .container{display:flex;flex-wrap:wrap;justify-content:center;gap:14px 36px}
+    .trust-item{display:flex;align-items:center;gap:10px;font-size:13.5px;font-weight:600;color:var(--teal)}
+    .trust-item .icon{width:18px;height:18px;color:var(--copper)}
 
     /* ============ Cards & grids ============ */
     .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
     .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+    .grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
     .card{background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);padding:36px;box-shadow:var(--shadow-sm);transition:transform .2s ease,box-shadow .2s ease}
     .card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md)}
 
     /* ============ Problem ============ */
     .problem h2{font-size:clamp(28px,3.6vw,38px);margin-bottom:18px}
     .problem h2 em{font-style:italic;color:var(--accent)}
-    .problem-list{list-style:none;margin-top:28px;display:grid;gap:16px}
-    .problem-list li{display:flex;gap:14px;align-items:flex-start;font-weight:500;color:var(--ink)}
-    .problem-list .icon{width:20px;height:20px;color:var(--accent);margin-top:3px}
-    .report-card{background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);box-shadow:var(--shadow-lg);padding:36px;max-width:440px;margin:0 auto}
-    .report-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:26px}
-    .report-head strong{font-size:13px;letter-spacing:.08em;color:var(--ink)}
-    .tag-critical{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;background:rgba(207,58,38,.1);color:var(--accent);padding:5px 12px;border-radius:99px}
-    .score-row{display:flex;align-items:center;gap:18px;margin-bottom:24px}
-    .score-ring{width:72px;height:72px;border-radius:50%;border:5px solid #E8E0D2;border-top-color:var(--accent);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:20px;color:var(--ink);flex:none}
-    .target-box{background:var(--paper);border:1px solid var(--line);border-radius:var(--r-sm);padding:18px 20px;margin-bottom:24px}
-    .target-box .lbl{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--copper)}
-    .target-box .val{font-family:var(--font-display);font-size:30px;font-weight:700;color:var(--teal)}
-    .mini-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;border-top:1px solid var(--line);padding-top:20px}
-    .mini-stats strong{display:block;font-size:18px;color:var(--ink)}
-    .mini-stats span{font-size:11.5px;color:var(--muted)}
-    .source-note{font-size:11.5px;color:var(--muted);margin-top:14px}
-
-    /* ============ Process ============ */
-    .process{background:var(--card);border-block:1px solid var(--line)}
-    .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:40px 32px;counter-reset:step}
-    .step{position:relative;padding-left:64px}
-    .step-num{position:absolute;left:0;top:0;width:46px;height:46px;border-radius:14px;background:var(--paper);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;color:var(--accent)}
-    .step-time{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--copper)}
-    .step h3{font-size:18px;margin:4px 0 8px;font-family:var(--font-body);font-weight:700}
-    .step p{font-size:14.5px;color:var(--muted)}
+    .error-tiles{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    .error-tile{background:var(--card);border:1px solid var(--line);border-radius:var(--r-sm);padding:24px;display:flex;gap:14px;align-items:flex-start}
+    .error-tile .icon{width:20px;height:20px;color:var(--accent);margin-top:3px}
+    .error-tile strong{display:block;color:var(--ink);font-size:15px;margin-bottom:4px}
+    .error-tile span{font-size:13.5px;color:var(--muted)}
+    .problem-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:28px}
+    .problem-stat{background:var(--teal-deep);color:var(--on-dark);border-radius:var(--r-sm);padding:22px;text-align:center}
+    .problem-stat strong{font-family:var(--font-display);display:block;font-size:26px;font-weight:700}
+    .problem-stat span{font-size:12px;color:var(--on-dark-muted)}
 
     /* ============ Benefits (dark) ============ */
     .benefits{background:linear-gradient(160deg,var(--teal) 0%,var(--teal-deep) 100%);color:var(--on-dark)}
@@ -216,20 +212,72 @@
     .benefit-card h3{color:var(--on-dark);font-family:var(--font-body);font-weight:700;font-size:19px;margin-bottom:10px}
     .benefit-card p{color:var(--on-dark-muted);font-size:14.5px}
 
-    /* ============ Results ============ */
-    .case-card{display:flex;flex-direction:column;height:100%}
-    .case-card h3{font-size:20px;margin-bottom:4px}
+    /* ============ About ============ */
+    .about{background:var(--card);border-block:1px solid var(--line)}
+    .mvv{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:56px}
+    .mvv-card{background:var(--paper);border:1px solid var(--line);border-radius:var(--r-lg);padding:32px}
+    .mvv-card .icon-box{width:46px;height:46px;border-radius:14px;background:rgba(207,58,38,.08);color:var(--accent);display:flex;align-items:center;justify-content:center;margin-bottom:18px}
+    .mvv-card h3{font-size:20px;margin-bottom:10px}
+    .mvv-card p{font-size:14.5px;color:var(--body)}
+    .why-trust{background:var(--teal-deep);border-radius:var(--r-lg);padding:48px;color:var(--on-dark);display:grid;grid-template-columns:1fr 1.3fr;gap:48px;align-items:center}
+    .why-trust h3{color:var(--on-dark);font-size:clamp(22px,2.6vw,30px);margin-bottom:12px}
+    .why-trust>div>p{color:var(--on-dark-muted);font-size:15px}
+    .why-list{display:grid;gap:16px;list-style:none}
+    .why-list li{display:flex;gap:14px;align-items:flex-start;font-size:15px;color:var(--on-dark)}
+    .why-list .icon{width:20px;height:20px;color:var(--sage);margin-top:3px}
+    .why-list strong{color:var(--on-dark)}
+    .why-list span{color:var(--on-dark-muted)}
+
+    /* ============ Services (tabs) ============ */
+    .service-tabs{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:36px}
+    .service-tab{background:var(--card);border:1.5px solid var(--line);color:var(--teal);font-family:var(--font-body);font-weight:600;font-size:14px;padding:11px 20px;border-radius:99px;cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:background .15s,color .15s,border-color .15s}
+    .service-tab .icon{width:17px;height:17px}
+    .service-tab:hover{border-color:var(--accent)}
+    .service-tab[aria-selected="true"]{background:var(--teal);border-color:var(--teal);color:var(--on-dark)}
+    .service-panel{background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);box-shadow:var(--shadow-md);padding:48px;display:none;grid-template-columns:1fr 1fr;gap:48px;align-items:center;animation:fadein .35s ease}
+    .service-panel.active{display:grid}
+    @keyframes fadein{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+    .service-panel .icon-box{width:56px;height:56px;border-radius:16px;background:rgba(207,58,38,.08);color:var(--accent);display:flex;align-items:center;justify-content:center;margin-bottom:20px}
+    .service-panel .icon-box .icon{width:26px;height:26px}
+    .service-panel h3{font-size:26px;margin-bottom:12px}
+    .service-panel p{font-size:15.5px}
+    .service-panel ul{list-style:none;display:grid;gap:14px}
+    .service-panel li{display:flex;gap:12px;align-items:flex-start;font-size:15px;color:var(--ink)}
+    .service-panel li .icon{width:19px;height:19px;color:var(--teal);margin-top:3px}
+    .service-panel .btn{margin-top:26px}
+
+    /* ============ Process ============ */
+    .process{background:var(--card);border-block:1px solid var(--line)}
+    .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:40px 32px}
+    .step{position:relative;padding-left:64px}
+    .step-num{position:absolute;left:0;top:0;width:46px;height:46px;border-radius:14px;background:var(--paper);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;color:var(--accent)}
+    .step-time{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--copper)}
+    .step h3{font-size:18px;margin:4px 0 8px;font-family:var(--font-body);font-weight:700}
+    .step p{font-size:14.5px;color:var(--muted)}
+
+    /* ============ Results carousel ============ */
+    .case-slide{display:none;animation:fadein .35s ease}
+    .case-slide.active{display:block}
+    .case-inner{background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);box-shadow:var(--shadow-md);padding:48px;display:grid;grid-template-columns:.8fr 1.2fr;gap:48px;align-items:center}
+    .case-inner h3{font-size:24px;margin-bottom:4px}
     .case-sub{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:24px}
-    .score-compare{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px;background:var(--paper);border:1px solid var(--line);border-radius:var(--r-sm);padding:18px;margin-bottom:24px;text-align:center}
+    .score-compare{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px;background:var(--paper);border:1px solid var(--line);border-radius:var(--r-sm);padding:20px;text-align:center;margin-bottom:18px}
     .score-compare .lbl{display:block;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
-    .score-compare .before{font-family:var(--font-display);font-size:26px;font-weight:700;color:var(--accent)}
-    .score-compare .after{font-family:var(--font-display);font-size:26px;font-weight:700;color:var(--teal)}
+    .score-compare .before{font-family:var(--font-display);font-size:30px;font-weight:700;color:var(--accent)}
+    .score-compare .after{font-family:var(--font-display);font-size:30px;font-weight:700;color:var(--teal)}
     .score-compare .icon{color:var(--copper)}
-    .case-body{flex:1;display:grid;gap:14px;font-size:14.5px}
+    .case-meta{display:flex;gap:10px;flex-wrap:wrap}
+    .case-meta span{font-size:12.5px;font-weight:700;padding:6px 14px;border-radius:99px}
+    .case-meta .days{background:rgba(207,58,38,.08);color:var(--accent)}
+    .case-meta .outcome{background:rgba(144,174,173,.18);color:var(--teal)}
+    .case-body{display:grid;gap:14px;font-size:15px}
     .case-body strong{color:var(--ink)}
-    .case-foot{margin-top:24px;padding-top:20px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:12.5px;font-weight:700}
-    .case-foot .days{color:var(--accent)}
-    .case-foot .outcome{background:rgba(144,174,173,.18);color:var(--teal);padding:5px 12px;border-radius:99px}
+    .case-nav{display:flex;align-items:center;justify-content:center;gap:18px;margin-top:32px}
+    .case-arrow{width:44px;height:44px;border-radius:50%;border:1.5px solid var(--line);background:var(--card);color:var(--teal);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .15s,color .15s}
+    .case-arrow:hover{background:var(--teal);color:var(--on-dark)}
+    .dots{display:flex;gap:8px}
+    .dot-btn{width:10px;height:10px;border-radius:50%;border:0;background:rgba(36,72,85,.25);cursor:pointer;padding:0;transition:background .15s,transform .15s}
+    .dot-btn.active{background:var(--accent);transform:scale(1.25)}
 
     /* ============ Pricing ============ */
     .pricing{background:var(--card);border-block:1px solid var(--line)}
@@ -246,30 +294,41 @@
     .tier:not(.popular) .btn:hover{background:var(--cream)}
     .pricing-note{text-align:center;font-size:13.5px;color:var(--muted);margin-top:32px}
 
-    /* ============ Testimonials (dark) ============ */
+    /* ============ Testimonials (auto-rotating) ============ */
     .testimonials{background:linear-gradient(160deg,var(--teal-deep) 0%,#152B33 100%);color:var(--on-dark)}
     .testimonials .section-head h2{color:var(--on-dark)}
     .testimonials .section-head p{color:var(--on-dark-muted)}
-    .quote-card{background:rgba(246,238,223,.05);border:1px solid rgba(246,238,223,.12);border-radius:var(--r-lg);padding:32px;display:flex;flex-direction:column;gap:18px}
-    .quote-who{display:flex;align-items:center;gap:14px}
-    .avatar{width:46px;height:46px;border-radius:50%;background:var(--sage);color:var(--teal-deep);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px;flex:none}
-    .quote-who strong{color:var(--on-dark);display:block;font-size:15px}
-    .quote-who span{font-size:12px;color:var(--on-dark-muted);text-transform:uppercase;letter-spacing:.08em}
-    .score-pill{align-self:flex-start;background:rgba(230,72,51,.16);color:#FF8A76;font-size:12px;font-weight:700;padding:5px 14px;border-radius:99px}
-    .quote-card blockquote{font-size:14.5px;color:rgba(246,238,223,.85);font-style:italic}
+    .quote-stage{max-width:760px;margin:0 auto 40px;min-height:210px}
+    .quote-slide{display:none;text-align:center;animation:fadein .4s ease}
+    .quote-slide.active{display:block}
+    .quote-slide blockquote{font-family:var(--font-display);font-size:clamp(18px,2.4vw,23px);font-style:italic;color:rgba(246,238,223,.92);line-height:1.5;margin-bottom:22px}
+    .quote-slide .score-pill{display:inline-block;background:rgba(230,72,51,.16);color:#FF8A76;font-size:12.5px;font-weight:700;padding:6px 16px;border-radius:99px}
+    .mini-quotes{display:flex;flex-wrap:wrap;justify-content:center;gap:12px}
+    .mini-quote{display:flex;align-items:center;gap:10px;background:rgba(246,238,223,.05);border:1px solid rgba(246,238,223,.14);border-radius:99px;padding:8px 18px 8px 8px;cursor:pointer;font-family:var(--font-body);transition:background .15s,border-color .15s}
+    .mini-quote:hover{background:rgba(246,238,223,.1)}
+    .mini-quote[aria-selected="true"]{border-color:#FF8A76;background:rgba(230,72,51,.12)}
+    .avatar{width:36px;height:36px;border-radius:50%;background:var(--sage);color:var(--teal-deep);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex:none}
+    .mini-quote strong{color:var(--on-dark);font-size:13.5px;display:block;line-height:1.2}
+    .mini-quote span{font-size:11px;color:var(--on-dark-muted)}
 
-    /* ============ Lead magnet ============ */
-    .lead{background:var(--sage)}
-    .lead .grid-2{align-items:center}
-    .lead h2{font-size:clamp(28px,3.6vw,38px);color:var(--teal-deep);margin-bottom:16px}
-    .lead h2 em{font-style:italic;color:#fff}
-    .lead p{color:rgba(27,54,64,.78);font-size:16.5px;margin-bottom:26px;max-width:480px}
-    .lead ul{list-style:none;display:grid;gap:14px}
-    .lead li{display:flex;gap:12px;align-items:flex-start;font-weight:600;color:var(--teal-deep);font-size:15px}
-    .lead li .icon{width:19px;height:19px;color:var(--teal-deep);opacity:.6;margin-top:3px}
-    .lead-form-card{background:var(--teal-deep);border-radius:var(--r-lg);padding:44px 36px;box-shadow:var(--shadow-lg)}
-    .lead-form-card h3{color:var(--on-dark);font-size:23px;text-align:center;margin-bottom:8px}
-    .lead-form-card .sub{color:var(--on-dark-muted);font-size:13.5px;text-align:center;margin-bottom:26px}
+    /* ============ Knowledge hub + guide ============ */
+    .knowledge .grid-4{margin-bottom:72px}
+    .article-card{background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);padding:28px;display:flex;flex-direction:column;gap:14px;transition:transform .2s,box-shadow .2s}
+    .article-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md)}
+    .article-card .icon-box{width:44px;height:44px;border-radius:14px;background:var(--paper);border:1px solid var(--line);color:var(--teal);display:flex;align-items:center;justify-content:center}
+    .article-card .cat{font-size:10.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--copper)}
+    .article-card h3{font-size:17.5px;font-family:var(--font-body);font-weight:700}
+    .article-card p{font-size:13.5px;color:var(--muted)}
+    .lead-wrap{background:var(--sage);border-radius:var(--r-lg);padding:56px;display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+    .lead-wrap h3.lead-title{font-size:clamp(24px,3vw,32px);color:var(--teal-deep);margin-bottom:14px}
+    .lead-wrap h3.lead-title em{font-style:italic;color:#fff}
+    .lead-wrap p{color:rgba(27,54,64,.78);font-size:15.5px;margin-bottom:22px}
+    .lead-wrap ul{list-style:none;display:grid;gap:12px}
+    .lead-wrap li{display:flex;gap:12px;align-items:flex-start;font-weight:600;color:var(--teal-deep);font-size:14.5px}
+    .lead-wrap li .icon{width:18px;height:18px;color:var(--teal-deep);opacity:.6;margin-top:3px}
+    .lead-form-card{background:var(--teal-deep);border-radius:var(--r-lg);padding:40px 34px;box-shadow:var(--shadow-lg)}
+    .lead-form-card h3{color:var(--on-dark);font-size:22px;text-align:center;margin-bottom:8px}
+    .lead-form-card .sub{color:var(--on-dark-muted);font-size:13.5px;text-align:center;margin-bottom:24px}
     .lead-form-card input{width:100%;background:rgba(246,238,223,.08);border:1px solid rgba(246,238,223,.2);border-radius:var(--r-sm);padding:15px 18px;color:var(--on-dark);font-family:var(--font-body);font-size:15px;margin-bottom:14px;transition:background .15s,border-color .15s}
     .lead-form-card input::placeholder{color:rgba(246,238,223,.45)}
     .lead-form-card input:focus{background:rgba(246,238,223,.14);border-color:var(--sage);outline:none}
@@ -282,18 +341,26 @@
     .lead-form-card .form-success p{color:var(--on-dark-muted)}
 
     /* ============ FAQ ============ */
-    .faq .container{max-width:800px}
+    .faq .faq-list{max-width:800px;margin:0 auto}
+    .faq-filters{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-bottom:36px}
+    .faq-filter{background:var(--card);border:1.5px solid var(--line);color:var(--teal);font-family:var(--font-body);font-weight:600;font-size:13.5px;padding:9px 18px;border-radius:99px;cursor:pointer;transition:background .15s,color .15s,border-color .15s}
+    .faq-filter:hover{border-color:var(--accent)}
+    .faq-filter[aria-pressed="true"]{background:var(--teal);border-color:var(--teal);color:var(--on-dark)}
     .faq details{background:var(--card);border:1px solid var(--line);border-radius:var(--r-sm);margin-bottom:14px;box-shadow:var(--shadow-sm);overflow:hidden}
+    .faq details.hidden{display:none}
     .faq summary{list-style:none;cursor:pointer;padding:22px 24px;display:flex;justify-content:space-between;align-items:center;gap:16px;font-weight:600;color:var(--ink);font-size:16px}
     .faq summary::-webkit-details-marker{display:none}
     .faq summary .icon{width:20px;height:20px;color:var(--muted);transition:transform .25s}
     .faq details[open] summary .icon{transform:rotate(45deg);color:var(--accent)}
     .faq details p{padding:0 24px 24px;font-size:15px;color:var(--body)}
 
-    /* ============ Contact ============ */
-    .contact-card{background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);box-shadow:var(--shadow-lg);padding:56px;display:grid;grid-template-columns:1fr 1fr;gap:56px}
-    .contact-card h2{font-size:clamp(26px,3.2vw,34px);margin-bottom:14px}
-    .contact-card .intro{font-size:15.5px;color:var(--muted);margin-bottom:32px}
+    /* ============ Contact (dark) ============ */
+    .contact{background:linear-gradient(160deg,var(--teal) 0%,var(--teal-deep) 100%)}
+    .contact .section-head h2{color:var(--on-dark)}
+    .contact .section-head p{color:var(--on-dark-muted)}
+    .contact-card{background:var(--card);border-radius:var(--r-lg);box-shadow:var(--shadow-lg);padding:56px;display:grid;grid-template-columns:1fr 1fr;gap:56px}
+    .contact-card h3.ct{font-size:clamp(22px,2.6vw,28px);margin-bottom:12px}
+    .contact-card .intro{font-size:15px;color:var(--muted);margin-bottom:30px}
     .contact-methods{display:grid;gap:18px}
     .contact-method{display:flex;align-items:center;gap:16px;text-decoration:none;color:var(--ink);font-weight:600;font-size:15px}
     .contact-method .icon-box{width:44px;height:44px;border-radius:var(--r-sm);background:var(--paper);border:1px solid var(--line);color:var(--teal);display:flex;align-items:center;justify-content:center;transition:background .15s,color .15s;flex:none}
@@ -307,24 +374,27 @@
     .form-note{display:flex;align-items:center;justify-content:center;gap:8px;font-size:12px;font-weight:600;color:var(--muted);margin-top:16px;text-transform:uppercase;letter-spacing:.05em}
     .form-note .icon{width:14px;height:14px}
 
-    /* ============ Footer ============ */
-    .site-footer{background:var(--teal-deep);color:var(--on-dark-muted);padding:64px 0 40px}
-    .footer-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:48px;margin-bottom:40px}
+    /* ============ Footer (4-column) ============ */
+    .site-footer{background:#152B33;color:var(--on-dark-muted);padding:64px 0 32px}
+    .footer-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1.1fr;gap:40px;margin-bottom:44px}
     .site-footer .brand img{height:40px}
-    .footer-tag{font-size:14px;max-width:420px;margin:18px 0}
-    .footer-legal{font-size:12px;line-height:1.7;max-width:480px;color:rgba(246,238,223,.5)}
-    .footer-links{display:grid;gap:12px;align-content:start;justify-items:start}
-    .footer-links h3{color:var(--on-dark);font-family:var(--font-body);font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px}
-    .footer-links a{color:var(--on-dark-muted);text-decoration:none;font-size:14px;transition:color .15s}
-    .footer-links a:hover{color:var(--on-dark)}
-    .footer-bottom{border-top:1px solid rgba(246,238,223,.1);padding-top:28px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;font-size:12.5px;color:rgba(246,238,223,.5)}
+    .site-footer .brand-name{color:var(--on-dark)}
+    .footer-tag{font-size:14px;max-width:340px;margin:16px 0}
+    .footer-col h3{color:var(--on-dark);font-family:var(--font-body);font-size:12.5px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;margin-bottom:16px}
+    .footer-col a{display:block;color:var(--on-dark-muted);text-decoration:none;font-size:14px;padding:5px 0;transition:color .15s}
+    .footer-col a:hover{color:var(--on-dark)}
+    .footer-legal{font-size:11.5px;line-height:1.7;color:rgba(246,238,223,.5);border-top:1px solid rgba(246,238,223,.1);padding-top:24px;margin-bottom:20px}
+    .footer-bottom{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;font-size:12.5px;color:rgba(246,238,223,.5)}
 
-    /* ============ WhatsApp float ============ */
-    .wa-float{position:fixed;bottom:28px;right:28px;z-index:90;width:58px;height:58px;border-radius:50%;background:#25D366;color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow-lg);transition:transform .18s}
-    .wa-float:hover{transform:scale(1.08)}
-    .wa-float .icon{width:28px;height:28px}
+    /* ============ Floating buttons ============ */
+    .float-stack{position:fixed;bottom:28px;right:28px;z-index:90;display:flex;flex-direction:column;gap:14px}
+    .float-btn{width:56px;height:56px;border-radius:50%;color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow-lg);transition:transform .18s;text-decoration:none}
+    .float-btn:hover{transform:scale(1.08)}
+    .float-btn .icon{width:26px;height:26px}
+    .float-wa{background:#25D366}
+    .float-call{background:var(--teal)}
 
-    /* ============ Reveal animation ============ */
+    /* ============ Reveal + motion ============ */
     .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
     .reveal.visible{opacity:1;transform:none}
     @media (prefers-reduced-motion:reduce){
@@ -334,15 +404,31 @@
       *{transition-duration:.01ms!important;animation-duration:.01ms!important}
     }
 
-    /* ============ Skip link ============ */
     .skip-link{position:absolute;left:-9999px;z-index:200;background:var(--accent);color:#fff;padding:12px 20px;border-radius:0 0 8px 0;font-weight:700;text-decoration:none}
     .skip-link:focus{left:0;top:0}
+    .sr-label{position:absolute;left:-9999px}
 
     /* ============ Responsive ============ */
+    @media (max-width:1024px){
+      .grid-4{grid-template-columns:repeat(2,1fr)}
+      .footer-grid{grid-template-columns:1fr 1fr}
+    }
     @media (max-width:980px){
       .grid-3{grid-template-columns:repeat(2,1fr)}
       .steps{grid-template-columns:repeat(2,1fr)}
+      .mvv{grid-template-columns:1fr}
+      .hero .container{grid-template-columns:1fr;gap:48px}
+      .report-card{margin:0 auto}
+      .hero-stats{justify-content:center;text-align:center}
+      .hero{text-align:center;padding-top:140px}
+      .hero-actions,.hero-badge{justify-content:center}
+      .hero-actions{display:flex}
+      .hero-sub{margin-inline:auto}
+      .why-trust{grid-template-columns:1fr;padding:36px}
+      .service-panel{grid-template-columns:1fr;padding:36px;gap:28px}
+      .case-inner{grid-template-columns:1fr;padding:36px;gap:28px}
       .contact-card{grid-template-columns:1fr;padding:40px 32px}
+      .lead-wrap{grid-template-columns:1fr;padding:40px 32px}
       .grid-2{grid-template-columns:1fr;gap:48px}
       .nav-links{display:none}
       .header-phone{display:none}
@@ -350,17 +436,16 @@
     }
     @media (max-width:640px){
       section{padding:72px 0}
-      .grid-3,.steps{grid-template-columns:1fr}
-      .hero{padding-top:140px}
-      .hero-stats{grid-template-columns:1fr;gap:24px;margin-bottom:-40px}
-      .hero-stats>div+div{border-left:0;border-top:1px solid var(--line);padding-top:24px}
-      .hero-spacer{height:40px}
+      .grid-3,.steps,.grid-4,.error-tiles{grid-template-columns:1fr}
+      .problem-stats{grid-template-columns:1fr 1fr}
+      .hero-stats{grid-template-columns:1fr;gap:20px}
       .hero-actions .btn{width:100%}
       .card,.lead-form-card{padding:28px 24px}
       .contact-card{padding:32px 22px}
+      .case-inner,.service-panel,.lead-wrap,.why-trust{padding:28px 22px}
       .field-row{grid-template-columns:1fr}
       .footer-grid{grid-template-columns:1fr}
-      .wa-float{bottom:20px;right:20px}
+      .float-stack{bottom:20px;right:20px}
       .header-cta .btn{padding:10px 14px;font-size:13px}
     }
   </style>
@@ -378,12 +463,14 @@
       <symbol id="i-check" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></symbol>
       <symbol id="i-x" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6M9 9l6 6"/></symbol>
       <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></symbol>
+      <symbol id="i-arrow-left" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></symbol>
       <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
       <symbol id="i-shield" viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></symbol>
       <symbol id="i-file" viewBox="0 0 24 24"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/></symbol>
       <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></symbol>
       <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></symbol>
       <symbol id="i-send" viewBox="0 0 24 24"><path d="m22 2-7 20-4-9-9-4z"/><path d="M22 2 11 13"/></symbol>
+      <symbol id="i-trend" viewBox="0 0 24 24"><path d="m22 7-8.5 8.5-5-5L2 17"/><path d="M16 7h6v6"/></symbol>
       <symbol id="i-trend-down" viewBox="0 0 24 24"><path d="m22 17-8.5-8.5-5 5L2 7"/><path d="M16 17h6v-6"/></symbol>
       <symbol id="i-home" viewBox="0 0 24 24"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></symbol>
       <symbol id="i-card" viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></symbol>
@@ -395,22 +482,30 @@
       <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></symbol>
       <symbol id="i-close" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></symbol>
       <symbol id="i-scale" viewBox="0 0 24 24"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1ZM2 16l3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1ZM7 21h10M12 3v18M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/></symbol>
+      <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></symbol>
+      <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></symbol>
+      <symbol id="i-heart" viewBox="0 0 24 24"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></symbol>
+      <symbol id="i-user-check" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="m16 11 2 2 4-4"/></symbol>
+      <symbol id="i-alert" viewBox="0 0 24 24"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4M12 17h.01"/></symbol>
+      <symbol id="i-monitor" viewBox="0 0 24 24"><path d="M12 21a9 9 0 1 0-9-9"/><path d="M3 12a9 9 0 0 0 9 9"/><path d="M12 7v5l3 3"/></symbol>
     </defs>
   </svg>
 
   <header class="site-header" id="siteHeader">
     <div class="header-inner">
-      <a class="brand" href="#" aria-label="Forty Two Capital — home">
+      <a class="brand" href="#home" aria-label="Forty Two Capital — home">
         <img src="new-logo.png" alt="Forty Two Capital logo" width="44" height="44">
         <span class="brand-name">Forty Two Capital</span>
       </a>
       <nav aria-label="Primary">
-        <ul class="nav-links">
-          <li><a href="#problem">The Problem</a></li>
-          <li><a href="#process">How It Works</a></li>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#process">Process</a></li>
           <li><a href="#results">Results</a></li>
           <li><a href="#pricing">Pricing</a></li>
-          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#faq">FAQs</a></li>
+          <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
       <div class="header-cta">
@@ -418,93 +513,267 @@
           <svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg>
           +91 63640 55652
         </a>
-        <a class="btn btn-primary btn-sm" href="#contact">Get My Free Audit</a>
+        <a class="btn btn-primary btn-sm" href="#contact">Free Audit
+          <svg class="icon" style="width:15px;height:15px" aria-hidden="true"><use href="#i-arrow"/></svg></a>
         <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
           <svg class="icon" id="menuIcon" aria-hidden="true"><use href="#i-menu"/></svg>
         </button>
       </div>
     </div>
     <nav class="mobile-menu" id="mobileMenu" aria-label="Mobile">
-      <a href="#problem">The Problem</a>
-      <a href="#process">How It Works</a>
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#process">Process</a>
       <a href="#results">Results</a>
       <a href="#pricing">Pricing</a>
-      <a href="#faq">FAQ</a>
+      <a href="#faq">FAQs</a>
+      <a href="#contact">Contact</a>
       <a href="tel:+916364055652">Call +91 63640 55652</a>
       <a class="btn btn-primary" href="#contact">Get My Free Audit</a>
     </nav>
   </header>
 
   <main id="main">
-    <!-- ============ Hero ============ -->
-    <section class="hero" aria-labelledby="hero-title" style="padding-bottom:0">
-      <div class="hero-inner">
-        <p class="hero-badge"><span class="dot" aria-hidden="true"></span>Credit Restoration Advisory · India</p>
-        <h1 id="hero-title">Your credit score may be wrong. <em>We fix it.</em></h1>
-        <p class="hero-sub">We audit your reports across all four credit bureaus, dispute every inaccuracy through official channels, and restore your creditworthiness — so lenders finally say yes.</p>
-        <div class="hero-actions">
-          <a class="btn btn-primary" href="#contact">Get My Free Credit Audit
-            <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-          <a class="btn btn-secondary" href="#process">See How It Works</a>
+    <!-- 1 ============ Hero ============ -->
+    <section class="hero" id="home" aria-labelledby="hero-title">
+      <div class="container">
+        <div>
+          <p class="hero-badge"><span class="dot" aria-hidden="true"></span>Credit Restoration Advisory · India</p>
+          <h1 id="hero-title">Your credit score may be wrong. <em>We fix it.</em></h1>
+          <p class="hero-sub">We audit your reports across all four credit bureaus, dispute every inaccuracy through official channels, and restore your creditworthiness — so lenders finally say yes.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#contact">Get My Free Credit Audit
+              <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+            <a class="btn btn-secondary" href="#process">See How It Works</a>
+          </div>
+          <p class="hero-note">Free audit · No obligation · Typical resolution in 45–60 days</p>
+          <div class="hero-stats">
+            <div><div class="stat-value"><span class="counter" data-target="500">0</span>+</div><div class="stat-label">Reports Audited</div></div>
+            <div><div class="stat-value">₹<span class="counter" data-target="15">0</span>Cr+</div><div class="stat-label">Loans Facilitated</div></div>
+            <div><div class="stat-value"><span class="counter" data-target="4.8" data-decimals="1">0</span>★</div><div class="stat-label">Client Satisfaction</div></div>
+          </div>
         </div>
-        <p class="hero-note">Free audit · No obligation · Typical resolution in 45–60 days</p>
-      </div>
-      <div class="hero-stats">
-        <div><div class="stat-value">500+</div><div class="stat-label">Credit Reports Audited</div></div>
-        <div><div class="stat-value">₹15Cr+</div><div class="stat-label">In Loans Facilitated</div></div>
-        <div><div class="stat-value">4.8★</div><div class="stat-label">Client Satisfaction</div></div>
+        <div class="report-card" role="img" aria-label="Illustration: a credit health report showing a score of 540 with 3 errors found and a target of 780 plus">
+          <div class="report-head"><strong>CIBIL HEALTH REPORT</strong><span class="tag-critical">Critical</span></div>
+          <div class="score-row">
+            <div class="score-ring">540</div>
+            <div><strong style="color:var(--ink)">Current Score</strong><br><span style="font-size:14px;color:var(--muted)">3 significant errors found</span></div>
+          </div>
+          <div class="target-box">
+            <span class="lbl">Our Target</span>
+            <div class="val">780+</div>
+            <span style="font-size:13px;color:var(--muted)">Loan-ready, low-interest eligibility</span>
+          </div>
+          <div class="mini-stats">
+            <div><strong>30%</strong><span>Loan rejections</span></div>
+            <div><strong>40Cr+</strong><span>Zero credit history</span></div>
+            <div><strong>1 in 2</strong><span>Never checked</span></div>
+          </div>
+          <p class="source-note">Source: TransUnion CIBIL Annual Report 2024 &amp; RBI Financial Inclusion Data</p>
+        </div>
       </div>
     </section>
-    <div class="hero-spacer" aria-hidden="true"></div>
 
-    <!-- ============ Trust strip ============ -->
+    <!-- 2 ============ Trust bar ============ -->
     <div class="trust-strip">
       <div class="container">
         <span class="trust-item"><svg class="icon" aria-hidden="true"><use href="#i-scale"/></svg>Statutory right under CICRA, 2005</span>
         <span class="trust-item"><svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg>RBI-mandated 30-day dispute window</span>
         <span class="trust-item"><svg class="icon" aria-hidden="true"><use href="#i-search"/></svg>All 4 bureaus covered</span>
         <span class="trust-item"><svg class="icon" aria-hidden="true"><use href="#i-lock"/></svg>Strict data confidentiality</span>
+        <span class="trust-item"><svg class="icon" aria-hidden="true"><use href="#i-send"/></svg>Official channels only</span>
+        <span class="trust-item"><svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg>No false score promises</span>
       </div>
     </div>
 
-    <!-- ============ Problem ============ -->
+    <!-- 3 ============ Problem ============ -->
     <section id="problem" class="problem" aria-labelledby="problem-title">
       <div class="container grid-2">
         <div class="reveal">
           <p class="eyebrow">The Problem</p>
           <h2 id="problem-title">The hidden credit errors holding back <em>millions of Indians</em></h2>
           <p>India's credit records are riddled with clerical errors, duplicate accounts, and outdated information. These inaccuracies quietly block home loans, business credit, and personal finance — often for people who did nothing wrong.</p>
-          <ul class="problem-list">
-            <li><svg class="icon" aria-hidden="true"><use href="#i-x"/></svg>Incorrect outstanding balances</li>
-            <li><svg class="icon" aria-hidden="true"><use href="#i-x"/></svg>Duplicate entries for the same loan</li>
-            <li><svg class="icon" aria-hidden="true"><use href="#i-x"/></svg>Identity mix-ups and unauthorised accounts</li>
-            <li><svg class="icon" aria-hidden="true"><use href="#i-x"/></svg>Closed loans still reported as open</li>
-          </ul>
+          <div class="problem-stats">
+            <div class="problem-stat"><strong>30%</strong><span>of loan rejections trace to report errors</span></div>
+            <div class="problem-stat"><strong>40Cr+</strong><span>Indians with zero credit history</span></div>
+            <div class="problem-stat"><strong>1 in 2</strong><span>have never checked their report</span></div>
+          </div>
         </div>
         <div class="reveal">
-          <div class="report-card" role="img" aria-label="Illustration: a credit health report showing a score of 540 with 3 errors found and a target of 780 plus">
-            <div class="report-head"><strong>CIBIL HEALTH REPORT</strong><span class="tag-critical">Critical</span></div>
-            <div class="score-row">
-              <div class="score-ring">540</div>
-              <div><strong style="color:var(--ink)">Current Score</strong><br><span style="font-size:14px;color:var(--muted)">3 significant errors found</span></div>
-            </div>
-            <div class="target-box">
-              <span class="lbl">Our Target</span>
-              <div class="val">780+</div>
-              <span style="font-size:13px;color:var(--muted)">Loan-ready, low-interest eligibility</span>
-            </div>
-            <div class="mini-stats">
-              <div><strong>30%</strong><span>Loan rejections</span></div>
-              <div><strong>40Cr+</strong><span>Zero credit history</span></div>
-              <div><strong>1 in 2</strong><span>Never checked</span></div>
-            </div>
-            <p class="source-note">Source: TransUnion CIBIL Annual Report 2024 &amp; RBI Financial Inclusion Data</p>
+          <div class="error-tiles">
+            <div class="error-tile"><svg class="icon" aria-hidden="true"><use href="#i-x"/></svg><div><strong>Incorrect balances</strong><span>Outstanding amounts that were already repaid still showing as due.</span></div></div>
+            <div class="error-tile"><svg class="icon" aria-hidden="true"><use href="#i-x"/></svg><div><strong>Duplicate entries</strong><span>The same loan reported twice — doubling your apparent debt.</span></div></div>
+            <div class="error-tile"><svg class="icon" aria-hidden="true"><use href="#i-x"/></svg><div><strong>Identity mix-ups</strong><span>Someone else's defaults appearing on your file due to name or PAN confusion.</span></div></div>
+            <div class="error-tile"><svg class="icon" aria-hidden="true"><use href="#i-x"/></svg><div><strong>Stale closures</strong><span>Loans you closed years ago still reported as open or "settled".</span></div></div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ============ Process ============ -->
+    <!-- 4 ============ What 780+ unlocks (dark) ============ -->
+    <section class="benefits" aria-labelledby="benefits-title">
+      <div class="container">
+        <div class="section-head reveal">
+          <h2 id="benefits-title">What a 780+ score <em>unlocks</em></h2>
+          <p>A strong credit score is the entry ticket to India's best financial products.</p>
+        </div>
+        <div class="grid-3">
+          <div class="benefit-card reveal"><div class="icon-box"><svg class="icon" aria-hidden="true"><use href="#i-home"/></svg></div><h3>Home Loans Approved</h3><p>Borrow ₹25–50 lakhs at preferential interest rates.</p></div>
+          <div class="benefit-card reveal"><div class="icon-box"><svg class="icon" aria-hidden="true"><use href="#i-card"/></svg></div><h3>Premium Credit Cards</h3><p>Faster approvals with higher credit limits.</p></div>
+          <div class="benefit-card reveal"><div class="icon-box"><svg class="icon" aria-hidden="true"><use href="#i-landmark"/></svg></div><h3>MSME Credit Lines</h3><p>Fuel your business growth with ready capital.</p></div>
+          <div class="benefit-card reveal"><div class="icon-box"><svg class="icon" aria-hidden="true"><use href="#i-trend-down"/></svg></div><h3>Lower Interest Rates</h3><p>Save lakhs over your loan tenure with a high score.</p></div>
+          <div class="benefit-card reveal"><div class="icon-box"><svg class="icon" aria-hidden="true"><use href="#i-car"/></svg></div><h3>Fast-Track Auto Loans</h3><p>Finance your car in as little as 48 hours.</p></div>
+          <div class="benefit-card reveal"><div class="icon-box"><svg class="icon" aria-hidden="true"><use href="#i-umbrella"/></svg></div><h3>Financial Confidence</h3><p>The peace of mind of knowing your record is accurate.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5 ============ About ============ -->
+    <section id="about" class="about" aria-labelledby="about-title">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="eyebrow" style="justify-content:center">About Us</p>
+          <h2 id="about-title">Why Forty Two Capital exists</h2>
+          <p>We believe no Indian should be denied credit because of someone else's clerical error.</p>
+        </div>
+        <div class="mvv">
+          <div class="mvv-card reveal">
+            <div class="icon-box"><svg class="icon" aria-hidden="true"><use href="#i-target"/></svg></div>
+            <h3>Our Mission</h3>
+            <p>To make every Indian's credit record accurate — by finding bureau errors and getting them corrected through official, legal channels.</p>
+          </div>
+          <div class="mvv-card reveal">
+            <div class="icon-box"><svg class="icon" aria-hidden="true"><use href="#i-eye"/></svg></div>
+            <h3>Our Vision</h3>
+            <p>An India where creditworthiness reflects real financial behaviour, not data-entry mistakes — and where every household knows how to read its own report.</p>
+          </div>
+          <div class="mvv-card reveal">
+            <div class="icon-box"><svg class="icon" aria-hidden="true"><use href="#i-heart"/></svg></div>
+            <h3>Our Values</h3>
+            <p>Transparency in pricing, legality in method, and persistence in follow-up. We never promise scores we can't deliver — we promise process.</p>
+          </div>
+        </div>
+        <div class="why-trust reveal">
+          <div>
+            <h3>Why clients trust us</h3>
+            <p>Credit repair in India has a trust problem. We built Forty Two Capital to be the exception.</p>
+          </div>
+          <ul class="why-list">
+            <li><svg class="icon" aria-hidden="true"><use href="#i-scale"/></svg><span><strong>Official channels only.</strong> Every dispute is filed under CICRA, 2005 — no shortcuts, no grey-area tactics.</span></li>
+            <li><svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg><span><strong>No false promises.</strong> We never guarantee a specific score — only a complete audit and a relentless dispute process.</span></li>
+            <li><svg class="icon" aria-hidden="true"><use href="#i-file"/></svg><span><strong>Transparent pricing.</strong> One fee per plan, covering the full lifecycle. No surprise charges, ever.</span></li>
+            <li><svg class="icon" aria-hidden="true"><use href="#i-lock"/></svg><span><strong>Confidential by default.</strong> Your reports never leave our audit process and are never shared with marketers.</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6 ============ Services (tabs) ============ -->
+    <section id="services" aria-labelledby="services-title">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="eyebrow" style="justify-content:center">Services</p>
+          <h2 id="services-title">Everything your credit profile needs</h2>
+          <p>Six specialised services, one goal: a clean, accurate, loan-ready credit record.</p>
+        </div>
+        <div class="service-tabs reveal" role="tablist" aria-label="Services">
+          <button class="service-tab" role="tab" id="tab-0" aria-selected="true" aria-controls="panel-0"><svg class="icon" aria-hidden="true"><use href="#i-search"/></svg>Credit Audit</button>
+          <button class="service-tab" role="tab" id="tab-1" aria-selected="false" aria-controls="panel-1"><svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg>Dispute Filing</button>
+          <button class="service-tab" role="tab" id="tab-2" aria-selected="false" aria-controls="panel-2"><svg class="icon" aria-hidden="true"><use href="#i-trend"/></svg>Score Improvement</button>
+          <button class="service-tab" role="tab" id="tab-3" aria-selected="false" aria-controls="panel-3"><svg class="icon" aria-hidden="true"><use href="#i-landmark"/></svg>Loan Readiness</button>
+          <button class="service-tab" role="tab" id="tab-4" aria-selected="false" aria-controls="panel-4"><svg class="icon" aria-hidden="true"><use href="#i-user-check"/></svg>Fraud Resolution</button>
+          <button class="service-tab" role="tab" id="tab-5" aria-selected="false" aria-controls="panel-5"><svg class="icon" aria-hidden="true"><use href="#i-monitor"/></svg>Monitoring</button>
+        </div>
+        <div class="reveal">
+          <div class="service-panel active" role="tabpanel" id="panel-0" aria-labelledby="tab-0">
+            <div>
+              <div class="icon-box"><svg class="icon" aria-hidden="true"><use href="#i-search"/></svg></div>
+              <h3>Complete Credit Audit</h3>
+              <p>A line-by-line review of your reports from all four bureaus — CIBIL, Experian, Equifax and CRIF — to surface every inaccuracy affecting your score.</p>
+              <a class="btn btn-primary" href="#contact">Start My Free Audit</a>
+            </div>
+            <ul>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Cross-bureau comparison to catch mismatched data</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Every account, enquiry and DPD code reviewed</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Written error report with severity ranking</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Clear action plan before you commit to anything</li>
+            </ul>
+          </div>
+          <div class="service-panel" role="tabpanel" id="panel-1" aria-labelledby="tab-1" hidden>
+            <div>
+              <div class="icon-box"><svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg></div>
+              <h3>Dispute Filing &amp; Escalation</h3>
+              <p>Professionally drafted disputes submitted to bureaus and lenders, with structured escalation when responses fall short.</p>
+              <a class="btn btn-primary" href="#contact">Get Started</a>
+            </div>
+            <ul>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Tailored dispute letters for each identified error</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Filed with bureaus and lender grievance cells</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Escalation under Section 18 of the CIC Act</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Full documentation trail for every filing</li>
+            </ul>
+          </div>
+          <div class="service-panel" role="tabpanel" id="panel-2" aria-labelledby="tab-2" hidden>
+            <div>
+              <div class="icon-box"><svg class="icon" aria-hidden="true"><use href="#i-trend"/></svg></div>
+              <h3>Score Improvement Plan</h3>
+              <p>Beyond error correction — a structured plan to build your score through better credit behaviour, tracked monthly.</p>
+              <a class="btn btn-primary" href="#contact">Get Started</a>
+            </div>
+            <ul>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Credit utilisation optimisation targets</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Enquiry hygiene — when and where to apply</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Account mix and tenure strategy</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Monthly milestones with progress reviews</li>
+            </ul>
+          </div>
+          <div class="service-panel" role="tabpanel" id="panel-3" aria-labelledby="tab-3" hidden>
+            <div>
+              <div class="icon-box"><svg class="icon" aria-hidden="true"><use href="#i-landmark"/></svg></div>
+              <h3>Loan Readiness Report</h3>
+              <p>Applying for a home, car or business loan? We prepare your profile so you apply once — and get approved.</p>
+              <a class="btn btn-primary" href="#contact">Get Started</a>
+            </div>
+            <ul>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Pre-application profile review</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Eligibility mapping against target lenders</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Documentation checklist and preparation</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Timing strategy to maximise approval odds</li>
+            </ul>
+          </div>
+          <div class="service-panel" role="tabpanel" id="panel-4" aria-labelledby="tab-4" hidden>
+            <div>
+              <div class="icon-box"><svg class="icon" aria-hidden="true"><use href="#i-user-check"/></svg></div>
+              <h3>Identity Fraud Resolution</h3>
+              <p>Accounts you never opened? Mixed files with someone else's defaults? We untangle identity-level errors at the bureau.</p>
+              <a class="btn btn-primary" href="#contact">Get Started</a>
+            </div>
+            <ul>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>KYC-based identity verification with bureaus</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Mixed-file separation and correction</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Unauthorised account investigation</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Coordination with lender fraud cells</li>
+            </ul>
+          </div>
+          <div class="service-panel" role="tabpanel" id="panel-5" aria-labelledby="tab-5" hidden>
+            <div>
+              <div class="icon-box"><svg class="icon" aria-hidden="true"><use href="#i-monitor"/></svg></div>
+              <h3>Ongoing Credit Monitoring</h3>
+              <p>Errors recur. Our monitoring keeps watch after restoration so new inaccuracies are caught before they cost you.</p>
+              <a class="btn btn-primary" href="#contact">Get Started</a>
+            </div>
+            <ul>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Monthly multi-bureau report checks</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Alerts for new enquiries and account changes</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Early-warning flags for score drops</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Priority re-dispute if errors reappear</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7 ============ Process ============ -->
     <section id="process" class="process" aria-labelledby="process-title">
       <div class="container">
         <div class="section-head reveal">
@@ -523,80 +792,133 @@
       </div>
     </section>
 
-    <!-- ============ Benefits ============ -->
-    <section class="benefits" aria-labelledby="benefits-title">
-      <div class="container">
-        <div class="section-head reveal">
-          <h2 id="benefits-title">What a 780+ score <em>unlocks</em></h2>
-          <p>A strong credit score is the entry ticket to India's best financial products.</p>
-        </div>
-        <div class="grid-3">
-          <div class="benefit-card reveal"><div class="icon-box"><svg class="icon" aria-hidden="true"><use href="#i-home"/></svg></div><h3>Home Loans Approved</h3><p>Borrow ₹25–50 lakhs at preferential interest rates.</p></div>
-          <div class="benefit-card reveal"><div class="icon-box"><svg class="icon" aria-hidden="true"><use href="#i-card"/></svg></div><h3>Premium Credit Cards</h3><p>Faster approvals with higher credit limits.</p></div>
-          <div class="benefit-card reveal"><div class="icon-box"><svg class="icon" aria-hidden="true"><use href="#i-landmark"/></svg></div><h3>MSME Credit Lines</h3><p>Fuel your business growth with ready capital.</p></div>
-          <div class="benefit-card reveal"><div class="icon-box"><svg class="icon" aria-hidden="true"><use href="#i-trend-down"/></svg></div><h3>Lower Interest Rates</h3><p>Save lakhs over your loan tenure with a high score.</p></div>
-          <div class="benefit-card reveal"><div class="icon-box"><svg class="icon" aria-hidden="true"><use href="#i-car"/></svg></div><h3>Fast-Track Auto Loans</h3><p>Finance your car in as little as 48 hours.</p></div>
-          <div class="benefit-card reveal"><div class="icon-box"><svg class="icon" aria-hidden="true"><use href="#i-umbrella"/></svg></div><h3>Financial Confidence</h3><p>The peace of mind of knowing your record is accurate.</p></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ Results ============ -->
+    <!-- 8 ============ Results carousel ============ -->
     <section id="results" aria-labelledby="results-title">
       <div class="container">
         <div class="section-head reveal">
           <p class="eyebrow" style="justify-content:center">Client Results</p>
           <h2 id="results-title">Real cases, real score recoveries</h2>
-          <p>Recent examples of errors we found and corrected for Indian households. Names abbreviated for privacy.</p>
+          <p>Recent examples of errors we found and corrected. Names abbreviated for privacy.</p>
         </div>
-        <div class="grid-3">
-          <article class="card case-card reveal">
-            <h3>The Duplicate Debt Nightmare</h3>
-            <p class="case-sub">Rahul S. · New Delhi</p>
-            <div class="score-compare">
-              <div><span class="lbl">Before</span><span class="before">542</span></div>
-              <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg>
-              <div><span class="lbl">After</span><span class="after">768</span></div>
-            </div>
-            <div class="case-body">
-              <p><strong>The problem:</strong> 4 duplicate credit-card entries from a bank merger, uncleared for 3 years.</p>
-              <p><strong>Our fix:</strong> Multi-bureau dispute coordinated with the bank's grievance cell to consolidate records.</p>
-            </div>
-            <div class="case-foot"><span class="days">42 days</span><span class="outcome">Home loan approved</span></div>
-          </article>
-          <article class="card case-card reveal">
-            <h3>The Identity Mix-Up</h3>
-            <p class="case-sub">Sumit V. · Mumbai</p>
-            <div class="score-compare">
-              <div><span class="lbl">Before</span><span class="before">610</span></div>
-              <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg>
-              <div><span class="lbl">After</span><span class="after">792</span></div>
-            </div>
-            <div class="case-body">
-              <p><strong>The problem:</strong> An unpaid loan belonging to someone with a similar name was reflecting on his CIBIL.</p>
-              <p><strong>Our fix:</strong> Formal escalation under Section 18 of the CIC Act with KYC-based identity verification.</p>
-            </div>
-            <div class="case-foot"><span class="days">35 days</span><span class="outcome">Car loan sanctioned</span></div>
-          </article>
-          <article class="card case-card reveal">
-            <h3>The "Settled" Status Trap</h3>
-            <p class="case-sub">Priya M. · Bengaluru</p>
-            <div class="score-compare">
-              <div><span class="lbl">Before</span><span class="before">585</span></div>
-              <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg>
-              <div><span class="lbl">After</span><span class="after">745</span></div>
-            </div>
-            <div class="case-body">
-              <p><strong>The problem:</strong> A card marked "Settled" instead of "Closed" was blocking all loan eligibility.</p>
-              <p><strong>Our fix:</strong> Negotiated a zero-balance closure update and a fresh NOC for a clean "Closed" status.</p>
-            </div>
-            <div class="case-foot"><span class="days">52 days</span><span class="outcome">Business credit opened</span></div>
-          </article>
+        <div class="reveal" id="caseCarousel">
+          <div class="case-slide active">
+            <article class="case-inner">
+              <div>
+                <h3>The Duplicate Debt Nightmare</h3>
+                <p class="case-sub">Rahul S. · New Delhi</p>
+                <div class="score-compare">
+                  <div><span class="lbl">Before</span><span class="before">542</span></div>
+                  <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg>
+                  <div><span class="lbl">After</span><span class="after">768</span></div>
+                </div>
+                <div class="case-meta"><span class="days">42 days</span><span class="outcome">Home loan approved</span></div>
+              </div>
+              <div class="case-body">
+                <p><strong>The problem:</strong> 4 duplicate credit-card entries from a bank merger, uncleared for 3 years, doubled his apparent debt.</p>
+                <p><strong>Our fix:</strong> Multi-bureau dispute coordinated with the bank's grievance cell to consolidate records into a single accurate entry.</p>
+              </div>
+            </article>
+          </div>
+          <div class="case-slide">
+            <article class="case-inner">
+              <div>
+                <h3>The Identity Mix-Up</h3>
+                <p class="case-sub">Sumit V. · Mumbai</p>
+                <div class="score-compare">
+                  <div><span class="lbl">Before</span><span class="before">610</span></div>
+                  <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg>
+                  <div><span class="lbl">After</span><span class="after">792</span></div>
+                </div>
+                <div class="case-meta"><span class="days">35 days</span><span class="outcome">Car loan sanctioned</span></div>
+              </div>
+              <div class="case-body">
+                <p><strong>The problem:</strong> An unpaid personal loan belonging to someone with a similar name was reflecting on his CIBIL for months.</p>
+                <p><strong>Our fix:</strong> Formal escalation under Section 18 of the CIC Act with KYC-based identity verification at the bureau level.</p>
+              </div>
+            </article>
+          </div>
+          <div class="case-slide">
+            <article class="case-inner">
+              <div>
+                <h3>The "Settled" Status Trap</h3>
+                <p class="case-sub">Priya M. · Bengaluru</p>
+                <div class="score-compare">
+                  <div><span class="lbl">Before</span><span class="before">585</span></div>
+                  <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg>
+                  <div><span class="lbl">After</span><span class="after">745</span></div>
+                </div>
+                <div class="case-meta"><span class="days">52 days</span><span class="outcome">Business credit opened</span></div>
+              </div>
+              <div class="case-body">
+                <p><strong>The problem:</strong> A fully repaid credit card marked "Settled" instead of "Closed" was blocking all further loan eligibility.</p>
+                <p><strong>Our fix:</strong> Negotiated a zero-balance closure update and secured a fresh NOC for a clean "Closed" status across bureaus.</p>
+              </div>
+            </article>
+          </div>
+          <div class="case-slide">
+            <article class="case-inner">
+              <div>
+                <h3>The Joint-Loan Reporting Error</h3>
+                <p class="case-sub">Ananya K. · Chandigarh</p>
+                <div class="score-compare">
+                  <div><span class="lbl">Before</span><span class="before">598</span></div>
+                  <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg>
+                  <div><span class="lbl">After</span><span class="after">780</span></div>
+                </div>
+                <div class="case-meta"><span class="days">48 days</span><span class="outcome">MSME line approved</span></div>
+              </div>
+              <div class="case-body">
+                <p><strong>The problem:</strong> A co-borrowed loan was misattributed entirely to her file during a bureau data merge, inflating her obligations.</p>
+                <p><strong>Our fix:</strong> Pinpointed the merge flaw, filed corrective disputes with ownership documentation, and restored accurate attribution.</p>
+              </div>
+            </article>
+          </div>
+          <div class="case-slide">
+            <article class="case-inner">
+              <div>
+                <h3>The Mixed-File Mystery</h3>
+                <p class="case-sub">Vikram R. · Hyderabad</p>
+                <div class="score-compare">
+                  <div><span class="lbl">Before</span><span class="before">645</span></div>
+                  <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg>
+                  <div><span class="lbl">After</span><span class="after">812</span></div>
+                </div>
+                <div class="case-meta"><span class="days">30 days</span><span class="outcome">Premium rates unlocked</span></div>
+              </div>
+              <div class="case-body">
+                <p><strong>The problem:</strong> Zero debt, yet a score stuck at 645 — a classic mixed-file error blending his record with another consumer's.</p>
+                <p><strong>Our fix:</strong> File separation request with PAN-based verification across all four bureaus, resolved within a single dispute cycle.</p>
+              </div>
+            </article>
+          </div>
+          <div class="case-slide">
+            <article class="case-inner">
+              <div>
+                <h3>The Vendor Dispute Fallout</h3>
+                <p class="case-sub">Suresh P. · Jaipur</p>
+                <div class="score-compare">
+                  <div><span class="lbl">Before</span><span class="before">530</span></div>
+                  <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg>
+                  <div><span class="lbl">After</span><span class="after">765</span></div>
+                </div>
+                <div class="case-meta"><span class="days">58 days</span><span class="outcome">Working capital restored</span></div>
+              </div>
+              <div class="case-body">
+                <p><strong>The problem:</strong> A contested vendor payment was reported as a wilful default, dragging his score to 530 and freezing his business credit.</p>
+                <p><strong>Our fix:</strong> Documented the dispute resolution, filed corrections with the lender and bureaus, and cleared the default flag entirely.</p>
+              </div>
+            </article>
+          </div>
+          <div class="case-nav">
+            <button class="case-arrow" id="casePrev" aria-label="Previous case study"><svg class="icon" aria-hidden="true"><use href="#i-arrow-left"/></svg></button>
+            <div class="dots" id="caseDots" role="tablist" aria-label="Case studies"></div>
+            <button class="case-arrow" id="caseNext" aria-label="Next case study"><svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- ============ Pricing ============ -->
+    <!-- 9 ============ Pricing ============ -->
     <section id="pricing" class="pricing" aria-labelledby="pricing-title">
       <div class="container">
         <div class="section-head reveal">
@@ -644,54 +966,102 @@
       </div>
     </section>
 
-    <!-- ============ Testimonials ============ -->
-    <section class="testimonials" aria-labelledby="testimonials-title">
+    <!-- 10 ============ Testimonials (auto-rotating) ============ -->
+    <section id="testimonials" class="testimonials" aria-labelledby="testimonials-title">
       <div class="container">
         <div class="section-head reveal">
           <h2 id="testimonials-title">What our clients say</h2>
           <p>In their own words, after working with Forty Two Capital.</p>
         </div>
-        <div class="grid-3">
-          <figure class="quote-card reveal">
-            <div class="quote-who"><span class="avatar" aria-hidden="true">AK</span><figcaption><strong>Ananya K.</strong><span>Chandigarh · MSME Owner</span></figcaption></div>
-            <span class="score-pill">598 → 780</span>
-            <blockquote>"When you run a business, your score is everything. A joint-loan reporting error had damaged my rating. They pinpointed the exact flaw in the bureau data merge. Professional, no-nonsense service that gets results."</blockquote>
-          </figure>
-          <figure class="quote-card reveal">
-            <div class="quote-who"><span class="avatar" aria-hidden="true">VR</span><figcaption><strong>Vikram R.</strong><span>Hyderabad · Senior Manager</span></figcaption></div>
-            <span class="score-pill">645 → 812</span>
+        <div class="quote-stage reveal" id="quoteStage" aria-live="polite">
+          <div class="quote-slide active">
+            <blockquote>"I was rejected twice for my dream home loan because of a bank error I didn't even know existed. They found a duplicate loan from 5 years ago and fixed it in under 2 months. My loan is finally approved!"</blockquote>
+            <span class="score-pill">Rahul S. · New Delhi · 542 → 768</span>
+          </div>
+          <div class="quote-slide">
+            <blockquote>"Someone with my same name had an unpaid bill showing on my CIBIL. I tried calling the bank for 6 months with no luck. Forty Two took over the dispute and cleared it in 35 days. Huge relief."</blockquote>
+            <span class="score-pill">Sumit V. · Mumbai · 610 → 792</span>
+          </div>
+          <div class="quote-slide">
+            <blockquote>"My business credit line was stuck because of a 'Settled' status on a card I'd fully paid off. They showed me exactly how to get the NOC and update the records. My business can finally move forward."</blockquote>
+            <span class="score-pill">Priya M. · Bengaluru · 585 → 745</span>
+          </div>
+          <div class="quote-slide">
+            <blockquote>"When you run a business, your score is everything. A joint-loan reporting error had damaged my rating. They pinpointed the exact flaw in the bureau data merge. Professional, no-nonsense service."</blockquote>
+            <span class="score-pill">Ananya K. · Chandigarh · 598 → 780</span>
+          </div>
+          <div class="quote-slide">
             <blockquote>"I had zero debt but my score was stuck at 645. Turns out I had a mixed-file error. They untangled it in 30 days. My score is over 810 now, and I'm getting premium interest rates everywhere."</blockquote>
-          </figure>
-          <figure class="quote-card reveal">
-            <div class="quote-who"><span class="avatar" aria-hidden="true">SP</span><figcaption><strong>Suresh P.</strong><span>Jaipur · Small Business</span></figcaption></div>
-            <span class="score-pill">530 → 765</span>
+            <span class="score-pill">Vikram R. · Hyderabad · 645 → 812</span>
+          </div>
+          <div class="quote-slide">
             <blockquote>"I thought my credit was ruined for life after a bad vendor dispute. The team showed me the legal way to fix it. They didn't just give advice — they did the hard work of filing the disputes for me."</blockquote>
-          </figure>
+            <span class="score-pill">Suresh P. · Jaipur · 530 → 765</span>
+          </div>
+        </div>
+        <div class="mini-quotes reveal" id="quoteNav" role="tablist" aria-label="Testimonials">
+          <button class="mini-quote" role="tab" aria-selected="true"><span class="avatar" aria-hidden="true">RS</span><span><strong>Rahul S.</strong><span>New Delhi</span></span></button>
+          <button class="mini-quote" role="tab" aria-selected="false"><span class="avatar" aria-hidden="true">SV</span><span><strong>Sumit V.</strong><span>Mumbai</span></span></button>
+          <button class="mini-quote" role="tab" aria-selected="false"><span class="avatar" aria-hidden="true">PM</span><span><strong>Priya M.</strong><span>Bengaluru</span></span></button>
+          <button class="mini-quote" role="tab" aria-selected="false"><span class="avatar" aria-hidden="true">AK</span><span><strong>Ananya K.</strong><span>Chandigarh</span></span></button>
+      <button class="mini-quote" role="tab" aria-selected="false"><span class="avatar" aria-hidden="true">VR</span><span><strong>Vikram R.</strong><span>Hyderabad</span></span></button>
+          <button class="mini-quote" role="tab" aria-selected="false"><span class="avatar" aria-hidden="true">SP</span><span><strong>Suresh P.</strong><span>Jaipur</span></span></button>
         </div>
       </div>
     </section>
 
-    <!-- ============ Lead magnet ============ -->
-    <section class="lead" aria-labelledby="lead-title">
-      <div class="container grid-2">
-        <div class="reveal">
-          <h2 id="lead-title">Can't make sense of your <em>CIBIL report?</em></h2>
-          <p>Bureau jargon confuses most people. Our free guide, <strong>The Ultimate Guide to Reading Your Credit Report</strong>, shows you how to spot errors yourself.</p>
-          <ul>
-            <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Decoding "Days Past Due" (DPD) codes</li>
-            <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Spotting unauthorised commercial enquiries</li>
-            <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Understanding the "mixed file" anomaly</li>
-            <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Finding dead accounts that are still open</li>
-          </ul>
+    <!-- 11 ============ Knowledge hub + free guide ============ -->
+    <section id="knowledge" class="knowledge" aria-labelledby="knowledge-title">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="eyebrow" style="justify-content:center">Knowledge Hub</p>
+          <h2 id="knowledge-title">Understand your own credit report</h2>
+          <p>Free guides to help you read, question and protect your credit record.</p>
         </div>
-        <div class="reveal">
+        <div class="grid-4">
+          <article class="article-card reveal">
+            <div class="icon-box"><svg class="icon" aria-hidden="true"><use href="#i-file"/></svg></div>
+            <span class="cat">Tutorial</span>
+            <h3>The Duplicate Entry Guide</h3>
+            <p>Step-by-step: removing multiple loan entries from your CIBIL profile using official dispute channels.</p>
+          </article>
+          <article class="article-card reveal">
+            <div class="icon-box"><svg class="icon" aria-hidden="true"><use href="#i-scale"/></svg></div>
+            <span class="cat">Knowledge</span>
+            <h3>CRIF vs. CIBIL</h3>
+            <p>The different scoring models of India's bureaus — and which one your bank actually checks.</p>
+          </article>
+          <article class="article-card reveal">
+            <div class="icon-box"><svg class="icon" aria-hidden="true"><use href="#i-alert"/></svg></div>
+            <span class="cat">Critical</span>
+            <h3>The "Settled" Trap</h3>
+            <p>Why a 'Settled' status is as damaging as a default for most lenders — and how to convert it to 'Closed'.</p>
+          </article>
+          <article class="article-card reveal">
+            <div class="icon-box"><svg class="icon" aria-hidden="true"><use href="#i-search"/></svg></div>
+            <span class="cat">Strategy</span>
+            <h3>Enquiry Clusters</h3>
+            <p>How too many applications in a short period triggers a 'credit-hungry' flag on your report.</p>
+          </article>
+        </div>
+        <div class="lead-wrap reveal">
+          <div>
+            <h3 class="lead-title">Can't make sense of your <em>CIBIL report?</em></h3>
+            <p>Our free guide, <strong>The Ultimate Guide to Reading Your Credit Report</strong>, shows you how to spot errors yourself.</p>
+            <ul>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Decoding "Days Past Due" (DPD) codes</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Spotting unauthorised commercial enquiries</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Understanding the "mixed file" anomaly</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Finding dead accounts that are still open</li>
+            </ul>
+          </div>
           <form class="lead-form-card" id="guideForm" novalidate>
             <h3>Get the free guide</h3>
             <p class="sub">We'll email the PDF to you — no spam, ever.</p>
             <input type="hidden" name="form-type" value="guide-request">
-            <label for="g-name" style="position:absolute;left:-9999px">Your name</label>
+            <label class="sr-label" for="g-name">Your name</label>
             <input id="g-name" name="name" type="text" placeholder="Your name" required autocomplete="name">
-            <label for="g-email" style="position:absolute;left:-9999px">Email address</label>
+            <label class="sr-label" for="g-email">Email address</label>
             <input id="g-email" name="email" type="email" placeholder="Email address" required autocomplete="email">
             <button class="btn btn-primary" type="submit">
               <svg class="icon" aria-hidden="true"><use href="#i-download"/></svg>
@@ -702,56 +1072,72 @@
       </div>
     </section>
 
-    <!-- ============ FAQ ============ -->
+    <!-- 12 ============ FAQ ============ -->
     <section id="faq" class="faq" aria-labelledby="faq-title">
       <div class="container">
         <div class="section-head reveal">
           <p class="eyebrow" style="justify-content:center">FAQ</p>
           <h2 id="faq-title">Frequently asked questions</h2>
         </div>
-        <details open class="reveal">
-          <summary>Is credit restoration legally permissible in India?<svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></summary>
-          <p>Yes. Every Indian citizen has a statutory right under the Credit Information Companies (Regulation) Act, 2005 to dispute inaccurate information in their credit report. Forty Two Capital facilitates this process professionally — filing dispute requests directly with the credit bureaus and lenders on your behalf through official channels.</p>
-        </details>
-        <details class="reveal">
-          <summary>What is the typical resolution timeline?<svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></summary>
-          <p>Credit bureaus are mandated by the RBI to resolve disputes within 30 days of receiving a formal complaint. In our experience, straightforward errors are resolved within 30–45 days. Complex cases involving multiple discrepancies or identity fraud may require 60–90 days. We monitor every case actively and keep you informed at every stage.</p>
-        </details>
-        <details class="reveal">
-          <summary>How is this different from disputing on my own?<svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></summary>
-          <p>You can dispute errors yourself — but we audit all 4 bureaus simultaneously with a structured framework that catches systemic errors most people miss, prepare professionally drafted documentation, and sustain the follow-up and escalation most individuals find overwhelming. We persist until the error is corrected.</p>
-        </details>
-        <details class="reveal">
-          <summary>Is my sensitive data secure with you?<svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></summary>
-          <p>Your credit reports and personal information are treated with strict confidentiality, are never shared with third-party marketing firms, and you can request data deletion at any point.</p>
-        </details>
-        <details class="reveal">
-          <summary>Do you guarantee a specific score improvement?<svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></summary>
-          <p>No legitimate firm can guarantee a specific increase — final score calculation rests with the bureaus. What we guarantee is a complete audit identifying every inaccuracy and a systematic action plan to address them. Most clients see meaningful improvement within 30–60 days once errors are removed.</p>
-        </details>
-        <details class="reveal">
-          <summary>What if my score is below 500?<svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></summary>
-          <p>Scores below 500 often have the most room for improvement, frequently due to severe misreporting or mixed files. We specialise in complex recovery cases and have restored credit standing for clients starting from very low baselines.</p>
-        </details>
-        <details class="reveal">
-          <summary>What's the difference between a credit audit and credit repair?<svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></summary>
-          <p>A credit audit is the diagnostic phase — identifying discrepancies across all 4 bureaus. Credit repair (restoration) is the execution phase — filing formal disputes and escalating until they're resolved. Forty Two Capital provides both: a comprehensive audit followed by dedicated restoration.</p>
-        </details>
-        <details class="reveal">
-          <summary>Are there any hidden charges?<svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></summary>
-          <p>No. Our pricing covers the entire audit and dispute lifecycle for your chosen plan. There are no surprise fees for additional dispute letters or follow-ups within your plan's scope.</p>
-        </details>
+        <div class="faq-filters reveal" id="faqFilters">
+          <button class="faq-filter" aria-pressed="true" data-cat="all">All</button>
+          <button class="faq-filter" aria-pressed="false" data-cat="legal">Legality &amp; Safety</button>
+          <button class="faq-filter" aria-pressed="false" data-cat="process">Process &amp; Timelines</button>
+          <button class="faq-filter" aria-pressed="false" data-cat="pricing">Pricing</button>
+        </div>
+        <div class="faq-list reveal" id="faqList">
+          <details open data-cat="legal">
+            <summary>Is credit restoration legally permissible in India?<svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></summary>
+            <p>Yes. Every Indian citizen has a statutory right under the Credit Information Companies (Regulation) Act, 2005 to dispute inaccurate information in their credit report. Forty Two Capital facilitates this process professionally — filing dispute requests directly with the credit bureaus and lenders on your behalf through official channels.</p>
+          </details>
+          <details data-cat="legal">
+            <summary>Will filing disputes damage my credit score?<svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></summary>
+            <p>No. Filing a dispute is a statutory right and is not recorded as a negative event on your report. Disputes are not credit enquiries, so they have no direct impact on your score — they can only lead to corrections.</p>
+          </details>
+          <details data-cat="process">
+            <summary>What is the typical resolution timeline?<svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></summary>
+            <p>Credit bureaus are mandated by the RBI to resolve disputes within 30 days of receiving a formal complaint. In our experience, straightforward errors are resolved within 30–45 days. Complex cases involving multiple discrepancies or identity fraud may require 60–90 days. We monitor every case actively and keep you informed at every stage.</p>
+          </details>
+          <details data-cat="process">
+            <summary>How is this different from disputing on my own?<svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></summary>
+            <p>You can dispute errors yourself — but we audit all 4 bureaus simultaneously with a structured framework that catches systemic errors most people miss, prepare professionally drafted documentation, and sustain the follow-up and escalation most individuals find overwhelming. We persist until the error is corrected.</p>
+          </details>
+          <details data-cat="legal">
+            <summary>Is my sensitive data secure with you?<svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></summary>
+            <p>Your credit reports and personal information are treated with strict confidentiality, are never shared with third-party marketing firms, and you can request data deletion at any point.</p>
+          </details>
+          <details data-cat="process">
+            <summary>Do you guarantee a specific score improvement?<svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></summary>
+            <p>No legitimate firm can guarantee a specific increase — final score calculation rests with the bureaus. What we guarantee is a complete audit identifying every inaccuracy and a systematic action plan to address them. Most clients see meaningful improvement within 30–60 days once errors are removed.</p>
+          </details>
+          <details data-cat="process">
+            <summary>What if my score is below 500?<svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></summary>
+            <p>Scores below 500 often have the most room for improvement, frequently due to severe misreporting or mixed files. We specialise in complex recovery cases and have restored credit standing for clients starting from very low baselines.</p>
+          </details>
+          <details data-cat="process">
+            <summary>What's the difference between a credit audit and credit repair?<svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></summary>
+            <p>A credit audit is the diagnostic phase — identifying discrepancies across all 4 bureaus. Credit repair (restoration) is the execution phase — filing formal disputes and escalating until they're resolved. Forty Two Capital provides both: a comprehensive audit followed by dedicated restoration.</p>
+          </details>
+          <details data-cat="pricing">
+            <summary>Are there any hidden charges?<svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></summary>
+            <p>No. Our pricing covers the entire audit and dispute lifecycle for your chosen plan. There are no surprise fees for additional dispute letters or follow-ups within your plan's scope.</p>
+          </details>
+        </div>
       </div>
     </section>
 
-    <!-- ============ Contact ============ -->
-    <section id="contact" aria-labelledby="contact-title">
+    <!-- 13 ============ Contact (dark) ============ -->
+    <section id="contact" class="contact" aria-labelledby="contact-title">
       <div class="container">
+        <div class="section-head reveal">
+          <p class="eyebrow" style="justify-content:center;color:var(--sage)">Free Audit</p>
+          <h2 id="contact-title">Start your credit restoration today</h2>
+          <p>Share your details and our specialists will run a complimentary audit of your credit profile.</p>
+        </div>
         <div class="contact-card reveal">
           <div>
-            <p class="eyebrow">Free Audit</p>
-            <h2 id="contact-title">Start your credit restoration today</h2>
-            <p class="intro">Share your details and our credit specialists will run a complimentary audit of your profile — identifying exactly what stands between you and loan eligibility.</p>
+            <h3 class="ct">Talk to a credit specialist</h3>
+            <p class="intro">We'll identify exactly what stands between you and loan eligibility — before you pay anything.</p>
             <div class="contact-methods">
               <a class="contact-method" href="tel:+916364055652">
                 <span class="icon-box"><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg></span>
@@ -804,18 +1190,34 @@
     </section>
   </main>
 
+  <!-- 14 ============ Footer ============ -->
   <footer class="site-footer">
     <div class="container">
       <div class="footer-grid">
         <div>
-          <a class="brand" href="#" aria-label="Forty Two Capital — home">
+          <a class="brand" href="#home" aria-label="Forty Two Capital — home">
             <img src="new-logo.png" alt="Forty Two Capital logo" width="40" height="40">
             <span class="brand-name">Forty Two Capital</span>
           </a>
           <p class="footer-tag">Helping Indians reclaim their financial standing through expert credit restoration and bureau dispute resolution.</p>
-          <p class="footer-legal">Forty Two Capital is a credit advisory and dispute facilitation service. We are not a credit rating agency and are not affiliated with CIBIL, Experian, Equifax, or CRIF. All dispute filings are conducted through official bureau and lender channels in accordance with the Credit Information Companies (Regulation) Act, 2005 and applicable RBI guidelines.</p>
         </div>
-        <div class="footer-links">
+        <div class="footer-col">
+          <h3>Explore</h3>
+          <a href="#about">About Us</a>
+          <a href="#process">How It Works</a>
+          <a href="#results">Client Results</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#faq">FAQs</a>
+        </div>
+        <div class="footer-col">
+          <h3>Services</h3>
+          <a href="#services">Credit Audit</a>
+          <a href="#services">Dispute Filing</a>
+          <a href="#services">Score Improvement</a>
+          <a href="#services">Loan Readiness</a>
+          <a href="#services">Fraud Resolution</a>
+        </div>
+        <div class="footer-col">
           <h3>Get in touch</h3>
           <a href="tel:+916364055652">+91 63640 55652</a>
           <a href="https://wa.me/916364055652" target="_blank" rel="noopener noreferrer">WhatsApp</a>
@@ -824,6 +1226,7 @@
           <a href="#contact">Request a free audit</a>
         </div>
       </div>
+      <p class="footer-legal">Forty Two Capital is a credit advisory and dispute facilitation service. We are not a credit rating agency and are not affiliated with CIBIL, Experian, Equifax, or CRIF. All dispute filings are conducted through official bureau and lender channels in accordance with the Credit Information Companies (Regulation) Act, 2005 and applicable RBI guidelines.</p>
       <div class="footer-bottom">
         <span>© <span id="year">2026</span> Forty Two Capital. All rights reserved.</span>
         <span>Services rendered under the Credit Information Companies (Regulation) Act, 2005.</span>
@@ -831,21 +1234,28 @@
     </div>
   </footer>
 
-  <a class="wa-float" href="https://wa.me/916364055652" target="_blank" rel="noopener noreferrer" aria-label="Chat with us on WhatsApp">
-    <svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg>
-  </a>
+  <div class="float-stack">
+    <a class="float-btn float-call" href="tel:+916364055652" aria-label="Call us">
+      <svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg>
+    </a>
+    <a class="float-btn float-wa" href="https://wa.me/916364055652" target="_blank" rel="noopener noreferrer" aria-label="Chat with us on WhatsApp">
+      <svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg>
+    </a>
+  </div>
 
   <script>
     (function () {
       "use strict";
+      var reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-      /* Sticky header shadow */
+      /* ---- Header: transparent → solid on scroll ---- */
       var header = document.getElementById("siteHeader");
-      addEventListener("scroll", function () {
-        header.classList.toggle("scrolled", scrollY > 8);
-      }, { passive: true });
+      function updateHeader() {
+        var open = menu.classList.contains("open");
+        header.classList.toggle("solid", scrollY > 40 || open);
+      }
 
-      /* Mobile menu */
+      /* ---- Mobile menu ---- */
       var toggle = document.getElementById("menuToggle");
       var menu = document.getElementById("mobileMenu");
       var menuIcon = document.getElementById("menuIcon").querySelector("use");
@@ -854,17 +1264,33 @@
         toggle.setAttribute("aria-expanded", String(open));
         toggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
         menuIcon.setAttribute("href", open ? "#i-close" : "#i-menu");
+        updateHeader();
       }
-      toggle.addEventListener("click", function () {
-        setMenu(!menu.classList.contains("open"));
-      });
-      menu.addEventListener("click", function (e) {
-        if (e.target.closest("a")) setMenu(false);
-      });
+      toggle.addEventListener("click", function () { setMenu(!menu.classList.contains("open")); });
+      menu.addEventListener("click", function (e) { if (e.target.closest("a")) setMenu(false); });
+      addEventListener("scroll", updateHeader, { passive: true });
+      updateHeader();
 
-      /* Scroll reveal */
+      /* ---- Active section highlighting ---- */
+      var navAnchors = document.querySelectorAll("#navLinks a");
+      var sectionIds = ["about","services","process","results","pricing","faq","contact"];
+      if ("IntersectionObserver" in window) {
+        var current = "";
+        var secObs = new IntersectionObserver(function (entries) {
+          entries.forEach(function (en) { if (en.isIntersecting) current = en.target.id; });
+          navAnchors.forEach(function (a) {
+            a.classList.toggle("active", a.getAttribute("href") === "#" + current);
+          });
+        }, { rootMargin: "-40% 0px -55% 0px" });
+        sectionIds.forEach(function (id) {
+          var el = document.getElementById(id);
+          if (el) secObs.observe(el);
+        });
+      }
+
+      /* ---- Scroll reveal ---- */
       var items = document.querySelectorAll(".reveal");
-      if ("IntersectionObserver" in window && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      if ("IntersectionObserver" in window && !reduceMotion) {
         var io = new IntersectionObserver(function (entries) {
           entries.forEach(function (en) {
             if (en.isIntersecting) { en.target.classList.add("visible"); io.unobserve(en.target); }
@@ -875,15 +1301,110 @@
         items.forEach(function (el) { el.classList.add("visible"); });
       }
 
-      /* Forms → Google Apps Script */
-      var SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxBJsFUuktxF7b5zdAcVbI4Wa5YrJVcfcOYoOy4ZHFcLY25iUSCAiV6jHrCP-HXYW7rEQ/exec";
+      /* ---- Animated counters ---- */
+      var counters = document.querySelectorAll(".counter");
+      function animateCounter(el) {
+        var target = parseFloat(el.dataset.target);
+        var decimals = parseInt(el.dataset.decimals || "0", 10);
+        if (reduceMotion || !("requestAnimationFrame" in window)) {
+          el.textContent = target.toFixed(decimals); return;
+        }
+        var dur = 1600, t0 = null;
+        function tick(t) {
+          if (!t0) t0 = t;
+          var p = Math.min((t - t0) / dur, 1);
+          var eased = 1 - Math.pow(1 - p, 3);
+          el.textContent = (target * eased).toFixed(decimals);
+          if (p < 1) requestAnimationFrame(tick); else el.textContent = target.toFixed(decimals);
+        }
+        requestAnimationFrame(tick);
+      }
+      if ("IntersectionObserver" in window) {
+        var cObs = new IntersectionObserver(function (entries) {
+          entries.forEach(function (en) {
+            if (en.isIntersecting) { animateCounter(en.target); cObs.unobserve(en.target); }
+          });
+        }, { threshold: 0.5 });
+        counters.forEach(function (c) { cObs.observe(c); });
+      } else {
+        counters.forEach(function (c) { c.textContent = c.dataset.target; });
+      }
 
+      /* ---- Services tabs ---- */
+      var tabs = document.querySelectorAll(".service-tab");
+      var panels = document.querySelectorAll(".service-panel");
+      tabs.forEach(function (tab, i) {
+        tab.addEventListener("click", function () {
+          tabs.forEach(function (t, j) { t.setAttribute("aria-selected", String(i === j)); });
+          panels.forEach(function (p, j) {
+            p.classList.toggle("active", i === j);
+            if (i === j) p.removeAttribute("hidden"); else p.setAttribute("hidden", "");
+          });
+        });
+      });
+
+      /* ---- Results carousel ---- */
+      var slides = document.querySelectorAll("#caseCarousel .case-slide");
+      var dotsWrap = document.getElementById("caseDots");
+      var caseIdx = 0;
+      slides.forEach(function (_, i) {
+        var d = document.createElement("button");
+        d.className = "dot-btn" + (i === 0 ? " active" : "");
+        d.setAttribute("role", "tab");
+        d.setAttribute("aria-label", "Case study " + (i + 1));
+        d.addEventListener("click", function () { showCase(i); });
+        dotsWrap.appendChild(d);
+      });
+      var dots = dotsWrap.querySelectorAll(".dot-btn");
+      function showCase(i) {
+        caseIdx = (i + slides.length) % slides.length;
+        slides.forEach(function (s, j) { s.classList.toggle("active", j === caseIdx); });
+        dots.forEach(function (d, j) { d.classList.toggle("active", j === caseIdx); });
+      }
+      document.getElementById("casePrev").addEventListener("click", function () { showCase(caseIdx - 1); });
+      document.getElementById("caseNext").addEventListener("click", function () { showCase(caseIdx + 1); });
+
+      /* ---- Testimonials auto-rotate ---- */
+      var quotes = document.querySelectorAll("#quoteStage .quote-slide");
+      var quoteBtns = document.querySelectorAll("#quoteNav .mini-quote");
+      var qIdx = 0, qTimer = null;
+      function showQuote(i) {
+        qIdx = i % quotes.length;
+        quotes.forEach(function (q, j) { q.classList.toggle("active", j === qIdx); });
+        quoteBtns.forEach(function (b, j) { b.setAttribute("aria-selected", String(j === qIdx)); });
+      }
+      quoteBtns.forEach(function (b, i) {
+        b.addEventListener("click", function () { showQuote(i); restartRotate(); });
+      });
+      function restartRotate() {
+        if (qTimer) clearInterval(qTimer);
+        if (!reduceMotion) qTimer = setInterval(function () { showQuote(qIdx + 1); }, 5000);
+      }
+      var stage = document.getElementById("quoteStage");
+      stage.addEventListener("mouseenter", function () { if (qTimer) clearInterval(qTimer); });
+      stage.addEventListener("mouseleave", restartRotate);
+      restartRotate();
+
+      /* ---- FAQ category filter ---- */
+      var filterBtns = document.querySelectorAll("#faqFilters .faq-filter");
+      var faqItems = document.querySelectorAll("#faqList details");
+      filterBtns.forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          var cat = btn.dataset.cat;
+          filterBtns.forEach(function (b) { b.setAttribute("aria-pressed", String(b === btn)); });
+          faqItems.forEach(function (d) {
+            d.classList.toggle("hidden", cat !== "all" && d.dataset.cat !== cat);
+          });
+        });
+      });
+
+      /* ---- Forms → Google Apps Script ---- */
+      var SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxBJsFUuktxF7b5zdAcVbI4Wa5YrJVcfcOYoOy4ZHFcLY25iUSCAiV6jHrCP-HXYW7rEQ/exec";
       function successBlock(title, msg) {
         return '<div class="form-success">' +
           '<svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>' +
           "<h3>" + title + "</h3><p>" + msg + "</p></div>";
       }
-
       function wireForm(form, onDone) {
         form.addEventListener("submit", function (e) {
           e.preventDefault();
@@ -900,20 +1421,18 @@
             });
         });
       }
-
       var auditForm = document.getElementById("auditForm");
       if (auditForm) wireForm(auditForm, function (f) {
         f.innerHTML = successBlock("Request received!",
           "A senior credit advisor will contact you shortly to begin your free audit.");
       });
-
       var guideForm = document.getElementById("guideForm");
       if (guideForm) wireForm(guideForm, function (f) {
         f.innerHTML = successBlock("You're on the list!",
           "We'll email the guide to you shortly. Check your inbox (and spam folder).");
       });
 
-      /* Current year */
+      /* ---- Current year ---- */
       document.getElementById("year").textContent = new Date().getFullYear();
     })();
   </script>
